@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Fondos y textos generales (matiz azulado muy suave) */
+    --background: 0 0% 100%;
+    --foreground: 203 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 203 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 203 50% 10%;
+
+    /* Azul oscuro DCA (#056099) */
+    --primary: 203 94% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Naranja DCA (#ed6a20) */
+    --secondary: 22 86% 53%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Estados inactivos y hovers sutiles */
+    --muted: 203 20% 96%;
+    --muted-foreground: 203 20% 45%;
+
+    --accent: 203 20% 94%;
+    --accent-foreground: 203 94% 31%;
+
+    /* Alertas (Mantenemos un rojo estándar para no confundir errores con el naranja de la marca) */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Bordes e inputs con toque azulado */
+    --border: 203 20% 90%;
+    --input: 203 20% 90%;
+    --ring: 203 94% 31%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar optimizado para el dashboard */
+    --sidebar-background: 203 20% 98%;
+    --sidebar-foreground: 203 50% 15%;
+    --sidebar-primary: 203 94% 31%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 203 20% 92%;
+    --sidebar-accent-foreground: 203 94% 31%;
+    --sidebar-border: 203 20% 88%;
+    --sidebar-ring: 203 94% 31%;
+  }
+
+  .dark {
+    /* Fondos oscuros profundos basados en el azul (no negros puros) */
+    --background: 203 50% 5%;
+    --foreground: 203 20% 98%;
+
+    --card: 203 40% 8%;
+    --card-foreground: 203 20% 98%;
+
+    --popover: 203 40% 8%;
+    --popover-foreground: 203 20% 98%;
+
+    /* Azul primario ligeramente más claro para asegurar visibilidad en fondo oscuro */
+    --primary: 203 94% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* El naranja resalta excelente en modo oscuro */
+    --secondary: 22 86% 53%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 203 30% 15%;
+    --muted-foreground: 203 20% 65%;
+
+    --accent: 203 30% 15%;
+    --accent-foreground: 203 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 203 20% 98%;
+
+    --border: 203 30% 18%;
+    --input: 203 30% 18%;
+    --ring: 203 94% 45%;
+
+    /* Sidebar oscuro */
+    --sidebar-background: 203 50% 5%;
+    --sidebar-foreground: 203 20% 98%;
+    --sidebar-primary: 203 94% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 203 30% 15%;
+    --sidebar-accent-foreground: 203 20% 98%;
+    --sidebar-border: 203 30% 18%;
+    --sidebar-ring: 203 94% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
