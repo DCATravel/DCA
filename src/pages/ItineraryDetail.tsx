@@ -46,11 +46,12 @@ export default function ItineraryDetail() {
               </div>
             </div>
           </div>
+          {/* Se reemplaza la ruta estática por la propiedad pdfUrl del objeto dinámico */}
           <a 
-            href="/assets/IT LINDA COSTA RICA 5D-4N.pdf" 
+            href={itinerary.pdfUrl || "#"} 
             target="_blank" 
             rel="noopener noreferrer"
-            download="Itinerario-Linda-Costa-Rica.pdf"
+            download={`Itinerario-${itinerary.id}.pdf`}
             className="inline-flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full p-3 transition-colors cursor-pointer"
           >
             <Download className="w-6 h-6 text-white" />
@@ -168,7 +169,7 @@ export default function ItineraryDetail() {
               <ul className="space-y-2">
                 {itinerary.included.map((item, i) => (
                   <li key={i} className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-teal-500" />
+                    <span className="w-2 h-2 rounded-full bg-teal-500 flex-shrink-0" />
                     <span className="text-gray-700 text-sm">{item}</span>
                   </li>
                 ))}
@@ -179,7 +180,7 @@ export default function ItineraryDetail() {
               <ul className="space-y-2">
                 {itinerary.notIncluded.map((item, i) => (
                   <li key={i} className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-gray-400" />
+                    <span className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0" />
                     <span className="text-gray-700 text-sm">{item}</span>
                   </li>
                 ))}
@@ -197,24 +198,24 @@ export default function ItineraryDetail() {
               <ul className="space-y-1">
                 {itinerary.season.map((s, i) => (
                   <li key={i} className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-teal-500" />
+                    <span className="w-2 h-2 rounded-full bg-teal-500 flex-shrink-0" />
                     <span className="text-gray-700 text-sm">{s}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="font-bold text-gray-800 mb-2">Duration</h3>
+              <h3 className="font-bold text-gray-800 mb-2">Duración</h3>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-teal-500" />
+                <span className="w-2 h-2 rounded-full bg-teal-500 flex-shrink-0" />
                 <span className="text-gray-700 text-sm">{itinerary.days} Días y {itinerary.hotelNights} Noches</span>
               </div>
             </div>
             <div>
               <h3 className="font-bold text-gray-800 mb-2">Precio Por Persona</h3>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-teal-500" />
-                <span className="text-gray-700 text-sm">${itinerary.pricePerPerson}usd</span>
+                <span className="w-2 h-2 rounded-full bg-teal-500 flex-shrink-0" />
+                <span className="text-gray-700 text-sm">${itinerary.pricePerPerson} USD</span>
               </div>
             </div>
           </div>

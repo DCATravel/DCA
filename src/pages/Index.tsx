@@ -63,7 +63,7 @@ export default function Index() {
               to="/itinerarios"
               className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-3 rounded transition-colors shadow-sm"
             >
-              Itinerarios
+              ¡Viaja!
             </Link>
           </div>
         </div>

@@ -79,12 +79,12 @@ export default function Itineraries() {
               <div className="relative h-48 overflow-hidden">
                 <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform hover:scale-105 duration-500" />
                 
-                {/* Botón de descarga corregido y estilizado */}
+                {/* Botón de descarga dinámico corregido */}
                 <a 
-                  href="/assets/IT LINDA COSTA RICA 5D-4N.pdf" 
+                  href={it.pdfUrl || "#"} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  download="Itinerario-Linda-Costa-Rica.pdf"
+                  download={`Itinerario-${it.id}.pdf`}
                   className="absolute top-3 right-3 bg-background/90 hover:bg-background text-primary hover:text-secondary p-2.5 rounded-full shadow-sm transition-colors z-10"
                   title="Descargar PDF"
                 >

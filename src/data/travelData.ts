@@ -30,341 +30,412 @@ export interface Itinerary {
   activities: string[];
   included: string[];
   notIncluded: string[];
+  pdfUrl: string; // Añadido para gestionar la descarga dinámica del PDF
 }
 
 export const destinations: Destination[] = [
   {
-   id: "costa-rica",
-    name: "Costa Rica",
-    location: "San José, Costa Rica",
-    image: "https://rutina-no.com/wp-content/uploads/2025/06/Aerial-Drone-view-of-Manuel-Antonio-National-Park-in-Costa-Rica.-.jpg",
+    id: "brasil",
+    name: "Brasil",
+    location: "Río de Janeiro & Iguazú, Brasil",
+    image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325",
     rating: 5,
-    price: 534,
-    description: "Descubre lo mejor de Costa Rica en una experiencia que combina cultura, historia y naturaleza en solo cinco días. Explorarás San José, paisajes volcánicos y el encantador Valle de Orosí.",
+    price: 1895,
+    description: "Un viaje que combina ciudad, cultura y naturaleza en un solo recorrido inolvidable iniciando en Río de Janeiro y finalizando en las Cataratas de Iguazú. [cite: 6, 9]",
     category: "Latinoamérica"
   },
   {
-    id: "venice",
-    name: "Grand Canal, Venice",
-    location: "Venice, Italy",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtghiaaagvq/destination-venice-italy.png",
-    rating: 4.5,
-    price: 800,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Europa"
+    id: "colombia",
+    name: "Colombia",
+    location: "Bogotá, Cartagena y Medellín, Colombia",
+    image: "https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80",
+    rating: 4.8,
+    price: 0,
+    description: "Descubre lo mejor de Bogotá, Cartagena y Medellín en un viaje ideal para el verano, con una propuesta completa que combina historia, arquitectura colonial y energía urbana. [cite: 116]",
+    category: "Latinoamérica"
   },
   {
-    id: "agra",
-    name: "Agra, India",
-    location: "Agra, India",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgc5aaagxq/destination-agra-india.png",
+    id: "costa-rica",
+    name: "Costa Rica",
+    location: "San José, Costa Rica",
+    image: "https://images.unsplash.com/photo-1518182170546-076616fdfaaf?auto=format&fit=crop&w=800&q=80",
     rating: 5,
-    price: 459,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Asia"
+    price: 0,
+    description: "Descubre lo mejor de Costa Rica en una experiencia que combina cultura, historia y naturaleza en solo cinco días. [cite: 234]",
+    category: "Latinoamérica"
   },
   {
-    id: "bali",
-    name: "Bali, Indonesia",
-    location: "Bali, Indonesia",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgieqaagwa/destination-bali-indonesia.png",
+    id: "cuba",
+    name: "Cuba",
+    location: "La Habana, Varadero y Cayo Santa María, Cuba",
+    image: "https://images.unsplash.com/photo-1500916434205-0c77489c6ce7?auto=format&fit=crop&w=800&q=80",
     rating: 4.5,
-    price: 700,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Asia"
+    price: 0,
+    description: "Descubre la perfecta combinación entre historia, cultura y playas de ensueño. [cite: 292, 342]",
+    category: "Caribe"
   },
   {
-    id: "mount-fuji",
-    name: "Mount Fuji, Japan",
-    location: "Tokyo, Japan",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgznaaagxa/destination-mount-fuji-japan.png",
-    rating: 4.5,
-    price: 500,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Asia"
+    id: "republica-dominicana",
+    name: "República Dominicana",
+    location: "Santo Domingo y Puerto Plata, República Dominicana",
+    image: "https://images.unsplash.com/photo-1549444342-995f57fc1c0a?auto=format&fit=crop&w=800&q=80",
+    rating: 4.7,
+    price: 0,
+    description: "Cultura vibrante, naturaleza impactante y descanso absoluto se unen en una experiencia que captura, en cada detalle, la verdadera alma dominicana. [cite: 438]",
+    category: "Caribe"
   },
   {
-    id: "railay",
-    name: "Railay Beach, Thailand",
-    location: "Krabi, Thailand",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtg65qaagxq/destination-railay-thailand.png",
-    rating: 3,
-    price: 400,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Asia"
-  },
-  {
-    id: "santorini",
-    name: "Santorini, Greece",
-    location: "Santorini, Greece",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjthciiaagwa/destination-santorini-greece.png",
-    rating: 5,
-    price: 850,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Europa"
-  },
-  {
-    id: "rome",
-    name: "Rome, Italy",
-    location: "Rome, Italy",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtghiaaagvq/destination-venice-italy.png",
-    rating: 5,
-    price: 700,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Europa"
-  },
-  {
-    id: "cappadocia",
-    name: "Cappadocia, Turkey",
-    location: "Cappadocia, Turkey",
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgziyaagvq/hero-hot-air-balloons-cappadocia.png",
-    rating: 4.5,
-    price: 550,
-    description: "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nunc Vulputate Libero Et Velit Interdum. Ac Aliquet Odio Mattis Class Aptent Taciti Sociosqu Ad Litora Torquent Per Consulta Nostra.",
-    category: "Europa"
+    id: "guatemala",
+    name: "Guatemala",
+    location: "Antigua, Atitlán y Tikal, Guatemala",
+    image: "https://images.unsplash.com/photo-1528543606781-2f6e6857f318?auto=format&fit=crop&w=800&q=80",
+    rating: 4.9,
+    price: 2130,
+    description: "Descubre los destinos más impresionantes de Guatemala en un recorrido que combina ciudades coloniales, cultura maya, naturaleza y tradiciones locales. [cite: 629]",
+    category: "Centroamérica"
   }
 ];
 
 export const itineraries: Itinerary[] = [
   {
-    id: "linda-costa-rica-2026",
-    title: "Linda Costa Rica 2026",
-    destination: "San José, Costa Rica",
-    dates: "10 - 15 Mayo",
-    duration: "5 Días",
-    days: 5,
-    cities: 3, 
-    hotelNights: 4,
-    image: "https://rutina-no.com/wp-content/uploads/2025/06/Aerial-Drone-view-of-Manuel-Antonio-National-Park-in-Costa-Rica.-.jpg",
-    description: "Descubre lo mejor de Costa Rica en una experiencia que combina cultura, historia y naturaleza en solo cinco días. Comenzarás en San José, donde podrás explorar la esencia de la capital, seguido de una jornada memorable en el Volcán Irazú, la histórica Cartago y el Valle de Orosí.",
+    id: "brasil-expreso-2026",
+    title: "Brasil Expreso 2026",
+    destination: "Río de Janeiro & Iguazú, Brasil",
+    dates: "16 al 23 de noviembre 2026",
+    duration: "8 Días",
+    days: 8,
+    cities: 2,
+    hotelNights: 7,
+    image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325",
+    description: "Vive un viaje completo por Brasil iniciando en Río de Janeiro, donde conocerás sus íconos esenciales... Después volarás a Iguazú para admirar ambos lados de las cataratas. [cite: 6, 8]",
     category: "Latinoamérica",
-    season: ["Primavera", "Verano", "Otoño", "Invierno"], // Salidas diarias todo el año
-    pricePerPerson: 534,
+    season: ["Otoño"],
+    pricePerPerson: 1895, // [cite: 108]
     flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 22:00", to: "DENPASAR (DPS)", arrival: "SALIDA: Martes 3 Mayo", stops: "2 Escalas (LAX, SIN)", estimatedPrice: "Precio Estimado: ~$1500" },
-      return: { from: "DENPASAR (DPS)", departure: "SALIDA: 08:00", to: "CDMX (MEX)", arrival: "LLEGADA: Domingo 15 Mayo", stops: "2 Escalas (SIN, LAX)", estimatedPrice: "Precio Estimado: ~$1500" }
+      outbound: { from: "N/A", departure: "N/A", to: "RÍO DE JANEIRO", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" },
+      return: { from: "IGUAZÚ", departure: "N/A", to: "N/A", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" }
     },
     activities: [
-      "City tour de San José: Museo de Arte Costarricense y Parque La Sabana.",
-      "Visita al Teatro Nacional, Catedral Metropolitana y Mercado Central.",
-      "Almuerzo típico costarricense (casado) incluido.",
-      "Tour Volcán Irazú: El más alto de la Cordillera Volcánica Central.",
-      "Cartago: Visita a la Basílica de Nuestra Señora de los Ángeles.",
-      "Valle de Orosí: Plantaciones de café y la histórica Iglesia colonial.",
-      "Día libre: Opciones para visitar Manuel Antonio o el Volcán Arenal."
+      "Visita al Cristo Redentor, bosque de Tijuca y Estadio Maracaná. [cite: 19, 20, 23]",
+      "Paseo por el Sambódromo y Catedral Metropolitana. [cite: 24, 25]",
+      "Viaje en teleférico a la cima del Pan de Azúcar. [cite: 27]",
+      "Recorrido por el centro histórico de Río y Escaleras de Selarón. [cite: 32, 43]",
+      "Tour Cataratas del Iguazú (lado brasileño) con Macuco Safari. [cite: 54, 63]",
+      "Recorrido por pasarelas de Garganta del Diablo (lado argentino). [cite: 79]"
     ],
     included: [
-      "Traslado Aeropuerto - Hotel - Aeropuerto",
-      "4 noches de alojamiento",
-      "Todos los desayunos y 2 comidas",
-      "City tour de San José",
-      "Tour Volcán Irazú, Basílica y Valle de Orosí",
-      "Seguro de viajero Assist Card",
-      "Transportación terrestre"
+      "04 noches de acomodación en Rio de Janeiro con desayuno [cite: 91]",
+      "03 noches de acomodación en Iguazú con desayuno [cite: 94]",
+      "Traslados privados In & Out [cite: 92, 95]",
+      "Tours detallados con entradas y almuerzos indicados [cite: 93, 96]",
+      "Seguro de viajero AC 60 Assist Card [cite: 97]"
     ],
     notIncluded: [
-      "Vuelos internacionales",
-      "Alimentaciones y gastos no mencionados",
-      "Actividades extras y opcionales"
-    ]
-  },
-  {
-    id: "venice-italia-2026",
-    title: "Itinerario Venecia, Italia 2026",
-    destination: "Venice, Italy",
-    dates: "10 - 24 Octubre",
-    duration: "14 Días",
-    days: 14,
-    cities: 5,
-    hotelNights: 13,
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtghiaaagvq/destination-venice-italy.png",
-    description: "Descubre la magia de Venecia con sus canales, góndolas y arquitectura renacentista. Un viaje inolvidable por la ciudad más romántica del mundo.",
-    category: "Europa",
-    season: ["Otoño", "Primavera"],
-    pricePerPerson: 800,
-    flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 14:00", to: "VENECIA (VCE)", arrival: "SALIDA: Domingo 11 Octubre", stops: "1 Escala (MAD)", estimatedPrice: "Precio Estimado: ~$1200" },
-      return: { from: "VENECIA (VCE)", departure: "SALIDA: 10:00", to: "CDMX (MEX)", arrival: "LLEGADA: Sábado 24 Octubre", stops: "1 Escala (MAD)", estimatedPrice: "Precio Estimado: ~$1200" }
-    },
-    activities: [
-      "Paseo en góndola por el Gran Canal.",
-      "Visita a la Basílica de San Marcos.",
-      "Recorrido por el Palacio Ducal.",
-      "Isla de Murano: Taller de vidrio soplado.",
-      "Burano: Fotografía en calles coloridas."
+      "Vuelos Domésticos o Internacionales [cite: 101]",
+      "Gastos Personales y comidas no mencionadas [cite: 99, 100]",
+      "Excursiones o servicios no mencionados [cite: 102]"
     ],
-    included: ["Hospedaje", "Desayunos", "Paseo en góndola", "Entradas a museos"],
-    notIncluded: ["Vuelos", "Comidas y Cenas", "Transporte local", "Souvenirs"]
+    pdfUrl: "/assets/Brasil-Iguazu.pdf"
   },
   {
-    id: "bali-indonesia-2026",
-    title: "Itinerario Bali, Indonesia 2026",
-    destination: "Bali, Indonesia",
-    dates: "1 - 15 Noviembre",
-    duration: "15 Días",
-    days: 15,
-    cities: 4,
-    hotelNights: 14,
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgieqaagwa/destination-bali-indonesia.png",
-    description: "Explora los templos milenarios, arrozales infinitos y playas paradisíacas de Bali. Una experiencia espiritual y natural única.",
-    category: "Asia",
-    season: ["Verano", "Otoño"],
-    pricePerPerson: 700,
-    flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 22:00", to: "DENPASAR (DPS)", arrival: "SALIDA: Martes 3 Noviembre", stops: "2 Escalas (LAX, SIN)", estimatedPrice: "Precio Estimado: ~$1500" },
-      return: { from: "DENPASAR (DPS)", departure: "SALIDA: 08:00", to: "CDMX (MEX)", arrival: "LLEGADA: Domingo 15 Noviembre", stops: "2 Escalas (SIN, LAX)", estimatedPrice: "Precio Estimado: ~$1500" }
-    },
-    activities: [
-      "Templo de Uluwatu: Danza Kecak al atardecer.",
-      "Terrazas de arroz de Tegallalang.",
-      "Monkey Forest en Ubud.",
-      "Snorkel en Nusa Penida.",
-      "Ceremonia de purificación en Tirta Empul."
-    ],
-    included: ["Hospedaje", "Desayunos", "Transporte privado", "Guía local"],
-    notIncluded: ["Vuelos", "Comidas y Cenas", "Actividades opcionales", "Seguro de viaje"]
-  },
-  {
-    id: "agra-india-2026",
-    title: "Itinerario Agra, India 2026",
-    destination: "Agra, India",
-    dates: "5 - 18 Diciembre",
-    duration: "13 Días",
-    days: 13,
-    cities: 6,
-    hotelNights: 12,
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgc5aaagxq/destination-agra-india.png",
-    description: "Recorre el triángulo dorado de India: Delhi, Agra y Jaipur. Maravíllate con el Taj Mahal y sumérgete en la cultura milenaria.",
-    category: "Asia",
-    season: ["Invierno"],
-    pricePerPerson: 459,
-    flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 20:00", to: "DELHI (DEL)", arrival: "SALIDA: Domingo 7 Diciembre", stops: "1 Escala (DOH)", estimatedPrice: "Precio Estimado: ~$1300" },
-      return: { from: "DELHI (DEL)", departure: "SALIDA: 06:00", to: "CDMX (MEX)", arrival: "LLEGADA: Jueves 18 Diciembre", stops: "1 Escala (DOH)", estimatedPrice: "Precio Estimado: ~$1300" }
-    },
-    activities: [
-      "Taj Mahal al amanecer.",
-      "Fuerte de Agra: Recorrido histórico.",
-      "Jaipur: Palacio de los Vientos.",
-      "Delhi: Templo del Loto y Qutub Minar.",
-      "Mercados locales y gastronomía."
-    ],
-    included: ["Hospedaje", "Desayunos y Cenas", "Transporte entre ciudades", "Guía bilingüe"],
-    notIncluded: ["Vuelos", "Almuerzos", "Propinas", "Visa"]
-  },
-  {
-    id: "mount-fuji-japan-2026",
-    title: "Itinerario Monte Fuji, Japón 2026",
-    destination: "Mount Fuji, Japan",
-    dates: "20 Marzo - 5 Abril",
-    duration: "16 Días",
-    days: 16,
-    cities: 5,
-    hotelNights: 15,
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgznaaagxa/destination-mount-fuji-japan.png",
-    description: "Vive la temporada de cerezos en flor en Japón. Desde Tokio hasta Kioto, descubre templos, tecnología y tradición.",
-    category: "Asia",
-    season: ["Primavera"],
-    pricePerPerson: 500,
-    flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 12:00", to: "TOKIO (NRT)", arrival: "SALIDA: Domingo 22 Marzo", stops: "1 Escala (LAX)", estimatedPrice: "Precio Estimado: ~$1400" },
-      return: { from: "TOKIO (NRT)", departure: "SALIDA: 15:00", to: "CDMX (MEX)", arrival: "LLEGADA: Domingo 5 Abril", stops: "1 Escala (LAX)", estimatedPrice: "Precio Estimado: ~$1400" }
-    },
-    activities: [
-      "Tokio: Shibuya, Akihabara y Senso-ji.",
-      "Monte Fuji: Vista desde lago Kawaguchi.",
-      "Kioto: Fushimi Inari y Arashiyama.",
-      "Nara: Parque de los ciervos.",
-      "Osaka: Street food en Dotonbori."
-    ],
-    included: ["Hospedaje", "Japan Rail Pass", "Desayunos", "WiFi portátil"],
-    notIncluded: ["Vuelos", "Comidas y Cenas", "Entradas a templos", "Souvenirs"]
-  },
-  {
-    id: "railay-thailand-2026",
-    title: "Itinerario Railay, Tailandia 2026",
-    destination: "Railay Beach, Thailand",
-    dates: "15 - 28 Junio",
-    duration: "13 Días",
-    days: 13,
+    id: "colombia-3-joyas",
+    title: "Las 3 Joyas de Colombia",
+    destination: "Bogotá, Cartagena y Medellín, Colombia",
+    dates: "20 al 27 de julio 2026",
+    duration: "8 Días",
+    days: 8,
     cities: 3,
-    hotelNights: 12,
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtg65qaagxq/destination-railay-thailand.png",
-    description: "Playas de ensueño, escalada en roca y comida tailandesa auténtica. Railay Beach es el paraíso tropical perfecto.",
-    category: "Asia",
+    hotelNights: 7,
+    image: "https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80",
+    description: "Descubre lo mejor de Bogotá, Cartagena y Medellín en un viaje ideal para el verano, con una propuesta completa que combina historia, arquitectura colonial y energía urbana. [cite: 116]",
+    category: "Latinoamérica",
     season: ["Verano"],
-    pricePerPerson: 400,
+    pricePerPerson: 0,
     flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 23:00", to: "KRABI (KBV)", arrival: "SALIDA: Miércoles 17 Junio", stops: "2 Escalas (LAX, BKK)", estimatedPrice: "Precio Estimado: ~$1100" },
-      return: { from: "KRABI (KBV)", departure: "SALIDA: 09:00", to: "CDMX (MEX)", arrival: "LLEGADA: Domingo 28 Junio", stops: "2 Escalas (BKK, LAX)", estimatedPrice: "Precio Estimado: ~$1100" }
+      outbound: { from: "CDMX (MEX)", departure: "A coordinar", to: "BOGOTÁ (BOG)", arrival: "A coordinar", stops: "Vuelo Directo", estimatedPrice: "Incluido en tarifa" },
+      return: { from: "MEDELLÍN (MDE)", departure: "A coordinar", to: "CDMX (MEX)", arrival: "A coordinar", stops: "Vuelo Directo", estimatedPrice: "Incluido en tarifa" }
     },
     activities: [
-      "Railay Beach: Kayak y snorkel.",
-      "Escalada en acantilados de caliza.",
-      "Isla Phi Phi: Tour en lancha.",
-      "Mercado nocturno de Krabi.",
-      "Clase de cocina tailandesa."
+      "Ascenso a Monserrate y visita al Museo del Oro en Bogotá. [cite: 127, 128]",
+      "Caminata por La Candelaria y Plaza de Bolívar. [cite: 129]",
+      "Recorrido por la bahía de Cartagena y barrio Manga. [cite: 139]",
+      "Visita al majestuoso Castillo de San Felipe de Barajas. [cite: 140]",
+      "Recorrido en bus turístico en Medellín visitando Pueblito Paisa y Parque de los Pies Descalzos. [cite: 152, 154]"
     ],
-    included: ["Hospedaje", "Desayunos", "Tour Phi Phi", "Transporte local"],
-    notIncluded: ["Vuelos", "Comidas y Cenas", "Equipo de escalada", "Seguro"]
+    included: [
+      "Vuelo redondo directo desde CDMX (MEX-BOG-CTG-MED-MEX) [cite: 169]",
+      "Traslados Aeropuerto - Hotel - Aeropuerto [cite: 171]",
+      "7 noches de alojamiento con desayuno incluido [cite: 172]",
+      "City Tours en Bogotá, Cartagena y Medellín [cite: 173, 174, 175]",
+      "Seguro de viajero Assist Card [cite: 176]"
+    ],
+    notIncluded: [
+      "Alimentaciones y gastos no mencionados [cite: 179]",
+      "Gastos personales y propinas [cite: 180, 182]",
+      "Actividades extras y opcionales [cite: 181]"
+    ],
+    pdfUrl: "/assets/Colombia-3-Joyas.pdf"
   },
   {
-    id: "santorini-grecia-2026",
-    title: "Itinerario Santorini, Grecia 2026",
-    destination: "Santorini, Greece",
-    dates: "1 - 12 Agosto",
-    duration: "12 Días",
-    days: 12,
-    cities: 4,
-    hotelNights: 11,
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjthciiaagwa/destination-santorini-greece.png",
-    description: "Atardeceres mágicos, vinos volcánicos y arquitectura cicládica. Santorini es el destino romántico por excelencia.",
-    category: "Europa",
-    season: ["Verano"],
-    pricePerPerson: 850,
+    id: "costa-rica-para-todos",
+    title: "Costa Rica Para Todos",
+    destination: "San José, Costa Rica",
+    dates: "A consultar",
+    duration: "8 Días",
+    days: 8,
+    cities: 3,
+    hotelNights: 7,
+    image: "https://images.unsplash.com/photo-1518182170546-076616fdfaaf",
+    description: "Una jornada memorable entre paisajes volcánicos, sitios históricos y tradiciones religiosas en el Volcán Irazú, Cartago y el encantador Valle de Orosí. [cite: 236]",
+    category: "Latinoamérica",
+    season: ["Todas"],
+    pricePerPerson: 0,
     flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 16:00", to: "SANTORINI (JTR)", arrival: "SALIDA: Domingo 3 Agosto", stops: "2 Escalas (MAD, ATH)", estimatedPrice: "Precio Estimado: ~$1600" },
-      return: { from: "SANTORINI (JTR)", departure: "SALIDA: 11:00", to: "CDMX (MEX)", arrival: "LLEGADA: Miércoles 12 Agosto", stops: "2 Escalas (ATH, MAD)", estimatedPrice: "Precio Estimado: ~$1600" }
+      outbound: { from: "CDMX (MEX)", departure: "A coordinar", to: "SAN JOSÉ (SJO)", arrival: "A coordinar", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" },
+      return: { from: "SAN JOSÉ (SJO)", departure: "A coordinar", to: "CDMX (MEX)", arrival: "A coordinar", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" }
     },
     activities: [
-      "Oia: Atardecer desde el castillo.",
-      "Tour vinícola por bodegas volcánicas.",
-      "Playa Roja y Playa Negra.",
-      "Akrotiri: Ruinas minoicas.",
-      "Crucero por la caldera y volcán."
+      "Visita al Teatro Nacional, Catedral Metropolitana y Mercado Central. [cite: 250]",
+      "Tour al Volcán Irazú y Valle de Orosí. [cite: 254, 256]",
+      "Visita a la Basílica de Nuestra Señora de los Ángeles. [cite: 255]",
+      "Exploración del Parque Nacional Manuel Antonio. [cite: 262]",
+      "Cena-Show típico en Restaurante Mirador Ran Luna. [cite: 270]",
+      "Tour de Aventura en canopy y rappel. [cite: 275]"
     ],
-    included: ["Hospedaje", "Desayunos", "Tour vinícola", "Crucero caldera"],
-    notIncluded: ["Vuelos", "Comidas y Cenas", "Transporte en isla", "Propinas"]
+    included: [
+      "Traslado Aeropuerto - Hotel - Aeropuerto. [cite: 244, 286]",
+      "Desayunos diarios y almuerzos detallados en itinerario. [cite: 247, 252, 261]",
+      "Transportación para todos los tours mencionados. [cite: 262, 270]"
+    ],
+    notIncluded: [
+      "Vuelos Internacionales",
+      "Experiencias opcionales de rappel o aguas termales en días libres [cite: 269, 274]",
+      "Traslado de regreso desde la Cena Show [cite: 271]"
+    ],
+    pdfUrl: "/assets/CostaRica-ParaTodos.pdf"
   },
   {
-    id: "cappadocia-turkey-2026",
-    title: "Itinerario Capadocia, Turquía 2026",
-    destination: "Cappadocia, Turkey",
-    dates: "8 - 20 Septiembre",
-    duration: "12 Días",
-    days: 12,
-    cities: 4,
-    hotelNights: 11,
-    image: "https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgziyaagvq/hero-hot-air-balloons-cappadocia.png",
-    description: "Vuela en globo aerostático sobre formaciones rocosas únicas. Capadocia ofrece paisajes de otro mundo y cultura milenaria.",
-    category: "Europa",
-    season: ["Verano", "Otoño"],
-    pricePerPerson: 550,
+    id: "cuba-habana-varadero",
+    title: "Cuba - La Habana & Varadero",
+    destination: "La Habana y Varadero, Cuba",
+    dates: "A consultar",
+    duration: "5 Días",
+    days: 5,
+    cities: 2,
+    hotelNights: 4,
+    image: "https://images.unsplash.com/photo-1500916434205-0c77489c6ce7",
+    description: "Descubre la perfecta combinación entre historia, cultura y playas de ensueño en este viaje que te lleva por la Habana Colonial y el paraíso de Varadero. [cite: 292, 293]",
+    category: "Caribe",
+    season: ["Todas"],
+    pricePerPerson: 0,
     flights: {
-      outbound: { from: "CDMX (MEX)", departure: "SALIDA: 18:00", to: "ESTAMBUL (IST)", arrival: "SALIDA: Miércoles 10 Septiembre", stops: "1 Escala (MAD)", estimatedPrice: "Precio Estimado: ~$1200" },
-      return: { from: "ESTAMBUL (IST)", departure: "SALIDA: 07:00", to: "CDMX (MEX)", arrival: "LLEGADA: Sábado 20 Septiembre", stops: "1 Escala (MAD)", estimatedPrice: "Precio Estimado: ~$1200" }
+      outbound: { from: "CDMX/AIFA", departure: "A coordinar", to: "LA HABANA (HAV)", arrival: "A coordinar", stops: "Vuelo Directo", estimatedPrice: "Incluido en tarifa" },
+      return: { from: "LA HABANA (HAV)", departure: "A coordinar", to: "CDMX/AIFA", arrival: "A coordinar", stops: "Vuelo Directo", estimatedPrice: "Incluido en tarifa" }
     },
     activities: [
-      "Vuelo en globo aerostático al amanecer.",
-      "Valle de las Chimeneas de Hadas.",
-      "Ciudad subterránea de Derinkuyu.",
-      "Estambul: Santa Sofía y Gran Bazar.",
-      "Cena en cueva tradicional."
+      "Días de playa y relajación en Varadero. [cite: 304, 305]",
+      "City Tour panorámico por el Centro Histórico y La Habana Moderna. [cite: 314]",
+      "Visita al Palacio Presidencial, Capitolio, y el Malecón. [cite: 315]",
+      "Parada en el mirador del Gran Parque Histórico Militar Morro-Cabaña. [cite: 317]"
     ],
-    included: ["Hospedaje", "Desayunos", "Vuelo en globo", "Transporte interno"],
-    notIncluded: ["Vuelos internacionales", "Comidas y Cenas", "Visa turca", "Propinas"]
+    included: [
+      "Vuelo CDMX/AIFA- Habana- CDMX/AIFA [cite: 326]",
+      "2 noches en Varadero en plan Todo Incluido [cite: 327]",
+      "2 noches en La Habana con Desayunos incluidos [cite: 327]",
+      "Traslados In, Inter y Out [cite: 327, 328]",
+      "Seguro de asistencia médica y Visa electrónica [cite: 330]"
+    ],
+    notIncluded: [
+      "Gastos personales y comidas no mencionadas [cite: 331, 332]",
+      "Cualquier servicio no mencionado en las inclusiones [cite: 333]"
+    ],
+    pdfUrl: "/assets/Cuba-Habana-Varadero.pdf"
+  },
+  {
+    id: "cuba-hvc",
+    title: "Habana, Varadero & Cayo Santa María",
+    destination: "Cuba",
+    dates: "Salidas: Martes, Jueves y Sábados",
+    duration: "8 Días",
+    days: 8,
+    cities: 3,
+    hotelNights: 7,
+    image: "https://images.unsplash.com/photo-1500916434205-0c77489c6ce7",
+    description: "Una experiencia que combina la esencia cultural de La Habana, la tranquilidad de Varadero y el entorno natural paradisíaco de Cayo Santa María. [cite: 343, 344]",
+    category: "Caribe",
+    season: ["Todas"],
+    pricePerPerson: 0,
+    flights: {
+      outbound: { from: "Felipe Angeles (AIFA)", departure: "A coordinar", to: "LA HABANA (HAV)", arrival: "A coordinar", stops: "Vuelo Directo", estimatedPrice: "Vuelo no especificado en incl." },
+      return: { from: "LA HABANA (HAV)", departure: "A coordinar", to: "Felipe Angeles (AIFA)", arrival: "A coordinar", stops: "Vuelo Directo", estimatedPrice: "Vuelo no especificado en incl." }
+    },
+    activities: [
+      "Tiempo libre para relajación en playas de Varadero. [cite: 354]",
+      "Días de descanso y actividades acuáticas opcionales en Cayo Santa María. [cite: 360]",
+      "Recorrido panorámico por el Centro Histórico de La Habana, Patrimonio de la Humanidad. [cite: 368]",
+      "Visita al mirador del Morro-Cabaña. [cite: 373]"
+    ],
+    included: [
+      "2 noches en Varadero (Todo Incluido) [cite: 379]",
+      "2 noches en Cayo Santa María (Todo Incluido) [cite: 380]",
+      "2 noches en La Habana (Desayunos) [cite: 381]",
+      "Traslados In, Inter y Out [cite: 382, 383, 384]",
+      "Visa electrónica y seguro de asistencia médica [cite: 386, 387]"
+    ],
+    notIncluded: [
+      "Gastos personales y comidas no mencionadas [cite: 389, 390]",
+      "Vuelos Internacionales explícitos en inclusiones [cite: 391]"
+    ],
+    pdfUrl: "/assets/Cuba-HVC.pdf"
+  },
+  {
+    id: "dominicana-merengue-bachata",
+    title: "Merengue y Bachata",
+    destination: "República Dominicana",
+    dates: "A consultar",
+    duration: "6 Días",
+    days: 6,
+    cities: 5,
+    hotelNights: 5,
+    image: "https://images.unsplash.com/photo-1549444342-995f57fc1c0a",
+    description: "Cultura vibrante, naturaleza impactante y descanso absoluto se unen en una experiencia que captura, en cada detalle, la verdadera alma dominicana. [cite: 438]",
+    category: "Caribe",
+    season: ["Todas"],
+    pricePerPerson: 0,
+    flights: {
+      outbound: { from: "N/A", departure: "N/A", to: "SANTO DOMINGO", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" },
+      return: { from: "PUERTO PLATA", departure: "N/A", to: "N/A", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" }
+    },
+    activities: [
+      "Visita al parque nacional Los Tres Ojos y al Faro a Colón. [cite: 449]",
+      "Recorrido en la Zona Colonial y el Alcázar de Colón. [cite: 450, 451]",
+      "Degustación de café en Bonao y Santuario del Santo Cerro en La Vega. [cite: 457, 458]",
+      "Visita a la Calle Café Colao en Jarabacoa. [cite: 467]",
+      "Paseo por la calle de los paraguas y Doña Blanca en Puerto Plata. [cite: 472, 473]",
+      "Ascenso en el funicular de Puerto Plata y visita a la casa del Ron Macorix. [cite: 474, 476]"
+    ],
+    included: [
+      "Traslados In/Out [cite: 443, 482]",
+      "Desayunos diarios y Cena de bienvenida [cite: 445, 447]",
+      "Alojamiento en Jarabacoa (Gran Jimenoa) y Puerto Plata (Todo Incluido) [cite: 465, 470]",
+      "City tours descritos con guías expertos [cite: 448]"
+    ],
+    notIncluded: [
+      "Vuelos Internacionales",
+      "Almuerzos en La Vega y otras zonas libres indicadas en el itinerario [cite: 459]"
+    ],
+    pdfUrl: "/assets/Dominicana-Merengue-Bachata.pdf"
+  },
+  {
+    id: "guatemala-aventura-cultura",
+    title: "Aventura y Cultura",
+    destination: "Guatemala",
+    dates: "A consultar",
+    duration: "8 Días",
+    days: 8,
+    cities: 4,
+    hotelNights: 7,
+    image: "https://images.unsplash.com/photo-1528543606781-2f6e6857f318",
+    description: "Un recorrido que combina lo mejor de Guatemala: historia colonial, tradiciones vivas y legado maya, incluyendo el colorido mercado de Chichicastenango y una excursión a Tikal. [cite: 487, 489, 490]",
+    category: "Centroamérica",
+    season: ["Todas"],
+    pricePerPerson: 0,
+    flights: {
+      outbound: { from: "CDMX (MEX)", departure: "N/A", to: "GUATEMALA (GUA)", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" },
+      return: { from: "GUATEMALA (GUA)", departure: "N/A", to: "CDMX (MEX)", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" }
+    },
+    activities: [
+      "Tour guiado por la ciudad de Antigua visitando la Catedral y la Merced. [cite: 500, 501]",
+      "Trekking al Volcán Acatenango con campamento base nocturno. [cite: 505, 506, 507]",
+      "Visita al colorido mercado de Chichicastenango y a la Iglesia de Santo Tomás. [cite: 516, 517]",
+      "Paseo en bote a San Juan La Laguna visitando cooperativas de chocolate y textiles. [cite: 520, 521, 522]",
+      "Tour por la Ciudad de Guatemala y Ciudad Cayalá. [cite: 527, 528]"
+    ],
+    included: [
+      "Traslados Aeropuerto - Hotel - Aeropuerto [cite: 497]",
+      "Alojamiento y desayunos [cite: 500]",
+      "Guías y transporte en circuitos detallados [cite: 500]"
+    ],
+    notIncluded: [
+      "Vuelos Internacionales",
+      "Gastos de equipo y alimentación personal (Acatenango requiere llevar mochila propia) [cite: 508]"
+    ],
+    pdfUrl: "/assets/Guatemala-Aventura-Cultura.pdf"
+  },
+  {
+    id: "guatemala-descubriendo",
+    title: "Descubriendo Guatemala",
+    destination: "Guatemala",
+    dates: "Salidas: Martes y Viernes",
+    duration: "5 Días",
+    days: 5,
+    cities: 3,
+    hotelNights: 4,
+    image: "https://images.unsplash.com/photo-1528543606781-2f6e6857f318",
+    description: "Este viaje combina historia, cultura viva y paisajes naturales únicos de Guatemala. Inicia en Antigua y finaliza en las tradiciones ancestrales de Atitlán. [cite: 537, 538, 540]",
+    category: "Centroamérica",
+    season: ["Todas"],
+    pricePerPerson: 0,
+    flights: {
+      outbound: { from: "CDMX (MEX)", departure: "N/A", to: "GUATEMALA (GUA)", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" },
+      return: { from: "GUATEMALA (GUA)", departure: "N/A", to: "CDMX (MEX)", arrival: "N/A", stops: "Vuelos no incluidos", estimatedPrice: "A consultar" }
+    },
+    activities: [
+      "Medio día de tour en Antigua, Patrimonio Colonial. [cite: 551]",
+      "Visita al mercado indígena de Chichicastenango e Iglesia de Santo Tomás. [cite: 556, 557]",
+      "Visita panorámica de Panajachel. [cite: 558]",
+      "Paseo en bote a San Juan La Laguna, talleres de chocolate y plantas medicinales. [cite: 560, 561, 563]"
+    ],
+    included: [
+      "Traslado Aeropuerto - Hotel - Aeropuerto. [cite: 572]",
+      "4 noches de alojamiento en hotel de su elección con desayunos. [cite: 573, 574]",
+      "City tour de Antigua, Tour Chichicastenango - Lago Atitlán. [cite: 575, 576]",
+      "Seguro de viajero Assist Card e Impuestos de hospedaje. [cite: 580, 581]"
+    ],
+    notIncluded: [
+      "Property fee: Aplicable para hoteles en Antigua y Atitlán. [cite: 583]",
+      "Vuelos internacionales y comidas no mencionadas. [cite: 587, 588]"
+    ],
+    pdfUrl: "/assets/Guatemala-Descubriendo.pdf"
+  },
+  {
+    id: "guatemala-espectacular",
+    title: "Guatemala Espectacular",
+    destination: "Guatemala",
+    dates: "Salidas: Martes y Viernes",
+    duration: "7 Días",
+    days: 7,
+    cities: 5,
+    hotelNights: 6,
+    image: "https://unsplash.com/photos/multicolored-houses-L6T_6Rp2iEk?auto=format&fit=crop&w=800&q=80",
+    description: "Recorre la encantadora Antigua Guatemala, visita el colorido mercado de Chichicastenango, navega por el Lago Atitlán y explora Tikal y Yaxhá. [cite: 630, 631]",
+    category: "Centroamérica",
+    season: ["Todas"],
+    pricePerPerson: 2130, // [cite: 667]
+    flights: {
+      outbound: { from: "CDMX (MEX)", departure: "N/A", to: "GUATEMALA (GUA)", arrival: "N/A", stops: "Vuelos Internacionales No Incluidos", estimatedPrice: "A consultar" },
+      return: { from: "GUATEMALA (GUA)", departure: "N/A", to: "CDMX (MEX)", arrival: "N/A", stops: "Vuelos Internacionales No Incluidos", estimatedPrice: "A consultar" }
+    },
+    activities: [
+      "Tour de medio día en Antigua visitando la iglesia de la Merced y Plaza de Armas. [cite: 637, 638]",
+      "Tour hacia el altiplano para visitar el mercado de Chichicastenango. [cite: 641]",
+      "Paseo en bote por el Lago Atitlán hasta San Juan La Laguna (textiles y chocolate). [cite: 647, 648]",
+      "Vuelo interno a Petén y recorrido arqueológico en el Mundo Maya: Tikal (Gran Jaguar). [cite: 652, 654]",
+      "Visita al sitio arqueológico de Yaxhá, antigua ciudad ceremonial. [cite: 657, 658]"
+    ],
+    included: [
+      "6 noches de alojamiento e Impuestos hoteleros. [cite: 618, 620]",
+      "Desayunos diarios y Almuerzo campestre en Tikal. [cite: 619, 624]",
+      "Traslados, Lancha en Panajachel y Guía durante tours. [cite: 621, 622, 625]",
+      "Entradas según itinerario. [cite: 623]"
+    ],
+    notIncluded: [
+      "Vuelos Internacionales",
+      "Property fee, aplica en hoteles en Antigua y Atitlán. [cite: 627]"
+    ],
+    pdfUrl: "/assets/Guatemala-Espectacular.pdf"
   }
 ];
 
-export const categories = ["Todos", "Europa", "Asia", "América", "África"];
+export const categories = ["Todos", "Latinoamérica", "Caribe", "Centroamérica", "Europa", "Asia"];
 export const seasons = ["Todas", "Primavera", "Verano", "Otoño", "Invierno"];
