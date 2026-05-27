@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Star, MapPin } from "lucide-react";
 import { useState } from "react";
-import { destinations, itineraries } from "@/data/travelData";
+import { destinations } from "@/data/travelData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -41,8 +41,8 @@ export default function Index() {
             {/* El borde de la imagen usa el color secundario (naranja) para crear un contraste vibrante */}
             <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-secondary shadow-xl" style={{ borderRadius: "60% 40% 50% 50% / 50% 60% 40% 50%" }}>
               <img
-                src="https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtghiaaagvq/destination-venice-italy.png"
-                alt="Venice"
+                src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80"
+                alt="Travel Hero"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -76,7 +76,12 @@ export default function Index() {
           <div className="relative">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {popularDestinations.slice(popularIndex, popularIndex + 5).map((dest) => (
-                <Link key={dest.id} to={`/itinerarios/${itineraries.find(i => i.destination === dest.name)?.id || itineraries[0].id}`} className="group">
+                <Link 
+                  key={dest.id} 
+                  // ACTUALIZADO: Apunta a la nueva vista de detalle del destino
+                  to={`/destinos/${dest.id}`} 
+                  className="group"
+                >
                   <div className="rounded-xl overflow-hidden shadow-sm border border-border hover:shadow-md transition-shadow">
                     <img src={dest.image} alt={dest.name} className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
                   </div>
@@ -126,7 +131,8 @@ export default function Index() {
                       </p>
                       {/* Botones secundarios usan el Naranja (#ed6a20) */}
                       <Link
-                        to={`/itinerarios/${itineraries.find(i => i.destination === dest.name)?.id || itineraries[0].id}`}
+                        // ACTUALIZADO: Apunta a la nueva vista de detalle del destino
+                        to={`/destinos/${dest.id}`}
                         className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-xs font-medium px-4 py-1.5 rounded transition-colors shadow-sm"
                       >
                         Detalles
@@ -166,19 +172,19 @@ export default function Index() {
           <div className="w-full md:w-1/2">
             <h2 className="text-3xl font-bold text-foreground mb-4 italic">Sobre Nosotros</h2>
             <p className="text-muted-foreground mb-3 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.
+              En <strong className="text-foreground font-semibold">DCA Travel</strong> somos una operadora mayorista de viajes liderada por mujeres, expertas en Latinoamérica y el mundo. Nos especializamos en crear viajes en paquete y a la medida, trabajando de la mano con proveedores locales para ofrecer experiencias auténticas y de alta calidad.
             </p>
             <p className="text-muted-foreground mb-8 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+              Seleccionamos cuidadosamente cada destino y experiencia diferenciada para garantizar autenticidad en cada detalle. Diseñamos propuestas personalizadas según las necesidades de cada viajero, asegurando que la aventura comience desde el primer momento.
             </p>
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <p className="text-3xl font-bold text-primary">5K+</p>
+                <p className="text-3xl font-bold text-primary">1K+</p>
                 <p className="text-sm text-muted-foreground">Paquetes A Medida</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-primary">10K+</p>
+                <p className="text-3xl font-bold text-primary">3K+</p>
                 <p className="text-sm text-muted-foreground">Destinos</p>
               </div>
               <div>
@@ -194,7 +200,7 @@ export default function Index() {
       <section id="material" className="relative py-20 px-4">
         <div className="absolute inset-0">
           <img
-            src="https://mgx-backend-cdn.metadl.com/generate/images/1003084/2026-05-26/pjtgziyaagvq/hero-hot-air-balloons-cappadocia.png"
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
             alt="Travel background"
             className="w-full h-full object-cover"
           />
@@ -202,16 +208,16 @@ export default function Index() {
           <div className="absolute inset-0 bg-[#056099]/70 mix-blend-multiply" />
         </div>
         <div className="relative max-w-7xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-bold italic mb-4">Itinerarios Actualizados</h2>
-          <p className="text-sm max-w-2xl mx-auto mb-8 opacity-90 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.
+          <h2 className="text-3xl md:text-4xl font-bold italic mb-4">Material Exclusivo Para Tus Redes</h2>
+          <p className="text-sm md:text-base max-w-2xl mx-auto mb-8 opacity-90 leading-relaxed">
+            Sabemos que tu presencia digital es clave para atraer viajeros. Por eso, hemos preparado un catálogo con itinerarios detallados, flyers y descripciones <strong>listas para publicar</strong>. Descarga los PDF's de nuestros paquetes en alta calidad y compártelos directamente con tus clientes para impulsar tus ventas.
           </p>
           {/* Botón de conversión principal (Naranja corporativo) */}
           <Link
-            to="/itinerarios"
+            to="/material"
             className="inline-block bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium px-10 py-4 rounded transition-colors shadow-lg shadow-black/20"
           >
-            Descarga Material
+            Acceder Al Material Gráfico
           </Link>
         </div>
       </section>

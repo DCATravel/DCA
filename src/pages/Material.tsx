@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, Image, FileText, Layout } from 'lucide-react';
+import { Download, Image, FileText, Layout, Search } from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 
 interface Material {
@@ -16,60 +17,60 @@ interface Material {
   dimensions: string;
 }
 
-// 1. Creamos la data simulada (Mock Data) para reemplazar la base de datos
+// 1. Datos simulados actualizados para coincidir con los destinos reales (LATAM)
 const MOCK_MATERIALS: Material[] = [
   {
     id: 1,
-    title: 'Campaña Verano Riviera Maya',
-    type: 'banner',
-    destination_name: 'Riviera Maya',
-    file_url: '#',
-    thumbnail_url: '',
-    dimensions: '1920x1080',
-  },
-  {
-    id: 2,
-    title: 'Post Instagram Santorini',
+    title: 'Campaña Redes Brasil Expreso',
     type: 'post',
-    destination_name: 'Santorini',
+    destination_name: 'Brasil',
     file_url: '#',
-    thumbnail_url: '',
+    thumbnail_url: 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80',
     dimensions: '1080x1080',
   },
   {
-    id: 3,
-    title: 'Folleto Informativo Bali',
+    id: 2,
+    title: 'Flyer Colombia 3 Joyas',
     type: 'flyer',
-    destination_name: 'Bali',
+    destination_name: 'Colombia',
     file_url: '#',
-    thumbnail_url: '',
+    thumbnail_url: 'https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80',
     dimensions: 'A4',
   },
   {
-    id: 4,
-    title: 'Portada Facebook Punta Cana',
-    type: 'cover',
-    destination_name: 'Punta Cana',
+    id: 3,
+    title: 'Banner Web Costa Rica Para Todos',
+    type: 'banner',
+    destination_name: 'Costa Rica',
     file_url: '#',
-    thumbnail_url: '',
+    thumbnail_url: 'https://images.unsplash.com/photo-1536709017021-ce8f99c17e38?auto=format&fit=crop&w=800&q=80',
+    dimensions: '1920x1080',
+  },
+  {
+    id: 4,
+    title: 'Portada Facebook Cuba',
+    type: 'cover',
+    destination_name: 'Cuba',
+    file_url: '#',
+    thumbnail_url: 'https://images.unsplash.com/photo-1500759285222-a95626b934cb?auto=format&fit=crop&w=800&q=80',
     dimensions: '820x312',
   },
   {
     id: 5,
-    title: 'Carrusel Descuentos Tulum',
+    title: 'Carrusel Promo Dominicana',
     type: 'post',
-    destination_name: 'Tulum',
+    destination_name: 'República Dominicana',
     file_url: '#',
-    thumbnail_url: '',
+    thumbnail_url: 'https://images.unsplash.com/photo-1575950674322-3a1977724f2e?auto=format&fit=crop&w=800&q=80',
     dimensions: '1080x1350',
   },
   {
     id: 6,
-    title: 'Catálogo Resort Maldivas',
+    title: 'Catálogo Guatemala Espectacular',
     type: 'flyer',
-    destination_name: 'Maldivas',
+    destination_name: 'Guatemala',
     file_url: '#',
-    thumbnail_url: '',
+    thumbnail_url: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?auto=format&fit=crop&w=600&q=80',
     dimensions: 'A4',
   }
 ];
@@ -88,27 +89,14 @@ const typeColors: Record<string, string> = {
   cover: 'bg-purple-100 text-purple-700 border-purple-200',
 };
 
-const getMaterialThumbnail = (destName: string): string => {
-  // Placeholder por destino, usando colores más alineados a la marca (Azul/Naranja en hex)
-  const map: Record<string, string> = {
-    'Riviera Maya': 'https://placehold.co/600x400/056099/fff?text=Riviera+Maya',
-    'Punta Cana': 'https://placehold.co/600x400/ed6a20/fff?text=Punta+Cana',
-    'Bali': 'https://placehold.co/600x400/056099/fff?text=Bali',
-    'Santorini': 'https://placehold.co/600x400/ed6a20/fff?text=Santorini',
-    'Maldivas': 'https://placehold.co/600x400/056099/fff?text=Maldivas',
-    'Tulum': 'https://placehold.co/600x400/ed6a20/fff?text=Tulum',
-  };
-  return map[destName] || 'https://placehold.co/600x400/056099/fff?text=Material';
-};
-
 export default function MaterialsPage() {
   const [materials, setMaterials] = useState<Material[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState(''); // Estado para el buscador
   const { toast } = useToast();
 
   useEffect(() => {
-    // 2. Simulamos la latencia de una petición a red (ej. 800ms)
     const fetchMaterials = async () => {
       setLoading(true);
       try {
@@ -124,42 +112,61 @@ export default function MaterialsPage() {
     fetchMaterials();
   }, []);
 
-  const filtered = filterType === 'all'
-    ? materials
-    : materials.filter((m) => m.type === filterType);
+  // Lógica de filtrado combinada (Tipo de archivo + Texto de búsqueda)
+  const filtered = materials.filter((m) => {
+    const matchesType = filterType === 'all' || m.type === filterType;
+    const matchesSearch = 
+      m.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      m.destination_name.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    return matchesType && matchesSearch;
+  });
 
   const handleDownload = (material: Material) => {
     toast({ title: 'Descarga Iniciada', description: `Preparando archivo de "${material.title}"...` });
-    
-    // Opcional: Simular que se abre o descarga el archivo
     // window.open(material.file_url, '_blank');
   };
 
   const types = ['all', 'banner', 'post', 'flyer', 'cover'];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navbar />
 
-      <div className="pt-24 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="pt-24 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full">
         <div className="mb-10 text-center md:text-left">
           <h1 className="text-4xl font-bold text-foreground mb-3">Materiales de Marketing</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">Descarga banners, posts y flyers listos para usar en las campañas de tu agencia.</p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
-          {types.map((type) => (
-            <Button
-              key={type}
-              variant={filterType === type ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setFilterType(type)}
-              className={filterType === type ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm' : 'border-border text-muted-foreground hover:text-foreground hover:bg-muted/50'}
-            >
-              {type === 'all' ? 'Todos' : type.charAt(0).toUpperCase() + type.slice(1)}
-            </Button>
-          ))}
+        {/* Toolbar: Search + Filter Tabs */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap gap-2">
+            {types.map((type) => (
+              <Button
+                key={type}
+                variant={filterType === type ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setFilterType(type)}
+                className={filterType === type ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm' : 'border-border text-muted-foreground hover:text-foreground hover:bg-muted/50'}
+              >
+                {type === 'all' ? 'Todos' : type.charAt(0).toUpperCase() + type.slice(1)}
+              </Button>
+            ))}
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full md:w-72">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Buscar por destino o título..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-4 py-2 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm text-foreground placeholder:text-muted-foreground transition-shadow"
+            />
+          </div>
         </div>
 
         {/* Materials Grid */}
@@ -184,7 +191,7 @@ export default function MaterialsPage() {
                 <Card key={material.id} className="overflow-hidden border border-border shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 bg-card group">
                   <div className="h-48 overflow-hidden relative bg-muted">
                     <img
-                      src={getMaterialThumbnail(material.destination_name)}
+                      src={material.thumbnail_url}
                       alt={material.title}
                       className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
                     />
@@ -201,7 +208,7 @@ export default function MaterialsPage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors"
+                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors cursor-pointer"
                       onClick={() => handleDownload(material)}
                     >
                       <Download className="w-4 h-4 mr-2" /> 
@@ -214,14 +221,17 @@ export default function MaterialsPage() {
           </div>
         )}
 
+        {/* Empty State */}
         {!loading && filtered.length === 0 && (
-          <div className="text-center py-24 bg-card rounded-xl border border-dashed border-border shadow-sm">
+          <div className="text-center py-24 bg-card rounded-xl border border-dashed border-border shadow-sm mt-4">
             <Layout className="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-50" />
             <p className="text-foreground font-semibold text-lg">No hay materiales disponibles</p>
-            <p className="text-muted-foreground mt-1">Prueba seleccionando otra categoría en los filtros.</p>
+            <p className="text-muted-foreground mt-1">Prueba ajustando tu búsqueda o seleccionando otra categoría.</p>
           </div>
         )}
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

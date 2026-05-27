@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex items-start">
             <Link to="/" className="flex items-center flex-shrink-0 transition-transform hover:scale-105">
               <img 
-                src="/assets/logo.png" 
+                src="/assets/logo-blanco.png"
                 alt="DCA Travel" 
                 // h-24 (96px) para móvil, h-32 (128px) para desktop. Mayor presencia estructural.
                 className="h-24 w-24 sm:h-32 sm:w-32 object-contain" 

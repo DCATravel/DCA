@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Star, ChevronDown, Search } from "lucide-react";
-import { destinations, itineraries, categories, seasons } from "@/data/travelData";
+import { destinations, categories, seasons } from "@/data/travelData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -131,43 +131,39 @@ export default function Explore() {
       <section className="max-w-7xl mx-auto px-4 pb-16">
         <p className="text-sm text-muted-foreground mb-6 font-medium">{filteredDestinations.length} destinos encontrados</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredDestinations.map((dest) => {
-            // Lógica corregida para encontrar el itinerario correcto asociado al destino
-            const matchingItinerary = itineraries.find(i => i.id.startsWith(dest.id));
-            
-            return (
-              <Link
-                key={dest.id}
-                to={matchingItinerary ? `/itinerarios/${matchingItinerary.id}` : "#"}
-                className="group block"
-              >
-                <div className="rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
-                  <div className="overflow-hidden">
-                    <img
-                      src={dest.image}
-                      alt={dest.name}
-                      className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="font-semibold text-foreground text-lg mb-1">{dest.name}</p>
-                        <div className="flex items-center gap-2">
-                          <div className="flex">{renderStars(dest.rating)}</div>
-                          <span className="text-xs text-muted-foreground">{dest.location}</span>
-                        </div>
+          {filteredDestinations.map((dest) => (
+            <Link
+              key={dest.id}
+              // ACTUALIZADO: Apunta a la nueva vista de paquetes por destino
+              to={`/destinos/${dest.id}`}
+              className="group block"
+            >
+              <div className="rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
+                <div className="overflow-hidden">
+                  <img
+                    src={dest.image}
+                    alt={dest.name}
+                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="font-semibold text-foreground text-lg mb-1">{dest.name}</p>
+                      <div className="flex items-center gap-2">
+                        <div className="flex">{renderStars(dest.rating)}</div>
+                        <span className="text-xs text-muted-foreground">{dest.location}</span>
                       </div>
-                      <div className="text-right">
-                        <p className="text-xs text-muted-foreground mb-0.5">Desde</p>
-                        <p className="text-primary font-bold text-xl">${dest.price}</p>
-                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-muted-foreground mb-0.5">Desde</p>
+                      <p className="text-primary font-bold text-xl">${dest.price}</p>
                     </div>
                   </div>
                 </div>
-              </Link>
-            );
-          })}
+              </div>
+            </Link>
+          ))}
         </div>
 
         {/* Empty State: Si los filtros no coinciden con ningún destino */}
