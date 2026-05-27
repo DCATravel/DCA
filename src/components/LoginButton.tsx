@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Lock, Sparkles, X } from "lucide-react";
+import { Lock, Sparkles, X } from "lucide-react"; // Cámbialos por tu librería de UI preferida si ya no usas Lucide
+import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import { Link } from "react-router-dom";
 
 export default function LoginButton() {
@@ -32,7 +33,7 @@ export default function LoginButton() {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Cabecera decorativa (Naranja corporativo) */}
+            {/* Cabecera decorativa */}
             <div className="bg-secondary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
               <div className="bg-secondary text-secondary-foreground p-3 rounded-full mb-4 shadow-md">
                 <Sparkles className="w-8 h-8" />
@@ -52,9 +53,31 @@ export default function LoginButton() {
                 <p className="text-sm font-medium text-foreground mb-1">
                   ¿Quieres ser de los primeros en entrar?
                 </p>
-                <p className="text-xs text-muted-foreground">
-                  Mantente atento a nuestros comunicados oficiales.
+                <p className="text-xs text-muted-foreground mb-4">
+                  Mantente atento a nuestros comunicados en redes sociales:
                 </p>
+                
+                {/* Íconos de Redes Sociales con Simple Icons */}
+                <div className="flex justify-center gap-4">
+                  <a 
+                    href="https://facebook.com/tu-pagina" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-[#1877F2] transition-colors p-2 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
+                    aria-label="Síguenos en Facebook"
+                  >
+                    <SiFacebook className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href="https://instagram.com/tu-pagina" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-[#E4405F] transition-colors p-2 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
+                    aria-label="Síguenos en Instagram"
+                  >
+                    <SiInstagram className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
 
               {/* Botón de acción secundario para cerrar */}
