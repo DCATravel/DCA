@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import LoginButton from "./LoginButton";
 
 export default function Navbar() {
   const location = useLocation();
@@ -47,9 +48,10 @@ export default function Navbar() {
 
         {/* Right side: Login + Mobile menu */}
         <div className="flex items-center gap-3">
-          <button className="bg-primary hover:bg-primary/80 text-primary-foreground text-sm font-medium px-5 py-2 rounded transition-colors">
-            LOG IN
-          </button>
+          
+          {/* CORRECCIÓN: Quitamos el <button> envolvente. El componente ya trae sus estilos. */}
+          <LoginButton />
+
           {/* Mobile menu button */}
           <button
             className="sm:hidden p-2 text-muted-foreground hover:text-foreground"
