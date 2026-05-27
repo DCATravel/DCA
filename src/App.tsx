@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollToTop from "@/components/ScrollToTop"; // <-- Asegúrate de que la ruta sea correcta según donde creaste el archivo
+import ScrollToTop from "@/components/ScrollToTop"; 
 import Index from "@/pages/Index";
 import Explore from "@/pages/Explore";
 import Itineraries from "@/pages/Itineraries";
@@ -10,7 +10,6 @@ import DestinationItineraries from "./pages/DestinationItineraries";
 function App() {
   return (
     <BrowserRouter>
-      {/* El vigilante silencioso: subirá el scroll automáticamente al inicio en cada cambio de página */}
       <ScrollToTop />
       
       <Routes>

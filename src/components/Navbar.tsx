@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import LoginButton from "./LoginButton";
+import ThemeToggle from "./ThemeToggle"; // <-- Agregamos la importación del interruptor
 
 export default function Navbar() {
   const location = useLocation();
@@ -46,10 +47,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right side: Login + Mobile menu */}
-        <div className="flex items-center gap-3">
+        {/* Right side: Theme + Login + Mobile menu */}
+        <div className="flex items-center gap-2 sm:gap-3">
           
-          {/* CORRECCIÓN: Quitamos el <button> envolvente. El componente ya trae sus estilos. */}
+          {/* AQUÍ VA EL INTERRUPTOR DE MODO OSCURO */}
+          <ThemeToggle />
+
+          {/* Botón de acceso agencias (con su popup integrado) */}
           <LoginButton />
 
           {/* Mobile menu button */}

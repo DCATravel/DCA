@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Fondos y textos generales (matiz azulado muy suave) */
+    /* Fondos y textos generales */
     --background: 0 0% 100%;
     --foreground: 203 50% 10%;
 
@@ -29,11 +29,11 @@
     --accent: 203 20% 94%;
     --accent-foreground: 203 94% 31%;
 
-    /* Alertas (Mantenemos un rojo estándar para no confundir errores con el naranja de la marca) */
+    /* Alertas  */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    /* Bordes e inputs con toque azulado */
+    /* Bordes e inputs azulado */
     --border: 203 20% 90%;
     --input: 203 20% 90%;
     --ring: 203 94% 31%;
@@ -52,7 +52,7 @@
   }
 
   .dark {
-    /* Fondos oscuros profundos basados en el azul (no negros puros) */
+    /* Fondos oscuros basados en el azul  */
     --background: 203 50% 5%;
     --foreground: 203 20% 98%;
 
@@ -62,11 +62,11 @@
     --popover: 203 40% 8%;
     --popover-foreground: 203 20% 98%;
 
-    /* Azul primario ligeramente más claro para asegurar visibilidad en fondo oscuro */
+    /* Azul primario  */
     --primary: 203 94% 45%;
     --primary-foreground: 0 0% 100%;
 
-    /* El naranja resalta excelente en modo oscuro */
+    /* Naranja  */
     --secondary: 22 86% 53%;
     --secondary-foreground: 0 0% 100%;
 
