@@ -17,7 +17,6 @@ interface Material {
   dimensions: string;
 }
 
-// 1. Datos simulados actualizados para coincidir con los destinos reales (LATAM)
 const MOCK_MATERIALS: Material[] = [
   {
     id: 1,
@@ -112,7 +111,7 @@ export default function MaterialsPage() {
     fetchMaterials();
   }, []);
 
-  // Lógica de filtrado combinada (Tipo de archivo + Texto de búsqueda)
+  // Lógica de filtrado combinada 
   const filtered = materials.filter((m) => {
     const matchesType = filterType === 'all' || m.type === filterType;
     const matchesSearch = 

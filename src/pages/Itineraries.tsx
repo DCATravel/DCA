@@ -23,7 +23,7 @@ export default function Itineraries() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* Header - Azul Corporativo */}
+      {/* Header */}
       <section className="bg-primary py-10 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-3xl font-bold text-primary-foreground mb-2">Catálogo de Itinerarios</h1>
@@ -79,7 +79,6 @@ export default function Itineraries() {
               <div className="relative h-48 overflow-hidden">
                 <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform hover:scale-105 duration-500" />
                 
-                {/* Botón de descarga dinámico corregido */}
                 <a 
                   href={it.pdfUrl || "#"} 
                   target="_blank" 
@@ -108,7 +107,7 @@ export default function Itineraries() {
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <p className="text-xl font-bold text-foreground">${it.pricePerPerson}<span className="text-xs font-normal text-muted-foreground">/persona</span></p>
                   
-                  {/* Botón de llamada a la acción en Naranja Corporativo */}
+                  {/* Button CTA */}
                   <Link
                     to={`/itinerarios/${it.id}`}
                     className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-sm font-medium px-5 py-2.5 rounded-md transition-colors shadow-sm"
@@ -121,7 +120,7 @@ export default function Itineraries() {
           ))}
         </div>
 
-        {/* Estado Vacío (por si los filtros no arrojan resultados) */}
+        {/* Empty State */}
         {filteredItineraries.length === 0 && (
           <div className="text-center py-20 bg-muted/30 rounded-xl border border-dashed border-border">
             <Search className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-50" />

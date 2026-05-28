@@ -3,7 +3,7 @@ import { SiFacebook, SiInstagram, SiWhatsapp } from '@icons-pack/react-simple-ic
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
+    <footer className="bg-primary dark:bg-card text-primary-foreground dark:text-card-foreground dark:border-t dark:border-border py-12 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
@@ -23,11 +23,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Quick links</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/" className="hover:underline">Home</Link></li>
-              <li><Link to="/explora" className="hover:underline text-secondary font-semibold">Explora</Link></li>
-              <li><Link to="/agencias" className="hover:underline">Agencias</Link></li>
-              <li><Link to="/contacto" className="hover:underline">Contacto</Link></li>
-              <li><Link to="/politica-de-privacidad" className="hover:underline">Privacy Policy</Link></li>
+              <li><Link to="/" className="hover:text-secondary transition-colors">Home</Link></li>
+              <li><Link to="/explora" className="text-secondary font-semibold hover:opacity-80 transition-colors">Explora</Link></li>
+              <li><Link to="/agencias" className="hover:text-secondary transition-colors">Agencias</Link></li>
+              <li><Link to="/contacto" className="hover:text-secondary transition-colors">Contacto</Link></li>
+              <li><Link to="/politica-de-privacidad" className="hover:text-secondary transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -35,10 +35,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Destinos</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/explora" className="hover:underline">Populares</Link></li>
-              <li><Link to="/explora" className="hover:underline">Imperdibles</Link></li>
-              <li><Link to="/itinerarios" className="hover:underline">Lista de Itinerarios</Link></li>
-              <li><Link to="/material" className="hover:underline">Gallery</Link></li>
+              <li><Link to="/explora" className="hover:text-secondary transition-colors">Populares</Link></li>
+              <li><Link to="/explora" className="hover:text-secondary transition-colors">Imperdibles</Link></li>
+              <li><Link to="/itinerarios" className="hover:text-secondary transition-colors">Lista de Itinerarios</Link></li>
+              <li><Link to="/material" className="hover:text-secondary transition-colors">Material</Link></li>
             </ul>
           </div>
 
@@ -46,13 +46,13 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Síguenos</h3>
             <div className="flex gap-4">
-              <a href="#" className="hover:opacity-80 transition-opacity">
+              <a href="https://www.facebook.com/people/DCA-Travel/61590488308493/" target="_blank" rel="noopener" className="hover:text-secondary transition-transform hover:scale-110">
                 <SiFacebook className="w-6 h-6" />
               </a>
-              <a href="#" className="hover:opacity-80 transition-opacity">
+              <a href="https://www.instagram.com/dca.travel/" target="_blank" rel="noopener" className="hover:text-secondary transition-transform hover:scale-110">
                 <SiInstagram className="w-6 h-6" />
               </a>
-              <a href="#" className="hover:opacity-80 transition-opacity">
+              <a href="https://wa.me/525527276085" target="_blank" rel="noopener" className="hover:text-secondary transition-transform hover:scale-110">
                 <SiWhatsapp className="w-6 h-6" />
               </a>
             </div>

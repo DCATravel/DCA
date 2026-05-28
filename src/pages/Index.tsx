@@ -16,7 +16,6 @@ export default function Index() {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        // Usamos un amarillo brillante clásico para estrellas, independiente de la paleta corporativa
         className={`w-4 h-4 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "text-muted"}`}
       />
     ));
@@ -38,7 +37,6 @@ export default function Index() {
 
           {/* Hero Image */}
           <div className="relative w-full md:w-1/2 flex justify-center">
-            {/* El borde de la imagen usa el color secundario (naranja) para crear un contraste vibrante */}
             <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-secondary shadow-xl" style={{ borderRadius: "60% 40% 50% 50% / 50% 60% 40% 50%" }}>
               <img
                 src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80"
@@ -50,7 +48,6 @@ export default function Index() {
 
           {/* Hero Text */}
           <div className="w-full md:w-1/2 text-center md:text-left">
-            {/* El subtítulo ("Explora El Mundo") usa el azul primario */}
             <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Explora El Mundo</p>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4">
               Tu Próximo Gran Destino, Planeado Por Expertos En Viajes.
@@ -58,7 +55,7 @@ export default function Index() {
             <p className="text-muted-foreground mb-6">
               Expertos en viajes por Latinoamérica: diseñamos, conectamos y te acompañamos en tu próxima aventura.
             </p>
-            {/* Botón principal (Azul) */}
+            {/* Main Button */}
             <Link
               to="/itinerarios"
               className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-3 rounded transition-colors shadow-sm"
@@ -78,7 +75,6 @@ export default function Index() {
               {popularDestinations.slice(popularIndex, popularIndex + 5).map((dest) => (
                 <Link 
                   key={dest.id} 
-                  // ACTUALIZADO: Apunta a la nueva vista de detalle del destino
                   to={`/destinos/${dest.id}`} 
                   className="group"
                 >
@@ -129,9 +125,8 @@ export default function Index() {
                         <span className="text-muted-foreground">Desde </span>
                         <span className="text-lg font-bold text-foreground">${dest.price}</span>
                       </p>
-                      {/* Botones secundarios usan el Naranja (#ed6a20) */}
+                      {/* Secondary Buttons */}
                       <Link
-                        // ACTUALIZADO: Apunta a la nueva vista de detalle del destino
                         to={`/destinos/${dest.id}`}
                         className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-xs font-medium px-4 py-1.5 rounded transition-colors shadow-sm"
                       >
@@ -204,7 +199,6 @@ export default function Index() {
             alt="Travel background"
             className="w-full h-full object-cover"
           />
-          {/* Capa base en azul oscuro corporativo con opacidad en lugar de negro puro */}
           <div className="absolute inset-0 bg-[#056099]/70 mix-blend-multiply" />
         </div>
         <div className="relative max-w-7xl mx-auto text-center text-white">
@@ -212,7 +206,7 @@ export default function Index() {
           <p className="text-sm md:text-base max-w-2xl mx-auto mb-8 opacity-90 leading-relaxed">
             Sabemos que tu presencia digital es clave para atraer viajeros. Por eso, hemos preparado un catálogo con itinerarios detallados, flyers y descripciones <strong>listas para publicar</strong>. Descarga los PDF's de nuestros paquetes en alta calidad y compártelos directamente con tus clientes para impulsar tus ventas.
           </p>
-          {/* Botón de conversión principal (Naranja corporativo) */}
+          {/* Main Conversion Button */}
           <Link
             to="/material"
             className="inline-block bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium px-10 py-4 rounded transition-colors shadow-lg shadow-black/20"

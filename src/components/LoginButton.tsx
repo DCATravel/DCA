@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Lock, Sparkles, X } from "lucide-react"; // Cámbialos por tu librería de UI preferida si ya no usas Lucide
+import { Lock, Sparkles, X } from "lucide-react"; 
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,6 @@ export default function LoginButton() {
 
   return (
     <>
-      {/* Botón que va en tu Navbar */}
       <button
         onClick={() => setIsOpen(true)}
         className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md font-medium transition-colors shadow-sm text-sm"
@@ -24,7 +23,7 @@ export default function LoginButton() {
           {/* Contenedor del Modal */}
           <div className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200">
             
-            {/* Botón para cerrar (X) */}
+            {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors"
@@ -57,21 +56,20 @@ export default function LoginButton() {
                   Mantente atento a nuestros comunicados en redes sociales:
                 </p>
                 
-                {/* Íconos de Redes Sociales con Simple Icons */}
                 <div className="flex justify-center gap-4">
                   <a 
-                    href="https://facebook.com/tu-pagina" 
+                    href="https://www.facebook.com/people/DCA-Travel/61590488308493/" 
                     target="_blank" 
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     className="text-muted-foreground hover:text-[#1877F2] transition-colors p-2 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
                     aria-label="Síguenos en Facebook"
                   >
                     <SiFacebook className="w-5 h-5" />
                   </a>
                   <a 
-                    href="https://instagram.com/tu-pagina" 
+                    href="https://instagram.com/dca.travel" 
                     target="_blank" 
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     className="text-muted-foreground hover:text-[#E4405F] transition-colors p-2 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
                     aria-label="Síguenos en Instagram"
                   >
@@ -80,7 +78,7 @@ export default function LoginButton() {
                 </div>
               </div>
 
-              {/* Botón de acción secundario para cerrar */}
+              {/* secondary Button */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 rounded-lg transition-colors shadow-sm"

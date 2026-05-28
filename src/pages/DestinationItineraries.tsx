@@ -7,10 +7,8 @@ import Footer from "@/components/Footer";
 export default function DestinationItineraries() {
   const { id } = useParams();
   
-  // Encontramos el destino actual (ej. "guatemala")
   const destination = destinations.find((d) => d.id === id);
   
-  // Filtramos los itinerarios cuyo ID comience con el ID del destino
   const destinationItineraries = itineraries.filter((it) => it.id.startsWith(id || ""));
 
   if (!destination) {
@@ -32,7 +30,7 @@ export default function DestinationItineraries() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* Hero Banner del Destino */}
+      {/* Hero Banner */}
       <section className="relative h-64 mx-4 mt-4 rounded-xl overflow-hidden shadow-sm border border-border">
         <img
           src={destination.image}
@@ -50,7 +48,7 @@ export default function DestinationItineraries() {
         </div>
       </section>
 
-      {/* Lista de Itinerarios */}
+      {/* Itineraries */}
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-8">
           <div>

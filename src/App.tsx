@@ -6,6 +6,8 @@ import Itineraries from "@/pages/Itineraries";
 import ItineraryDetail from "@/pages/ItineraryDetail";
 import Material from "@/pages/Material";
 import DestinationItineraries from "./pages/DestinationItineraries";
+import Contact from "@/pages/Contact";
+import Agency from "@/pages/Agency";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/destinos/:id" element={<DestinationItineraries />} />
         <Route path="/itinerarios/:id" element={<ItineraryDetail />} />
         <Route path="/material" element={<Material />} />
+        <Route path="/contacto" element={<Contact />} />
+        <Route path="/agencias" element={<Agency />} />
       </Routes>
     </BrowserRouter>
   );

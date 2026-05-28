@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import LoginButton from "./LoginButton";
-import ThemeToggle from "./ThemeToggle"; // <-- Agregamos la importación del interruptor
+import ThemeToggle from "./ThemeToggle"; 
 
 export default function Navbar() {
   const location = useLocation();
@@ -17,7 +17,6 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-background shadow-sm sticky top-0 z-50">
-      {/* Ajustamos la altura del navbar: h-16 (64px) en móvil y h-20 (80px) en desktop */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
         
         {/* Logo */}
@@ -25,7 +24,6 @@ export default function Navbar() {
           <img 
             src="/assets/logo.png" 
             alt="DCA Travel" 
-            // h-12 (48px) para móvil, h-16 (64px) para desktop. Mantiene su proporción cuadrada 225x225
             className="h-12 w-12 sm:h-16 sm:w-16 object-contain" 
           />
         </Link>
@@ -50,10 +48,8 @@ export default function Navbar() {
         {/* Right side: Theme + Login + Mobile menu */}
         <div className="flex items-center gap-2 sm:gap-3">
           
-          {/* AQUÍ VA EL INTERRUPTOR DE MODO OSCURO */}
           <ThemeToggle />
 
-          {/* Botón de acceso agencias (con su popup integrado) */}
           <LoginButton />
 
           {/* Mobile menu button */}

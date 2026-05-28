@@ -39,7 +39,6 @@ export default function Explore() {
           alt="Explore"
           className="w-full h-full object-cover"
         />
-        {/* Capa base en azul oscuro corporativo para unificar el estilo de la plataforma */}
         <div className="absolute inset-0 bg-[#056099]/60 mix-blend-multiply" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold italic mb-4 drop-shadow-md">Explora El Mundo</h1>
@@ -53,7 +52,7 @@ export default function Explore() {
       <section className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row flex-wrap items-center gap-4 bg-card rounded-xl shadow-sm border border-border p-4 md:p-5">
           
-          {/* Barra de Búsqueda Integrada */}
+          {/* Search */}
           <div className="flex-1 w-full min-w-[200px] relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
@@ -134,7 +133,6 @@ export default function Explore() {
           {filteredDestinations.map((dest) => (
             <Link
               key={dest.id}
-              // ACTUALIZADO: Apunta a la nueva vista de paquetes por destino
               to={`/destinos/${dest.id}`}
               className="group block"
             >
@@ -166,7 +164,7 @@ export default function Explore() {
           ))}
         </div>
 
-        {/* Empty State: Si los filtros no coinciden con ningún destino */}
+        {/* Empty State */}
         {filteredDestinations.length === 0 && (
           <div className="text-center py-20 bg-muted/30 rounded-xl border border-dashed border-border mt-4">
             <Search className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-50" />
