@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, Image, FileText, Layout, Search } from 'lucide-react';
+import { Download, Image, FileText, Layout, Search, LucideIcon } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -74,7 +74,7 @@ const MOCK_MATERIALS: Material[] = [
   }
 ];
 
-const typeIcons: Record<string, any> = {
+const typeIcons: Record<string, LucideIcon> = {
   banner: Layout,
   post: Image,
   flyer: FileText,
