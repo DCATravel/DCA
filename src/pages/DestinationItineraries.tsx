@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Search, Download, Calendar, MapPin, Hotel, ArrowLeft } from "lucide-react";
 import { destinations, itineraries } from "@/data/travelData";
 import Navbar from "@/components/Navbar";
@@ -6,9 +6,9 @@ import Footer from "@/components/Footer";
 
 export default function DestinationItineraries() {
   const { id } = useParams();
+  const navigate = useNavigate();
   
   const destination = destinations.find((d) => d.id === id);
-  
   const destinationItineraries = itineraries.filter((it) => it.id.startsWith(id || ""));
 
   if (!destination) {
@@ -64,15 +64,20 @@ export default function DestinationItineraries() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {destinationItineraries.map((it) => (
-            <div key={it.id} className="bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-shadow">
+            <div 
+              key={it.id} 
+              onClick={() => navigate(`/itinerarios/${it.id}`)}
+              className="bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md hover:border-primary/50 transition-all duration-300 cursor-pointer group"
+            >
               <div className="relative h-48 overflow-hidden">
-                <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform hover:scale-105 duration-500" />
+                <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" />
                 
                 <a 
                   href={it.pdfUrl || "#"} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   download={`Itinerario-${it.id}.pdf`}
+                  onClick={(e) => e.stopPropagation()} 
                   className="absolute top-3 right-3 bg-background/90 hover:bg-background text-primary hover:text-secondary p-2.5 rounded-full shadow-sm transition-colors z-10"
                   title="Descargar PDF"
                 >
@@ -97,13 +102,9 @@ export default function DestinationItineraries() {
                   <p className="text-xl font-bold text-foreground">
                     ${it.pricePerPerson} <span className="text-xs font-normal text-muted-foreground">USD/persona</span>
                   </p>
-                  
-                  <Link
-                    to={`/itinerarios/${it.id}`}
-                    className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-sm font-medium px-5 py-2.5 rounded-md transition-colors shadow-sm"
-                  >
+                  <span className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-sm font-medium px-5 py-2.5 rounded-md transition-colors shadow-sm">
                     Ver Detalles
-                  </Link>
+                  </span>
                 </div>
               </div>
             </div>
