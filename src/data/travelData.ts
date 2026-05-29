@@ -295,7 +295,7 @@ export const itineraries: Itinerary[] = [
     "days": 6,
     "cities": 2,
     "hotelNights": 5,
-    "image": "https://images.unsplash.com/photo-1583526362016-c3137c71cc3a?auto=format&fit=crop&w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1583531352515-8884af319dc1?auto=format&fit=crop&w=800&q=80",
     "description": "Cartagena se caracteriza por su riqueza histórica, cultural y arquitectónica, especialmente en su centro histórico amurallado, declarado Patrimonio de la Humanidad.",
     "category": "Latinoamérica",
     "season": [
