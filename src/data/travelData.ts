@@ -235,7 +235,7 @@ export const itineraries: Itinerary[] = [
     "days": 6,
     "cities": 1,
     "hotelNights": 5,
-    "image": "https://images.unsplash.com/photo-1548685913-fe6678babe8d?auto=format&fit=crop&w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1699570638045-7d3e736db619?auto=format&fit=crop&w=800&q=80",
     "description": "Una experiencia vibrante para recibir el Año Nuevo en uno de los destinos más icónicos del mundo. Combina la historia del centro, la emoción del Maracaná, las vistas del Cristo Redentor y el Pan de Azúcar, culminando con la mágica fiesta y fuegos artificiales en Copacabana.",
     "category": "Latinoamérica",
     "season": [
