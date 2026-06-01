@@ -165,7 +165,7 @@ export const itineraries: Itinerary[] = [
       "Vuelos domésticos o internacionales.",
       "Servicios o excursiones no mencionados anteriormente."
     ],
-    "pdfUrl": "/assets/Brasil-Iguazu.pdf"
+    "pdfUrl": "/assets/pdfs/Brasil-Iguazu.pdf"
   },
   {
     "id": "rio-ciudad-maravillosa",
@@ -224,7 +224,7 @@ export const itineraries: Itinerary[] = [
       "Vuelos domésticos o internacionales.",
       "Excursiones o servicios no mencionados anteriormente."
     ],
-    "pdfUrl": "/assets/Rio-Ciudad-Maravillosa.pdf"
+    "pdfUrl": "/assets/pdfs/Rio-Ciudad-Maravillosa.pdf"
   },
   {
     "id": "colombia-3-joyas",
@@ -284,7 +284,7 @@ export const itineraries: Itinerary[] = [
       "Actividades extras y opcionales.",
       "Propinas."
     ],
-    "pdfUrl": "/assets/Colombia-3-Joyas.pdf"
+    "pdfUrl": "/assets/pdfs/Colombia-3-Joyas.pdf"
   },
   {
     "id": "colombia-cartagena-encanto",
@@ -344,7 +344,7 @@ export const itineraries: Itinerary[] = [
       "Servicios y gastos no especificados.",
       "Nada que no venga especificado en el apartado INCLUYE."
     ],
-    "pdfUrl": "/assets/Colombia-Cartagena.pdf"
+    "pdfUrl": "/assets/pdfs/Colombia-Cartagena.pdf"
   }, 
   {
     "id": "costa-rica-para-todos",
@@ -400,7 +400,7 @@ export const itineraries: Itinerary[] = [
       "Gastos personales.",
       "Servicios no especificados."
     ],
-    "pdfUrl": "/assets/CostaRica-ParaTodos.pdf"
+    "pdfUrl": "/assets/pdfs/CostaRica-ParaTodos.pdf"
   },
   {
     "id": "cuba-habana-varadero",
@@ -461,7 +461,7 @@ export const itineraries: Itinerary[] = [
       "Cualquier servicio no mencionado en las inclusiones.",
       "Servicios y gastos no especificados."
     ],
-    "pdfUrl": "/assets/Cuba-Habana-Varadero.pdf"
+    "pdfUrl": "/assets/pdfs/Cuba-Habana-Varadero.pdf"
   },
   {
     "id": "cuba-hvc",
@@ -523,7 +523,7 @@ export const itineraries: Itinerary[] = [
       "Cualquier servicio no mencionado en las inclusiones.",
       "Servicios y gastos no especificados."
     ],
-    "pdfUrl": "/assets/Cuba-HVC.pdf"
+    "pdfUrl": "/assets/pdfs/Cuba-HVC.pdf"
   },
   {
     "id": "cuba-varadero",
@@ -578,7 +578,7 @@ export const itineraries: Itinerary[] = [
       "Cualquier servicio no mencionado en las inclusiones.",
       "Servicios y gastos no especificados."
     ],
-    "pdfUrl": "/assets/Cuba-Varadero.pdf"
+    "pdfUrl": "/assets/pdfs/Cuba-Varadero.pdf"
   },
   {
     "id": "republica-dominicana-merengue-bachata",
@@ -637,7 +637,7 @@ export const itineraries: Itinerary[] = [
       "Gastos personales.",
       "Servicios no especificados en el itinerario."
     ],
-    "pdfUrl": "/assets/Dominicana-Merengue-Bachata.pdf"
+    "pdfUrl": "/assets/pdfs/Dominicana-Merengue-Bachata.pdf"
   },
   {
     "id": "guatemala-aventura-cultura",
@@ -695,7 +695,7 @@ export const itineraries: Itinerary[] = [
       "Servicios no especificados.",
       "Equipo o gastos personales requeridos para Acatenango."
     ],
-    "pdfUrl": "/assets/Guatemala-Aventura-Cultura.pdf"
+    "pdfUrl": "/assets/pdfs/Guatemala-Aventura-Cultura.pdf"
   },
   {
     "id": "guatemala-descubriendo",
@@ -757,7 +757,7 @@ export const itineraries: Itinerary[] = [
       "Alimentaciones y gastos no mencionados.",
       "Actividades extras y opcionales."
     ],
-    "pdfUrl": "/assets/Guatemala-Descubriendo.pdf"
+    "pdfUrl": "/assets/pdfs/Guatemala-Descubriendo.pdf"
   },
   {
     "id": "guatemala-espectacular",
@@ -817,7 +817,7 @@ export const itineraries: Itinerary[] = [
       "Gastos personales.",
       "Servicios no especificados."
     ],
-    "pdfUrl": "/assets/Guatemala-Espectacular.pdf"
+    "pdfUrl": "/assets/pdfs/Guatemala-Espectacular.pdf"
   },
   {
     "id": "puerto-rico-isla-del-encanto",
@@ -875,7 +875,7 @@ export const itineraries: Itinerary[] = [
       "Gastos personales.",
       "Cualquier otro servicio no especificado en el apartado de incluye."
     ],
-    "pdfUrl": "/assets/PuertoRico-Isla.pdf"
+    "pdfUrl": "/assets/pdfs/PuertoRico-Isla.pdf"
   }
 ];
 
