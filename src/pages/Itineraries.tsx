@@ -79,9 +79,9 @@ export default function Itineraries() {
             <div 
               key={it.id} 
               onClick={() => navigate(`/itinerarios/${it.id}`)}
-              className="bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md hover:border-primary/50 transition-all duration-300 cursor-pointer group"
+              className="bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md hover:border-primary/50 transition-all duration-300 cursor-pointer group flex flex-col"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden shrink-0">
                 <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" />
                 
                 <a 
@@ -96,8 +96,13 @@ export default function Itineraries() {
                   <Download className="w-5 h-5" />
                 </a>
               </div>
-              <div className="p-5">
-                <h3 className="font-bold text-foreground mb-3">{it.title}</h3>
+              
+              <div className="p-5 flex flex-col flex-1">
+                {/* Título Principal */}
+                <h3 className="font-bold text-lg text-foreground mb-1 leading-tight">{it.title}</h3>
+                <p className="text-sm text-primary font-medium mb-4">{it.destination}</p>
+                
+                {/* Badges Info */}
                 <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-primary" /> {it.duration}
@@ -109,8 +114,10 @@ export default function Itineraries() {
                     <Hotel className="w-3.5 h-3.5 text-primary" /> {it.hotelNights} Noches
                   </span>
                 </div>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-5 leading-relaxed">{it.description}</p>
-                <div className="flex items-center justify-between pt-4 border-t border-border">
+                
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-5 leading-relaxed flex-1">{it.description}</p>
+                
+                <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
                   <p className="text-xl font-bold text-foreground">
                     {it.pricePerPerson === 0 ? (
                       'Cotizar'

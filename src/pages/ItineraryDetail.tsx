@@ -26,8 +26,6 @@ export default function ItineraryDetail() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
-      {/* Header Banner - Usando el color Primario de la empresa */}
       <section className="bg-primary py-8 px-4 rounded-b-3xl">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
@@ -72,11 +70,8 @@ export default function ItineraryDetail() {
 
       {/* Main Content */}
       <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
-        
-        {/* Description con asimetría sutil */}
         <div className="flex flex-col md:flex-row gap-10 mb-16 items-center">
           <div className="w-full md:w-2/5 relative">
-            {/* Elemento decorativo de fondo en lugar de sombra */}
             <div className="absolute inset-0 bg-secondary/20 rounded-2xl translate-x-3 translate-y-3 -z-10"></div>
             <img
               src={itinerary.image}

@@ -11,7 +11,7 @@ export default function Footer() {
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-8">
           
-          {/* Logo y Breve Descripción */}
+          {/* Logo */}
           <div className="flex flex-col items-start gap-4">
             <Link to="/" className="flex items-center flex-shrink-0 transition-transform hover:scale-105">
               <img 
