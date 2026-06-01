@@ -31,7 +31,7 @@ const MOCK_MATERIALS: Material[] = [
   {
     id: 2,
     title: 'Explora Destinos Únicos',
-    type: 'post',
+    type: 'flyer',
     destination_name: 'Multidestino',
     file_url: '/assets/material/explora.jpg',
     thumbnail_url: '/assets/material/explora.jpg',
@@ -39,8 +39,8 @@ const MOCK_MATERIALS: Material[] = [
   },
   {
     id: 3,
-    title: 'Post Linda Costa Rica',
-    type: 'post',
+    title: 'Linda Costa Rica',
+    type: 'flyer',
     destination_name: 'Costa Rica',
     file_url: '/assets/material/linda-costa-rica.jpg',
     thumbnail_url: '/assets/material/linda-costa-rica.jpg',
@@ -48,6 +48,15 @@ const MOCK_MATERIALS: Material[] = [
   },
   {
     id: 4,
+    title: 'Puerto Rico',
+    type: 'flyer',
+    destination_name: 'Puerto Rico',
+    file_url: '/assets/material/puerto-rico.jpg',
+    thumbnail_url: '/assets/material/puerto-rico.jpg',
+    dimensions: '1280x1600',
+  },
+  {
+    id: 5,
     title: 'Promocional',
     type: 'post',
     destination_name: 'Latinoamérica',
@@ -56,12 +65,30 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: '630x788',
   },
   {
-    id: 5,
+    id: 6,
     title: 'Parque Nacional Costa Rica',
     type: 'post',
-    destination_name: 'Latinoamérica',
+    destination_name: 'Costa Rica',
     file_url: '/assets/material/costa-rica-parque.jpg',
     thumbnail_url: '/assets/material/costa-rica-parque.jpg',
+    dimensions: '1280x1600',
+  },
+  {
+    id: 7,
+    title: 'Guatemala',
+    type: 'post',
+    destination_name: 'Guatemala',
+    file_url: '/assets/material/guatemala.jpg',
+    thumbnail_url: '/assets/material/guatemala.jpg',
+    dimensions: '1280x1600',
+  },
+  {
+    id: 8,
+    title: 'Guatemala Tikal',
+    type: 'post',
+    destination_name: 'Guatemala - Tikalt',
+    file_url: '/assets/material/guatemala-tikal.jpg',
+    thumbnail_url: '/assets/material/guatemala-tikal.jpg',
     dimensions: '1280x1600',
   }
 ];
@@ -86,13 +113,11 @@ export default function MaterialsPage() {
   const [filterType, setFilterType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Estados para el Modal y el Timer
   const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
   const [countdown, setCountdown] = useState(0);
   
   const { toast } = useToast();
 
-  // Efecto que controla la cuenta regresiva al abrir el modal
   useEffect(() => {
     if (!selectedMaterial) return;
 

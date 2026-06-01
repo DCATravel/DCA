@@ -227,6 +227,65 @@ export const itineraries: Itinerary[] = [
     "pdfUrl": "/assets/pdfs/Rio-Ciudad-Maravillosa.pdf"
   },
   {
+    "id": "brasil-fin-de-ano-2026",
+    "title": "Fin de Año en Río de Janeiro",
+    "destination": "Río de Janeiro, Brasil",
+    "dates": "28 dic 2026 al 02 ene 2027",
+    "duration": "6 Días",
+    "days": 6,
+    "cities": 1,
+    "hotelNights": 5,
+    "image": "https://images.unsplash.com/photo-1548685913-fe6678babe8d?auto=format&fit=crop&w=800&q=80",
+    "description": "Una experiencia vibrante para recibir el Año Nuevo en uno de los destinos más icónicos del mundo. Combina la historia del centro, la emoción del Maracaná, las vistas del Cristo Redentor y el Pan de Azúcar, culminando con la mágica fiesta y fuegos artificiales en Copacabana.",
+    "category": "Latinoamérica",
+    "season": [
+      "Invierno"
+    ],
+    "pricePerPerson": 0,
+    "flights": {
+      "outbound": {
+        "from": "A consultar",
+        "departure": "A coordinar",
+        "to": "RÍO DE JANEIRO (GIG/SDU)",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      },
+      "return": {
+        "from": "RÍO DE JANEIRO (GIG/SDU)",
+        "departure": "A coordinar",
+        "to": "A consultar",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      }
+    },
+    "activities": [
+      "Llegada a Río de Janeiro y traslado privado al hotel.",
+      "City tour histórico por Santa Teresa, Escalera de Selarón, Arcos de Lapa y entrada al legendario Estadio Maracaná.",
+      "Tour a la cima del Corcovado para conocer el Cristo Redentor y ascenso en teleférico al Pan de Azúcar.",
+      "Celebración de Año Nuevo en Copacabana con el tradicional show de fuegos artificiales sobre el mar.",
+      "Día libre para descansar en la playa, recorrer Ipanema o realizar actividades opcionales."
+    ],
+    "included": [
+      "Traslado Aeropuerto - Hotel - Aeropuerto en servicio privado.",
+      "5 noches de alojamiento en hotel de su elección.",
+      "Todos los desayunos.",
+      "Tour día completo Corcovado y Pan de Azúcar con entradas, city tour y almuerzo.",
+      "Tour día completo Río Histórico y Estadio Maracaná con Entradas.",
+      "Seguro de viajero Assist Card.",
+      "Transportación terrestre en el circuito con guías en español.",
+      "Impuestos de hospedaje."
+    ],
+    "notIncluded": [
+      "Vuelos internacionales y/o domésticos.",
+      "Alimentaciones y gastos no mencionados.",
+      "Bebidas en los almuerzos incluidos.",
+      "Actividades extras y opcionales."
+    ],
+    "pdfUrl": "/assets/pdfs/Rio-Finde.pdf"
+  },
+  {
     "id": "colombia-3-joyas",
     "title": "Las 3 Joyas de Colombia",
     "destination": "Bogotá, Cartagena y Medellín, Colombia",
