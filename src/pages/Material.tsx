@@ -49,7 +49,7 @@ const MOCK_MATERIALS: Material[] = [
   {
     id: 4,
     title: 'Puerto Rico',
-    type: 'flyer',
+    type: 'post',
     destination_name: 'Puerto Rico',
     file_url: '/assets/material/puerto-rico.jpg',
     thumbnail_url: '/assets/material/puerto-rico.jpg',
@@ -57,6 +57,15 @@ const MOCK_MATERIALS: Material[] = [
   },
   {
     id: 5,
+    title: 'Puerto Rico Bahía Mosquito',
+    type: 'post',
+    destination_name: 'Puerto Rico',
+    file_url: '/assets/material/puerto-rico-bahia.jpg',
+    thumbnail_url: '/assets/material/puerto-rico-bahia.jpg',
+    dimensions: '1280x1600',
+  },
+  {
+    id: 6,
     title: 'Promocional',
     type: 'post',
     destination_name: 'Latinoamérica',
@@ -65,7 +74,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: '630x788',
   },
   {
-    id: 6,
+    id: 7,
     title: 'Parque Nacional Costa Rica',
     type: 'post',
     destination_name: 'Costa Rica',
@@ -74,7 +83,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: '1280x1600',
   },
   {
-    id: 7,
+    id: 8,
     title: 'Guatemala',
     type: 'post',
     destination_name: 'Guatemala',
@@ -83,7 +92,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: '1280x1600',
   },
   {
-    id: 8,
+    id: 9,
     title: 'Guatemala Tikal',
     type: 'post',
     destination_name: 'Guatemala - Tikalt',

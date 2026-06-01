@@ -18,7 +18,6 @@ export default function DestinationItineraries() {
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryType | null>(null);
   const [countdown, setCountdown] = useState(0);
 
-  // Efecto que controla la cuenta regresiva al abrir el modal
   useEffect(() => {
     if (!selectedItinerary) return;
 

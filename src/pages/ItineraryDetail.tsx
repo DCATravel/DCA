@@ -13,12 +13,9 @@ export default function ItineraryDetail() {
   const [showDownloadModal, setShowDownloadModal] = useState(false);
   const [countdown, setCountdown] = useState(0);
 
-  // Efecto corregido: Solo se encarga de restar, no de inicializar.
   useEffect(() => {
-    // Si el modal está cerrado, no hacemos nada
     if (!showDownloadModal) return;
 
-    // Usamos window.setInterval para que TypeScript sepa que es del navegador (Devuelve un número)
     const timer = window.setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -96,7 +93,6 @@ export default function ItineraryDetail() {
           
           <button 
             onClick={() => {
-              // SOLUCIÓN: Asignamos los 5 segundos justo al momento de hacer clic
               setCountdown(5);
               setShowDownloadModal(true);
             }}

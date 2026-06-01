@@ -14,16 +14,12 @@ export default function Itineraries() {
   const [selectedSeason, setSelectedSeason] = useState("Todas");
   const navigate = useNavigate();
 
-  // Estados para el Modal de Descarga
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryType | null>(null);
   const [countdown, setCountdown] = useState(0);
 
-  // Efecto que controla la cuenta regresiva al abrir el modal
   useEffect(() => {
-    // Si no hay itinerario seleccionado (modal cerrado), no hacemos nada
     if (!selectedItinerary) return;
 
-    // Usamos window.setInterval para evitar errores de TypeScript con NodeJS
     const timer = window.setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -81,7 +77,7 @@ export default function Itineraries() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Buscar itinerarios por destino..."
+              placeholder="Buscar por destino..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm text-foreground placeholder:text-muted-foreground transition-shadow"
