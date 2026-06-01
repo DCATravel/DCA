@@ -287,6 +287,66 @@ export const itineraries: Itinerary[] = [
     "pdfUrl": "/assets/Colombia-3-Joyas.pdf"
   },
   {
+    "id": "colombia-cartagena-encanto",
+    "title": "Cartagena, El Encanto de Colombia",
+    "destination": "Cartagena e Isla, Colombia",
+    "dates": "A consultar",
+    "duration": "6 Días",
+    "days": 6,
+    "cities": 2,
+    "hotelNights": 5,
+    "image": "https://images.unsplash.com/photo-1583531352515-8884af319dc1?auto=format&fit=crop&w=800&q=80",
+    "description": "Cartagena se caracteriza por su riqueza histórica, cultural y arquitectónica, especialmente en su centro histórico amurallado, declarado Patrimonio de la Humanidad.",
+    "category": "Latinoamérica",
+    "season": [
+      "Todas"
+    ],
+    "pricePerPerson": 0,
+    "flights": {
+      "outbound": {
+        "from": "A consultar",
+        "departure": "A coordinar",
+        "to": "CARTAGENA (CTG)",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      },
+      "return": {
+        "from": "CARTAGENA (CTG)",
+        "departure": "A coordinar",
+        "to": "A consultar",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      }
+    },
+    "activities": [
+      "Recepción y traslado desde el Aeropuerto Rafael Núñez al hotel.",
+      "Tour de Ciudad Cartagena con recorrido panorámico por la bahía y el barrio Manga.",
+      "Visita al majestuoso Castillo de San Felipe de Barajas.",
+      "Recorrido a pie por el centro histórico amurallado con tiempo libre para compras.",
+      "Traslado desde Cartagena a una de las Islas cercanas según elección.",
+      "Día libre en la isla para realizar actividades personales o tour opcional.",
+      "Recogida y traslado de regreso a la ciudad de Cartagena."
+    ],
+    "included": [
+      "Traslado aeropuerto hotel aeropuerto en servicios compartidos.",
+      "Desayunos.",
+      "3 noches en Cartagena (2 al inicio y 1 al final) y 2 noches en la Isla cercana.",
+      "Tours y guía.",
+      "Impuestos y propinas.",
+      "Tarjeta Assist Card."
+    ],
+    "notIncluded": [
+      "Consumos adicionales y retorno al hotel al finalizar la cena en el Club de Pesca.",
+      "Seguro hotelero (voluntario).",
+      "Impuestos de muelle.",
+      "Servicios y gastos no especificados.",
+      "Nada que no venga especificado en el apartado INCLUYE."
+    ],
+    "pdfUrl": "/assets/Colombia-Cartagena.pdf"
+  }, 
+  {
     "id": "costa-rica-para-todos",
     "title": "Costa Rica Para Todos",
     "destination": "San José, Irazú, Orosí y Manuel Antonio, Costa Rica",
