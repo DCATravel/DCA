@@ -78,21 +78,21 @@ const typeIcons: Record<string, LucideIcon> = {
   banner: Layout,
   post: Image,
   flyer: FileText,
-  cover: Image,
+  cover: Layout, // Usando Layout genérico para mantener consistencia
 };
 
 const typeColors: Record<string, string> = {
-  banner: 'bg-primary/10 text-primary border-primary/20',
-  post: 'bg-secondary/10 text-secondary border-secondary/20',
-  flyer: 'bg-green-100 text-green-700 border-green-200',
-  cover: 'bg-purple-100 text-purple-700 border-purple-200',
+  banner: 'bg-primary text-primary-foreground border-transparent',
+  post: 'bg-secondary text-secondary-foreground border-transparent',
+  flyer: 'bg-muted text-muted-foreground border-transparent',
+  cover: 'bg-accent text-accent-foreground border-transparent',
 };
 
 export default function MaterialsPage() {
   const [materials, setMaterials] = useState<Material[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState(''); // Estado para el buscador
+  const [searchQuery, setSearchQuery] = useState('');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -111,7 +111,6 @@ export default function MaterialsPage() {
     fetchMaterials();
   }, []);
 
-  // Lógica de filtrado combinada 
   const filtered = materials.filter((m) => {
     const matchesType = filterType === 'all' || m.type === filterType;
     const matchesSearch = 
@@ -132,23 +131,34 @@ export default function MaterialsPage() {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navbar />
 
-      <main className="pt-24 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full">
-        <div className="mb-10 text-center md:text-left">
-          <h1 className="text-4xl font-bold text-foreground mb-3">Materiales de Marketing</h1>
-          <p className="text-muted-foreground text-lg max-w-2xl">Descarga banners, posts y flyers listos para usar en las campañas de tu agencia.</p>
+      <main className="pt-12 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full">
+        
+        {/* Header Decorativo */}
+        <div className="bg-primary/5 rounded-3xl p-8 md:p-12 mb-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Materiales de Marketing</h1>
+            <p className="text-muted-foreground text-lg max-w-xl">Descarga banners, posts y flyers sin marca listos para impulsar las ventas en tu agencia.</p>
+          </div>
+          <div className="hidden md:flex bg-primary/10 p-4 rounded-2xl">
+            <Image className="w-12 h-12 text-primary" />
+          </div>
         </div>
 
         {/* Toolbar: Search + Filter Tabs */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10 bg-card p-2 rounded-2xl">
           {/* Filter Tabs */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 w-full lg:w-auto">
             {types.map((type) => (
               <Button
                 key={type}
-                variant={filterType === type ? 'default' : 'outline'}
+                variant={filterType === type ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setFilterType(type)}
-                className={filterType === type ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm' : 'border-border text-muted-foreground hover:text-foreground hover:bg-muted/50'}
+                className={`rounded-xl px-4 py-2 transition-all ${
+                  filterType === type 
+                    ? 'bg-primary hover:bg-primary/90 text-primary-foreground' 
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                }`}
               >
                 {type === 'all' ? 'Todos' : type.charAt(0).toUpperCase() + type.slice(1)}
               </Button>
@@ -156,65 +166,75 @@ export default function MaterialsPage() {
           </div>
 
           {/* Search Bar */}
-          <div className="relative w-full md:w-72">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <div className="relative w-full lg:w-80">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               placeholder="Buscar por destino o título..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm text-foreground placeholder:text-muted-foreground transition-shadow"
+              className="w-full pl-10 pr-4 py-2.5 bg-muted/40 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-background text-sm text-foreground placeholder:text-muted-foreground transition-all"
             />
           </div>
         </div>
 
         {/* Materials Grid */}
         {loading ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <Card key={i} className="animate-pulse bg-card border-border shadow-sm">
-                <div className="h-48 bg-muted" />
-                <CardContent className="p-5 space-y-3">
+              <div key={i} className="animate-pulse bg-muted/30 rounded-2xl overflow-hidden">
+                <div className="h-52 bg-muted/50" />
+                <div className="p-6 space-y-4">
                   <div className="h-5 bg-muted rounded w-3/4" />
                   <div className="h-4 bg-muted/70 rounded w-1/2" />
-                  <div className="h-9 bg-muted rounded w-full mt-4" />
-                </CardContent>
-              </Card>
+                  <div className="h-10 bg-muted rounded-xl w-full mt-4" />
+                </div>
+              </div>
             ))}
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((material) => {
               const Icon = typeIcons[material.type] || Image;
               return (
-                <Card key={material.id} className="overflow-hidden border border-border shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 bg-card group">
-                  <div className="h-48 overflow-hidden relative bg-muted">
-                    <img
-                      src={material.thumbnail_url}
-                      alt={material.title}
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
-                    />
-                    <div className="absolute top-3 left-3">
-                      <Badge variant="outline" className={`${typeColors[material.type] || 'bg-background text-foreground border-border'} backdrop-blur-md shadow-sm font-medium`}>
-                        <Icon className="w-3.5 h-3.5 mr-1.5" />
-                        <span className="capitalize">{material.type}</span>
-                      </Badge>
+                <div key={material.id} className="relative group">
+                  {/* Capa tonal asimétrica trasera */}
+                  <div className="absolute inset-0 bg-secondary/10 rounded-2xl translate-x-2.5 translate-y-2.5 -z-10 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"></div>
+                  
+                  {/* Tarjeta Principal */}
+                  <Card className="overflow-hidden border-transparent shadow-none bg-card rounded-2xl h-full flex flex-col">
+                    <div className="h-52 overflow-hidden relative bg-muted">
+                      <img
+                        src={material.thumbnail_url}
+                        alt={material.title}
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <Badge variant="outline" className={`${typeColors[material.type]} shadow-sm font-medium px-3 py-1 rounded-lg border-0`}>
+                          <Icon className="w-3.5 h-3.5 mr-2" />
+                          <span className="capitalize">{material.type}</span>
+                        </Badge>
+                      </div>
                     </div>
-                  </div>
-                  <CardContent className="p-5">
-                    <h3 className="font-semibold text-foreground text-lg mb-1 line-clamp-1">{material.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-5 font-medium">{material.destination_name} <span className="mx-1 opacity-50">•</span> {material.dimensions}</p>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors cursor-pointer"
-                      onClick={() => handleDownload(material)}
-                    >
-                      <Download className="w-4 h-4 mr-2" /> 
-                      Descargar Material
-                    </Button>
-                  </CardContent>
-                </Card>
+                    <CardContent className="p-6 flex flex-col flex-1">
+                      <h3 className="font-bold text-foreground text-lg mb-2 line-clamp-2">{material.title}</h3>
+                      <div className="flex items-center text-sm text-muted-foreground mb-6 font-medium">
+                        <span className="bg-muted/50 px-2 py-1 rounded-md">{material.destination_name}</span>
+                        <span className="mx-2 opacity-30">•</span> 
+                        <span>{material.dimensions}</span>
+                      </div>
+                      
+                      <Button
+                        variant="outline"
+                        className="w-full mt-auto rounded-xl border-transparent bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer font-semibold py-5"
+                        onClick={() => handleDownload(material)}
+                      >
+                        <Download className="w-4 h-4 mr-2" /> 
+                        Descargar
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
               );
             })}
           </div>
@@ -222,10 +242,12 @@ export default function MaterialsPage() {
 
         {/* Empty State */}
         {!loading && filtered.length === 0 && (
-          <div className="text-center py-24 bg-card rounded-xl border border-dashed border-border shadow-sm mt-4">
-            <Layout className="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-50" />
-            <p className="text-foreground font-semibold text-lg">No hay materiales disponibles</p>
-            <p className="text-muted-foreground mt-1">Prueba ajustando tu búsqueda o seleccionando otra categoría.</p>
+          <div className="text-center py-24 bg-muted/20 rounded-3xl mt-4">
+            <div className="bg-background w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+              <Layout className="w-8 h-8 text-muted-foreground opacity-50" />
+            </div>
+            <p className="text-foreground font-semibold text-xl">No hay materiales disponibles</p>
+            <p className="text-muted-foreground mt-2">Prueba ajustando tu búsqueda o seleccionando otra categoría.</p>
           </div>
         )}
       </main>
