@@ -18,15 +18,23 @@ export default function LoginButton() {
 
       {/* Overlay y Popup (Modal) */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-all duration-300">
+        <div 
+          /* 1. Al dar clic en este fondo oscuro, se cierra el modal */
+          onClick={() => setIsOpen(false)} 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-all duration-300"
+        >
           
           {/* Contenedor del Modal */}
-          <div className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200">
+          <div 
+            /* 2. Este freno evita que los clics DENTRO de la tarjeta cierren el modal */
+            onClick={(e) => e.stopPropagation()} 
+            className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200"
+          >
             
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors"
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10"
               aria-label="Cerrar"
             >
               <X className="w-5 h-5" />
@@ -60,7 +68,7 @@ export default function LoginButton() {
                   <a 
                     href="https://www.facebook.com/people/DCA-Travel/61590488308493/" 
                     target="_blank" 
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-[#1877F2] transition-colors p-2 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
                     aria-label="Síguenos en Facebook"
                   >
@@ -69,7 +77,7 @@ export default function LoginButton() {
                   <a 
                     href="https://instagram.com/dca.travel" 
                     target="_blank" 
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-[#E4405F] transition-colors p-2 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
                     aria-label="Síguenos en Instagram"
                   >
@@ -78,7 +86,7 @@ export default function LoginButton() {
                 </div>
               </div>
 
-              {/* secondary Button */}
+              {/* Secondary Button */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 rounded-lg transition-colors shadow-sm"

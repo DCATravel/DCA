@@ -78,7 +78,7 @@ const typeIcons: Record<string, LucideIcon> = {
   banner: Layout,
   post: Image,
   flyer: FileText,
-  cover: Layout, // Usando Layout genérico para mantener consistencia
+  cover: Layout,
 };
 
 const typeColors: Record<string, string> = {
