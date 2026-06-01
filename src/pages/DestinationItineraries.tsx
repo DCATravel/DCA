@@ -100,7 +100,13 @@ export default function DestinationItineraries() {
                 <p className="text-sm text-muted-foreground line-clamp-2 mb-5 leading-relaxed">{it.description}</p>
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <p className="text-xl font-bold text-foreground">
-                    ${it.pricePerPerson} <span className="text-xs font-normal text-muted-foreground">USD/persona</span>
+                    {it.pricePerPerson === 0 ? (
+                      'Cotizar'
+                    ) : (
+                      <>
+                        ${it.pricePerPerson} <span className="text-xs font-normal text-muted-foreground">USD/persona</span>
+                      </>
+                    )}
                   </p>
                   <span className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-sm font-medium px-5 py-2.5 rounded-md transition-colors shadow-sm">
                     Ver Detalles

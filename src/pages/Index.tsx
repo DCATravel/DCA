@@ -122,8 +122,10 @@ export default function Index() {
                     <p className="text-xs text-muted-foreground line-clamp-3 mb-3">{dest.description}</p>
                     <div className="flex items-center justify-between">
                       <p className="text-sm">
-                        <span className="text-muted-foreground">Desde </span>
-                        <span className="text-lg font-bold text-foreground">${dest.price}</span>
+                        {dest.price > 0 && <span className="text-muted-foreground">Desde </span>}
+                        <span className="text-lg font-bold text-foreground">
+                          {dest.price === 0 ? 'Cotizar' : `$${dest.price}`}
+                        </span>
                       </p>
                       {/* Secondary Buttons */}
                       <Link
@@ -211,7 +213,7 @@ export default function Index() {
             to="/material"
             className="inline-block bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium px-10 py-4 rounded transition-colors shadow-lg shadow-black/20"
           >
-            Acceder Al Material Gráfico
+            Material Gráfico
           </Link>
         </div>
       </section>

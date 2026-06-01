@@ -7,10 +7,7 @@ export default function Contact() {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navbar />
 
-      {/* Contenedor principal */}
       <main className="flex-grow flex items-center justify-center py-16 px-4 relative overflow-hidden">
-        
-        {/* Decoración de fondo*/}
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-primary/5 to-transparent -z-10 pointer-events-none" />
         
         <div className="max-w-5xl w-full mx-auto">

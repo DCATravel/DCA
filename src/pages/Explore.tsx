@@ -154,8 +154,10 @@ export default function Explore() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-muted-foreground mb-0.5">Desde</p>
-                      <p className="text-primary font-bold text-xl">${dest.price}</p>
+                      {dest.price > 0 && <p className="text-xs text-muted-foreground mb-0.5">Desde</p>}
+                      <p className="text-primary font-bold text-xl">
+                        {dest.price === 0 ? 'Cotizar' : `$${dest.price}`}
+                      </p>
                     </div>
                   </div>
                 </div>
