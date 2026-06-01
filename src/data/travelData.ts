@@ -347,7 +347,7 @@ export const itineraries: Itinerary[] = [
     "pdfUrl": "/assets/pdfs/Colombia-Cartagena.pdf"
   }, 
   {
-    "id": "linda-costa-rica-2026",
+    "id": "costa-rica-linda",
     "title": "Linda Costa Rica 2026",
     "destination": "San José, Cartago y Orosí, Costa Rica",
     "dates": "A consultar",
@@ -355,7 +355,7 @@ export const itineraries: Itinerary[] = [
     "days": 5,
     "cities": 3,
     "hotelNights": 4,
-    "image": "https://images.unsplash.com/photo-1518182170546-076616fd6251?auto=format&fit=crop&w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1536708880921-03a9306ec47d?auto=format&fit=crop&w=800&q=80",
     "description": "Descubre lo mejor de Costa Rica en una experiencia que combina cultura, historia y naturaleza en solo cinco días. Comenzarás en San José y continuarás con paisajes volcánicos en el Volcán Irazú, Cartago y el Valle de Orosí.",
     "category": "Latinoamérica",
     "season": [
