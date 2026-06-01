@@ -290,34 +290,34 @@ export const itineraries: Itinerary[] = [
     "id": "colombia-cartagena-encanto",
     "title": "Cartagena, El Encanto de Colombia",
     "destination": "Cartagena e Isla, Colombia",
-    "dates": "A consultar",
+    "dates": "22 al 27 de junio",
     "duration": "6 Días",
     "days": 6,
     "cities": 2,
     "hotelNights": 5,
     "image": "https://images.unsplash.com/photo-1583531352515-8884af319dc1?auto=format&fit=crop&w=800&q=80",
-    "description": "Cartagena se caracteriza por su riqueza histórica, cultural y arquitectónica, especialmente en su centro histórico amurallado, declarado Patrimonio de la Humanidad.",
+    "description": "Cartagena se caracteriza por su riqueza histórica, cultural y arquitectónica, especialmente en su centro histórico amurallado, declarado Patrimonio de la Humanidad por la UNESCO.",
     "category": "Latinoamérica",
     "season": [
-      "Todas"
+      "Verano"
     ],
-    "pricePerPerson": 0,
+    "pricePerPerson": 810,
     "flights": {
       "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
+        "from": "CDMX (MEX)",
+        "departure": "09:20",
         "to": "CARTAGENA (CTG)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
+        "arrival": "14:30",
+        "stops": "Vuelo directo",
+        "estimatedPrice": "699 USD"
       },
       "return": {
         "from": "CARTAGENA (CTG)",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
+        "departure": "16:00",
+        "to": "CDMX (MEX)",
+        "arrival": "19:15",
+        "stops": "Vuelo directo",
+        "estimatedPrice": "Incluido en tarifa aérea"
       }
     },
     "activities": [
@@ -330,7 +330,7 @@ export const itineraries: Itinerary[] = [
       "Recogida y traslado de regreso a la ciudad de Cartagena."
     ],
     "included": [
-      "Traslado aeropuerto hotel aeropuerto en servicios compartidos.",
+      "Traslado aeropuerto - hotel - aeropuerto en servicios compartidos.",
       "Desayunos.",
       "3 noches en Cartagena (2 al inicio y 1 al final) y 2 noches en la Isla cercana.",
       "Tours y guía.",
@@ -345,7 +345,7 @@ export const itineraries: Itinerary[] = [
       "Nada que no venga especificado en el apartado INCLUYE."
     ],
     "pdfUrl": "/assets/pdfs/Colombia-Cartagena.pdf"
-  }, 
+  },
   {
     "id": "costa-rica-linda",
     "title": "Linda Costa Rica 2026",

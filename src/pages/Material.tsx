@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, Image, FileText, Layout, Search, LucideIcon } from 'lucide-react';
+import { Download, Image, FileText, Layout, Search, LucideIcon, X, Heart } from 'lucide-react';
+import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -20,57 +21,48 @@ interface Material {
 const MOCK_MATERIALS: Material[] = [
   {
     id: 1,
-    title: 'Campaña Redes Brasil Expreso',
+    title: 'Guía de Equipaje Permitido',
     type: 'post',
-    destination_name: 'Brasil',
-    file_url: '#',
-    thumbnail_url: 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80',
-    dimensions: '1080x1080',
+    destination_name: 'Tips de Viaje',
+    file_url: '/assets/material/equipaje.jpg', 
+    thumbnail_url: '/assets/material/equipaje.jpg', 
+    dimensions: '720x1280',
   },
   {
     id: 2,
-    title: 'Flyer Colombia 3 Joyas',
-    type: 'flyer',
-    destination_name: 'Colombia',
-    file_url: '#',
-    thumbnail_url: 'https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80',
-    dimensions: 'A4',
+    title: 'Explora Destinos Únicos',
+    type: 'post',
+    destination_name: 'Multidestino',
+    file_url: '/assets/material/explora.jpg',
+    thumbnail_url: '/assets/material/explora.jpg',
+    dimensions: '500x890',
   },
   {
     id: 3,
-    title: 'Banner Web Costa Rica Para Todos',
-    type: 'banner',
+    title: 'Post Linda Costa Rica',
+    type: 'post',
     destination_name: 'Costa Rica',
-    file_url: '#',
-    thumbnail_url: 'https://images.unsplash.com/photo-1536709017021-ce8f99c17e38?auto=format&fit=crop&w=800&q=80',
-    dimensions: '1920x1080',
+    file_url: '/assets/material/linda-costa-rica.jpg',
+    thumbnail_url: '/assets/material/linda-costa-rica.jpg',
+    dimensions: '750x938',
   },
   {
     id: 4,
-    title: 'Portada Facebook Cuba',
-    type: 'cover',
-    destination_name: 'Cuba',
-    file_url: '#',
-    thumbnail_url: 'https://images.unsplash.com/photo-1500759285222-a95626b934cb?auto=format&fit=crop&w=800&q=80',
-    dimensions: '820x312',
+    title: 'Promocional',
+    type: 'post',
+    destination_name: 'Latinoamérica',
+    file_url: '/assets/material/promocional.jpg',
+    thumbnail_url: '/assets/material/promocional.jpg',
+    dimensions: '630x788',
   },
   {
     id: 5,
-    title: 'Carrusel Promo Dominicana',
+    title: 'Parque Nacional Costa Rica',
     type: 'post',
-    destination_name: 'República Dominicana',
-    file_url: '#',
-    thumbnail_url: 'https://images.unsplash.com/photo-1575950674322-3a1977724f2e?auto=format&fit=crop&w=800&q=80',
-    dimensions: '1080x1350',
-  },
-  {
-    id: 6,
-    title: 'Catálogo Guatemala Espectacular',
-    type: 'flyer',
-    destination_name: 'Guatemala',
-    file_url: '#',
-    thumbnail_url: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?auto=format&fit=crop&w=600&q=80',
-    dimensions: 'A4',
+    destination_name: 'Latinoamérica',
+    file_url: '/assets/material/costa-rica-parque.jpg',
+    thumbnail_url: '/assets/material/costa-rica-parque.jpg',
+    dimensions: '1280x1600',
   }
 ];
 
@@ -93,7 +85,29 @@ export default function MaterialsPage() {
   const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Estados para el Modal y el Timer
+  const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
+  const [countdown, setCountdown] = useState(0);
+  
   const { toast } = useToast();
+
+  // Efecto que controla la cuenta regresiva al abrir el modal
+  useEffect(() => {
+    if (!selectedMaterial) return;
+
+    const timer = window.setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          window.clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, [selectedMaterial]);
 
   useEffect(() => {
     const fetchMaterials = async () => {
@@ -120,9 +134,24 @@ export default function MaterialsPage() {
     return matchesType && matchesSearch;
   });
 
-  const handleDownload = (material: Material) => {
-    toast({ title: 'Descarga Iniciada', description: `Preparando archivo de "${material.title}"...` });
-    // window.open(material.file_url, '_blank');
+  // Función de descarga que se ejecuta al confirmar en el popup
+  const handleConfirmDownload = () => {
+    if (!selectedMaterial) return;
+
+    toast({ title: 'Descarga Iniciada', description: `Preparando archivo de "${selectedMaterial.title}"...` });
+    
+    const link = document.createElement('a');
+    link.href = selectedMaterial.file_url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    const extension = selectedMaterial.file_url.split('.').pop() || 'jpg';
+    link.download = `DCA-${selectedMaterial.title.replace(/\s+/g, '-')}.${extension}`;
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setSelectedMaterial(null);
   };
 
   const types = ['all', 'banner', 'post', 'flyer', 'cover'];
@@ -227,7 +256,10 @@ export default function MaterialsPage() {
                       <Button
                         variant="outline"
                         className="w-full mt-auto rounded-xl border-transparent bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer font-semibold py-5"
-                        onClick={() => handleDownload(material)}
+                        onClick={() => {
+                          setCountdown(5); // Inicia el temporizador
+                          setSelectedMaterial(material); // Abre el modal
+                        }}
                       >
                         <Download className="w-4 h-4 mr-2" /> 
                         Descargar
@@ -251,6 +283,93 @@ export default function MaterialsPage() {
           </div>
         )}
       </main>
+
+      {/* ========================================= */}
+      {/* POPUP DE DESCARGA CON TIMER               */}
+      {/* ========================================= */}
+      {selectedMaterial && (
+        <div 
+          onClick={() => setSelectedMaterial(null)} 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-all duration-300"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()} 
+            className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200"
+          >
+            {/* Botón Cerrar */}
+            <button
+              onClick={() => setSelectedMaterial(null)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Cabecera del Popup */}
+            <div className="bg-primary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
+              <div className="bg-primary text-primary-foreground p-3 rounded-full mb-4 shadow-md">
+                <Heart className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-bold text-foreground text-center">
+                ¡Únete a nuestra comunidad!
+              </h2>
+            </div>
+
+            {/* Contenido del Popup */}
+            <div className="p-6 text-center">
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Antes de descargar <strong className="text-foreground">{selectedMaterial.title}</strong>, te invitamos a seguirnos en nuestras redes sociales para no perderte ningún material nuevo ni promociones exclusivas.
+              </p>
+              
+              <div className="bg-muted/40 rounded-xl p-5 mb-6 border border-border">
+                <p className="text-sm font-semibold text-foreground mb-4">
+                  Síguenos en:
+                </p>
+                
+                <div className="flex justify-center gap-4">
+                  <a 
+                    href="https://www.facebook.com/people/DCA-Travel/61590488308493/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-[#1877F2] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
+                  >
+                    <SiFacebook className="w-6 h-6" />
+                  </a>
+                  <a 
+                    href="https://instagram.com/dca.travel" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-[#E4405F] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
+                  >
+                    <SiInstagram className="w-6 h-6" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Botón Principal (Con Timer) */}
+              <button
+                onClick={handleConfirmDownload}
+                disabled={countdown > 0}
+                className={`w-full font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 ${
+                  countdown > 0 
+                    ? 'bg-muted text-muted-foreground cursor-not-allowed' 
+                    : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground cursor-pointer'
+                }`}
+              >
+                <Download className="w-5 h-5" />
+                {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
+              </button>
+              
+              {/* Botón Secundario (Sin Timer) */}
+              <button
+                onClick={handleConfirmDownload}
+                className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
+              >
+                Ya los sigo, descargar material
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
