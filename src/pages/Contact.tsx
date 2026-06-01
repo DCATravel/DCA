@@ -27,7 +27,7 @@ export default function Contact() {
             
             {/* WhatsApp */}
             <a 
-              href="https://wa.me/525527276085" 
+              href="https://wa.me/525627278632" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-card border border-border rounded-2xl p-8 flex flex-col items-center text-center hover:border-secondary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
@@ -38,13 +38,13 @@ export default function Contact() {
               <h3 className="font-bold text-lg mb-2">WhatsApp</h3>
               <p className="text-muted-foreground text-sm mb-4">Escríbenos para una respuesta rápida.</p>
               <p className="font-semibold text-primary group-hover:text-secondary transition-colors">
-                55 2727 6085
+                56 2727 8632
               </p>
             </a>
 
             {/* Teléfono */}
             <a 
-              href="tel:+525589913100" 
+              href="tel:+525513925779" 
               className="group bg-card border border-border rounded-2xl p-8 flex flex-col items-center text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -53,7 +53,7 @@ export default function Contact() {
               <h3 className="font-bold text-lg mb-2">Llámanos</h3>
               <p className="text-muted-foreground text-sm mb-4">Habla con uno de nuestros expertos.</p>
               <p className="font-semibold text-primary group-hover:text-primary/80 transition-colors">
-                55 8991 3100
+                55 1392 5779
               </p>
             </a>
 
@@ -80,7 +80,7 @@ export default function Contact() {
               <h3 className="font-bold text-lg mb-2">Oficina</h3>
               <p className="text-muted-foreground text-sm mb-4">Visítanos en nuestras instalaciones.</p>
               <p className="font-semibold text-primary text-sm leading-tight">
-                Av. Medellín 150 Int. 1 A<br />
+                Av. Medellín 150 Int. 1A<br />
                 Roma Norte, C.P. 06700<br />
                 CDMX
               </p>
