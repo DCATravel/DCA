@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import { Search, Download, Calendar, MapPin, Hotel, X, Heart } from "lucide-react";
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
@@ -14,7 +14,28 @@ export default function Itineraries() {
   const [selectedSeason, setSelectedSeason] = useState("Todas");
   const navigate = useNavigate();
 
+  // Estados para el Modal de Descarga
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryType | null>(null);
+  const [countdown, setCountdown] = useState(0);
+
+  // Efecto que controla la cuenta regresiva al abrir el modal
+  useEffect(() => {
+    // Si no hay itinerario seleccionado (modal cerrado), no hacemos nada
+    if (!selectedItinerary) return;
+
+    // Usamos window.setInterval para evitar errores de TypeScript con NodeJS
+    const timer = window.setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          window.clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, [selectedItinerary]);
 
   const filteredItineraries = itineraries.filter((it) => {
     const matchesSearch =
@@ -104,10 +125,12 @@ export default function Itineraries() {
               <div className="relative h-48 overflow-hidden shrink-0">
                 <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" />
                 
-                {/* Botón de descarga para el popup */}
+                {/* Botón de descarga modificado */}
                 <button 
                   onClick={(e) => {
                     e.stopPropagation(); 
+                    // Asignamos los 5 segundos justo al hacer clic
+                    setCountdown(5);
                     setSelectedItinerary(it);
                   }} 
                   className="absolute top-3 right-3 bg-background/90 hover:bg-background text-primary hover:text-secondary p-2.5 rounded-full shadow-sm transition-colors z-10"
@@ -166,7 +189,7 @@ export default function Itineraries() {
       </section>
 
       {/* ========================================= */}
-      {/* POPUP DE DESCARGA Y REDES SOCIALES        */}
+      {/* POPUP DE DESCARGA CON TIMER               */}
       {/* ========================================= */}
       {selectedItinerary && (
         <div 
@@ -226,18 +249,24 @@ export default function Itineraries() {
                 </div>
               </div>
 
-              {/* Botón Final de Descarga */}
+              {/* Botón Principal (Con Timer) */}
               <button
                 onClick={handleConfirmDownload}
-                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
+                disabled={countdown > 0}
+                className={`w-full font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 ${
+                  countdown > 0 
+                    ? 'bg-muted text-muted-foreground cursor-not-allowed' 
+                    : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground cursor-pointer'
+                }`}
               >
                 <Download className="w-5 h-5" />
-                Continuar a la descarga
+                {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
               </button>
               
+              {/* Botón Secundario (Sin Timer) */}
               <button
                 onClick={handleConfirmDownload}
-                className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
               >
                 Ya los sigo, descargar itinerario
               </button>

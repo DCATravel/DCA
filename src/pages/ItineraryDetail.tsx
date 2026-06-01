@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Download, Plane, Calendar, MapPin, Hotel, Circle, CheckCircle2, XCircle } from "lucide-react";
+import { Download, Plane, Calendar, MapPin, Hotel, Circle, CheckCircle2, XCircle, X, Heart } from "lucide-react";
+import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import { itineraries } from "@/data/travelData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,6 +9,43 @@ import Footer from "@/components/Footer";
 export default function ItineraryDetail() {
   const { id } = useParams();
   const itinerary = itineraries.find((it) => it.id === id);
+
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+
+  // Efecto corregido: Solo se encarga de restar, no de inicializar.
+  useEffect(() => {
+    // Si el modal está cerrado, no hacemos nada
+    if (!showDownloadModal) return;
+
+    // Usamos window.setInterval para que TypeScript sepa que es del navegador (Devuelve un número)
+    const timer = window.setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          window.clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, [showDownloadModal]);
+
+  const handleConfirmDownload = () => {
+    if (!itinerary) return;
+    
+    const link = document.createElement('a');
+    link.href = itinerary.pdfUrl || "#";
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.download = `Itinerario-${itinerary.id}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    setShowDownloadModal(false);
+  };
 
   if (!itinerary) {
     return (
@@ -24,8 +63,9 @@ export default function ItineraryDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
+      
       <section className="bg-primary py-8 px-4 rounded-b-3xl">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
@@ -40,7 +80,6 @@ export default function ItineraryDetail() {
                 {itinerary.dates} · {itinerary.duration}
               </p>
               
-              {/* Badges de información */}
               <div className="flex flex-wrap gap-3 text-primary-foreground/90 text-sm">
                 <span className="flex items-center gap-1.5 bg-primary-foreground/10 px-3 py-1.5 rounded-lg">
                   <Calendar className="w-4 h-4" /> {itinerary.days} Días
@@ -55,21 +94,21 @@ export default function ItineraryDetail() {
             </div>
           </div>
           
-          <a 
-            href={itinerary.pdfUrl || "#"} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            download={`Itinerario-${itinerary.id}.pdf`}
-            className="inline-flex items-center gap-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold rounded-xl px-5 py-3 transition-colors shrink-0"
+          <button 
+            onClick={() => {
+              // SOLUCIÓN: Asignamos los 5 segundos justo al momento de hacer clic
+              setCountdown(5);
+              setShowDownloadModal(true);
+            }}
+            className="inline-flex items-center gap-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold rounded-xl px-5 py-3 transition-colors shrink-0 cursor-pointer"
           >
             <Download className="w-5 h-5" />
             <span>Descargar PDF</span>
-          </a>
+          </button>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
+      <section className="max-w-7xl mx-auto px-4 py-12 md:py-16 flex-grow w-full">
         <div className="flex flex-col md:flex-row gap-10 mb-16 items-center">
           <div className="w-full md:w-2/5 relative">
             <div className="absolute inset-0 bg-secondary/20 rounded-2xl translate-x-3 translate-y-3 -z-10"></div>
@@ -87,7 +126,6 @@ export default function ItineraryDetail() {
           </div>
         </div>
 
-        {/* Flight Information - Layering tonal sin bordes */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
             <div className="bg-primary/10 p-2 rounded-lg text-primary">
@@ -97,7 +135,6 @@ export default function ItineraryDetail() {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Outbound */}
             <div className="bg-muted/40 rounded-2xl p-6">
               <div className="flex justify-between items-center mb-6">
                 <span className="bg-primary/15 text-primary text-xs font-bold px-3 py-1.5 rounded-md">VUELO DE IDA</span>
@@ -128,7 +165,6 @@ export default function ItineraryDetail() {
               </div>
             </div>
 
-            {/* Return */}
             <div className="bg-muted/40 rounded-2xl p-6">
               <div className="flex justify-between items-center mb-6">
                 <span className="bg-secondary/15 text-secondary-foreground text-xs font-bold px-3 py-1.5 rounded-md">VUELO DE REGRESO</span>
@@ -161,9 +197,7 @@ export default function ItineraryDetail() {
           </div>
         </div>
 
-        {/* Detalles Rápidos y Actividades */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
-          
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold text-foreground mb-6">¿Qué harás en tu viaje?</h2>
             <div className="bg-primary/5 rounded-2xl p-6 md:p-8">
@@ -180,11 +214,9 @@ export default function ItineraryDetail() {
             </div>
           </div>
 
-          {/* Columna Lateral: Detalles */}
           <div className="space-y-6">
             <div className="bg-muted/30 rounded-2xl p-6">
               <h3 className="font-bold text-foreground mb-4">Detalles del Paquete</h3>
-              
               <div className="space-y-5">
                 <div>
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Temporada</p>
@@ -196,12 +228,10 @@ export default function ItineraryDetail() {
                     ))}
                   </div>
                 </div>
-                
                 <div>
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Duración</p>
                   <p className="text-foreground font-medium">{itinerary.days} Días y {itinerary.hotelNights} Noches</p>
                 </div>
-                
                 <div>
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Precio Por Persona</p>
                   <p className="text-2xl font-bold text-primary">
@@ -211,17 +241,14 @@ export default function ItineraryDetail() {
               </div>
             </div>
           </div>
-
         </div>
 
-        {/* Included / Not Included */}
         <div>
           <h2 className="text-2xl font-bold text-foreground mb-6">Consideraciones</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-green-50/50 dark:bg-green-950/20 rounded-2xl p-6 md:p-8">
               <h3 className="font-bold text-green-800 dark:text-green-400 mb-5 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5" />
-                Incluido
+                <CheckCircle2 className="w-5 h-5" /> Incluido
               </h3>
               <ul className="space-y-3">
                 {itinerary.included.map((item, i) => (
@@ -232,11 +259,9 @@ export default function ItineraryDetail() {
                 ))}
               </ul>
             </div>
-            
             <div className="bg-red-50/50 dark:bg-red-950/20 rounded-2xl p-6 md:p-8">
               <h3 className="font-bold text-red-800 dark:text-red-400 mb-5 flex items-center gap-2">
-                <XCircle className="w-5 h-5" />
-                No Incluido
+                <XCircle className="w-5 h-5" /> No Incluido
               </h3>
               <ul className="space-y-3">
                 {itinerary.notIncluded.map((item, i) => (
@@ -249,8 +274,83 @@ export default function ItineraryDetail() {
             </div>
           </div>
         </div>
-
       </section>
+
+      {showDownloadModal && (
+        <div 
+          onClick={() => setShowDownloadModal(false)} 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-all duration-300"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()} 
+            className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200"
+          >
+            <button
+              onClick={() => setShowDownloadModal(false)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="bg-primary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
+              <div className="bg-primary text-primary-foreground p-3 rounded-full mb-4 shadow-md">
+                <Heart className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-bold text-foreground text-center">
+                ¡Únete a nuestra comunidad!
+              </h2>
+            </div>
+
+            <div className="p-6 text-center">
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Antes de descargar el itinerario de <strong className="text-foreground">{itinerary.title}</strong>, te invitamos a seguirnos en nuestras redes sociales para no perderte ningún paquete nuevo ni promociones exclusivas.
+              </p>
+              
+              <div className="bg-muted/40 rounded-xl p-5 mb-6 border border-border">
+                <p className="text-sm font-semibold text-foreground mb-4">Síguenos en:</p>
+                <div className="flex justify-center gap-4">
+                  <a 
+                    href="https://www.facebook.com/people/DCA-Travel/61590488308493/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-[#1877F2] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
+                  >
+                    <SiFacebook className="w-6 h-6" />
+                  </a>
+                  <a 
+                    href="https://instagram.com/dca.travel" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-[#E4405F] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
+                  >
+                    <SiInstagram className="w-6 h-6" />
+                  </a>
+                </div>
+              </div>
+
+              <button
+                onClick={handleConfirmDownload}
+                disabled={countdown > 0}
+                className={`w-full font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 ${
+                  countdown > 0 
+                    ? 'bg-muted text-muted-foreground cursor-not-allowed' 
+                    : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground cursor-pointer'
+                }`}
+              >
+                <Download className="w-5 h-5" />
+                {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
+              </button>
+              
+              <button
+                onClick={handleConfirmDownload}
+                className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
+              >
+                Ya los sigo, descargar itinerario
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

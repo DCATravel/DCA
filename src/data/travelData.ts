@@ -169,7 +169,7 @@ export const itineraries: Itinerary[] = [
   },
   {
     "id": "rio-ciudad-maravillosa",
-    "title": "Ciudad Maravillosa",
+    "title": "Río Ciudad Maravillosa",
     "destination": "Río de Janeiro, Brasil",
     "dates": "Válidas hasta noviembre 2026",
     "duration": "8 Días",
@@ -346,6 +346,61 @@ export const itineraries: Itinerary[] = [
     ],
     "pdfUrl": "/assets/pdfs/Colombia-Cartagena.pdf"
   }, 
+  {
+    "id": "linda-costa-rica-2026",
+    "title": "Linda Costa Rica 2026",
+    "destination": "San José, Cartago y Orosí, Costa Rica",
+    "dates": "A consultar",
+    "duration": "5 Días",
+    "days": 5,
+    "cities": 3,
+    "hotelNights": 4,
+    "image": "https://images.unsplash.com/photo-1518182170546-076616fd6251?auto=format&fit=crop&w=800&q=80",
+    "description": "Descubre lo mejor de Costa Rica en una experiencia que combina cultura, historia y naturaleza en solo cinco días. Comenzarás en San José y continuarás con paisajes volcánicos en el Volcán Irazú, Cartago y el Valle de Orosí.",
+    "category": "Latinoamérica",
+    "season": [
+      "Todas"
+    ],
+    "pricePerPerson": 0,
+    "flights": {
+      "outbound": {
+        "from": "CDMX (MEX)",
+        "departure": "A coordinar",
+        "to": "SAN JOSÉ (SJO)",
+        "arrival": "A coordinar",
+        "stops": "A consultar",
+        "estimatedPrice": "A consultar"
+      },
+      "return": {
+        "from": "SAN JOSÉ (SJO)",
+        "departure": "A coordinar",
+        "to": "CDMX (MEX)",
+        "arrival": "A coordinar",
+        "stops": "A consultar",
+        "estimatedPrice": "A consultar"
+      }
+    },
+    "activities": [
+      "Tour de la ciudad de San José con Museo de Arte Costarricense, Parque La Sabana, Teatro Nacional y Catedral Metropolitana.",
+      "Visita al Volcán Irazú, Basílica de Nuestra Señora de los Ángeles en Cartago y Valle de Orosí.",
+      "Día libre para disfrutar a tu ritmo o añadir experiencias opcionales como Parque Nacional Manuel Antonio o aguas termales del Volcán Arenal."
+    ],
+    "included": [
+      "Traslado Aeropuerto - Hotel - Aeropuerto.",
+      "4 noches de alojamiento en hotel de su elección.",
+      "Todos los desayunos y 2 comidas.",
+      "City tour de San José.",
+      "Tour Volcán Irazú, Basílica de Nuestra Señora de los Ángeles en Cartago y Valle de Orosí.",
+      "Seguro de viajero Assist Card.",
+      "Transportación terrestre en el circuito.",
+      "Impuestos de hospedaje."
+    ],
+    "notIncluded": [
+      "Alimentaciones y gastos no mencionados.",
+      "Actividades extras y opcionales."
+    ],
+    "pdfUrl": "/assets/pdfs/CostaRica-Linda.pdf"
+  },
   {
     "id": "costa-rica-para-todos",
     "title": "Costa Rica Para Todos",
