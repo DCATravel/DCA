@@ -125,7 +125,6 @@ export default function Itineraries() {
                 <button 
                   onClick={(e) => {
                     e.stopPropagation(); 
-                    // Asignamos los 5 segundos justo al hacer clic
                     setCountdown(5);
                     setSelectedItinerary(it);
                   }} 
