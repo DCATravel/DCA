@@ -874,6 +874,59 @@ export const itineraries: Itinerary[] = [
     "pdfUrl": "/assets/pdfs/Punta-Cana-Isla-Saona-Buggys.pdf"
   },
   {
+    "id": "punta-cana-iberostar",
+    "title": "Punta Cana",
+    "destination": "Punta Cana, República Dominicana",
+    "dates": "A consultar",
+    "duration": "5 Días",
+    "days": 5,
+    "cities": 1,
+    "hotelNights": 4,
+    "image": "https://images.unsplash.com/photo-1619680939776-4eadd78709a4?auto=format&fit=crop&w=800&q=80",
+    "description": "Una escapada perfecta al paraíso caribeño con alojamiento en el exclusivo Iberostar Waves Dominicana. El plan todo incluido permite disfrutar sin preocupaciones de playas de arena blanca, gastronomía, entretenimiento y descanso absoluto en Punta Cana.",
+    "category": "Caribe",
+    "season": [
+      "Todas"
+    ],
+    "pricePerPerson": 0,
+    "flights": {
+      "outbound": {
+        "from": "MÉXICO",
+        "departure": "A coordinar",
+        "to": "PUNTA CANA (PUJ)",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      },
+      "return": {
+        "from": "PUNTA CANA (PUJ)",
+        "departure": "A coordinar",
+        "to": "MÉXICO",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      }
+    },
+    "activities": [
+      "Día 1: Llegada al Aeropuerto Internacional de Punta Cana y traslado al hotel para check-in.",
+      "Días 2, 3 y 4: Días libres para disfrutar de las instalaciones, restaurantes, bares y el servicio premium todo incluido del resort Iberostar Waves Dominicana, descansando en sus playas paradisíacas.",
+      "Día 5: Check-out y recogida en el hotel para su traslado al aeropuerto y tomar el vuelo de regreso a casa."
+    ],
+    "included": [
+      "Traslados Aeropuerto - Hotel - Aeropuerto.",
+      "4 noches de alojamiento en plan todo incluido en el hotel Iberostar Waves Dominicana.",
+      "Impuestos hoteleros.",
+      "Seguro de viajero Assist Card."
+    ],
+    "notIncluded": [
+      "Consumos y servicios adicionales en los hoteles (Spa, estética, etc).",
+      "Propinas.",
+      "Gastos personales.",
+      "Cualquier otro servicio no especificado en el apartado de incluye."
+    ],
+    "pdfUrl": "/assets/pdfs/PuntaCana.pdf"
+  },
+  {
     "id": "guatemala-aventura-cultura",
     "title": "Aventura y Cultura",
     "destination": "Antigua, Acatenango, Chichicastenango, Atitlán y Ciudad de Guatemala",
