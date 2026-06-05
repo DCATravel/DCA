@@ -874,7 +874,7 @@ export const itineraries: Itinerary[] = [
     "pdfUrl": "/assets/pdfs/Punta-Cana-Isla-Saona-Buggys.pdf"
   },
   {
-    "id": "punta-cana-iberostar",
+    "id": "republica-dominicana-punta-cana",
     "title": "Punta Cana",
     "destination": "Punta Cana, República Dominicana",
     "dates": "A consultar",
