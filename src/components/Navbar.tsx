@@ -8,10 +8,12 @@ export default function Navbar() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Arreglo actualizado con la nueva ruta de Turitours
   const links = [
     { name: "Home", path: "/" },
     { name: "Explora", path: "/explora" },
     { name: "Itinerarios", path: "/itinerarios" },
+    { name: "Turitours", path: "/turitours" },
     { name: "Material", path: "/material" },
   ];
 
