@@ -227,6 +227,69 @@ export const itineraries: Itinerary[] = [
     "pdfUrl": "/assets/pdfs/Rio-Ciudad-Maravillosa.pdf"
   },
   {
+    "id": "maravillas-de-brasil",
+    "title": "Maravillas de Brasil",
+    "destination": "Brasilia, Río de Janeiro, Iguazú y São Paulo, Brasil",
+    "dates": "16 al 25 de noviembre 2026",
+    "duration": "10 Días",
+    "days": 10,
+    "cities": 4,
+    "hotelNights": 9,
+    "image": "https://images.unsplash.com/photo-1558732314-f2ee01b9ee51?auto=format&fit=crop&w=800&q=80",
+    "description": "Viaje completo por Brasil descubriendo la arquitectura de Brasilia, los íconos de Río de Janeiro como el Cristo Redentor y el Maracaná, la majestuosidad de las Cataratas del Iguazú en ambos lados y la cultura y gastronomía vibrante de São Paulo.",
+    "category": "Latinoamérica",
+    "season": [
+      "Otoño"
+    ],
+    "pricePerPerson": 0,
+    "flights": {
+      "outbound": {
+        "from": "A consultar",
+        "departure": "A coordinar",
+        "to": "BRASILIA (BSB)",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      },
+      "return": {
+        "from": "SÃO PAULO (GRU/CGH)",
+        "departure": "A coordinar",
+        "to": "A consultar",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      }
+    },
+    "activities": [
+      "City Tour en Brasilia visitando la Catedral Metropolitana, Congreso Nacional y Memorial JK.",
+      "Corcovado, Pan de Azúcar y City Tour en Río de Janeiro con almuerzo.",
+      "Estadio Maracaná y experiencia en los bastidores del Carnaval en Río.",
+      "Paseo en barco Macuco Safari y Cataratas del Iguazú lado brasileño.",
+      "Circuito Inferior y Superior en Cataratas del Iguazú lado argentino con Garganta del Diablo.",
+      "Tour São Paulo Cultural visitando el Parque Ibirapuera, MASP y Beco do Batman.",
+      "Tour By Night São Paulo Gastronómico con cena en asador brasileño."
+    ],
+    "included": [
+      "01 noche de hospedaje en Brasilia, 03 en Río de Janeiro, 03 en Iguazú y 02 en São Paulo con desayuno.",
+      "Traslados privados In & Out en Brasilia, Río de Janeiro, Iguazú y São Paulo.",
+      "Día Completo Brasília Cultural & Arquitectónico con Museo con entradas.",
+      "Día Completo Corcovado & Pan de Azúcar con entradas + City tour + Almuerzo.",
+      "Día Completo: Estadio Maracaná con Experiencia del Carnaval con entradas.",
+      "Medio día Cataratas Brasileñas con entradas + Macuco Safari (Barco Compartido).",
+      "Día Completo Cataratas Argentinas con entradas.",
+      "Día Completo São Paulo Cultural con Museo con entradas.",
+      "By Night (05 hrs) Tour privado São Paulo Gastronômico con Cena Asador Fogo de Chão.",
+      "Seguro de viajero AC 60 Assist Card."
+    ],
+    "notIncluded": [
+      "Vuelos Domésticos o Internacionales.",
+      "Gastos Personales.",
+      "Comidas no mencionadas en la programación.",
+      "Seguros de Viajes Personales adicionales o servicios no especificados."
+    ],
+    "pdfUrl": "/assets/pdfs/Brasil-Maravillas.pdf"
+  },
+  {
     "id": "brasil-fin-de-ano-2026",
     "title": "Fin de Año en Río de Janeiro",
     "destination": "Río de Janeiro, Brasil",
@@ -752,6 +815,63 @@ export const itineraries: Itinerary[] = [
       "Servicios no especificados en el itinerario."
     ],
     "pdfUrl": "/assets/pdfs/Dominicana-Merengue-Bachata.pdf"
+  },
+  {
+    "id": "republica-dominicana",
+    "title": "Punta Cana, Isla Saona y Buggys",
+    "destination": "Punta Cana e Isla Saona, República Dominicana",
+    "dates": "A consultar",
+    "duration": "7 Días",
+    "days": 7,
+    "cities": 2,
+    "hotelNights": 6,
+    "image": "https://images.unsplash.com/photo-1697302611781-5166533305da?auto=format&fit=crop&w=800&q=80",
+    "description": "Una escapada perfecta al paraíso caribeño con alojamiento de primera. El viaje combina días de descanso en Punta Cana con experiencias a elección como aventura en buggy o excursión a Santo Domingo, además de una travesía en catamarán a Isla Saona.",
+    "category": "Caribe",
+    "season": [
+      "Todas"
+    ],
+    "pricePerPerson": 0,
+    "flights": {
+      "outbound": {
+        "from": "MÉXICO",
+        "departure": "A coordinar",
+        "to": "PUNTA CANA (PUJ)",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      },
+      "return": {
+        "from": "PUNTA CANA (PUJ)",
+        "departure": "A coordinar",
+        "to": "MÉXICO",
+        "arrival": "A coordinar",
+        "stops": "Vuelos no incluidos",
+        "estimatedPrice": "A consultar"
+      }
+    },
+    "activities": [
+      "Llegada al Aeropuerto Internacional de Punta Cana y traslado al hotel.",
+      "Días libres para disfrutar de las instalaciones y el servicio premium todo incluido del resort.",
+      "Aventura a elegir: Paseo en Buggys por la zona de Punta Cana o excursión cultural de día completo a Santo Domingo.",
+      "Excursión a Isla Saona navegando en catamarán desde Bayahibe, con almuerzo buffet, baile merengue y parada en la piscina natural.",
+      "Retorno al aeropuerto para tomar el vuelo de regreso a casa."
+    ],
+    "included": [
+      "Traslados Aeropuerto - Hotel - Aeropuerto.",
+      "6 noches de alojamiento.",
+      "A elegir: Paseo en buggys en Punta Cana o City tour de día completo en Santo Domingo, comida y entradas necesarias incluidas.",
+      "Excursión Isla Saona.",
+      "Impuestos hoteleros.",
+      "Seguro de viajero Assist Card."
+    ],
+    "notIncluded": [
+      "Consumos y servicios adicionales en los hoteles (Spa, estética, etc).",
+      "Propinas.",
+      "Gastos personales.",
+      "Cualquier otro servicio no especificado en el apartado de incluye."
+    ],
+    "pdfUrl": "/assets/pdfs/Punta-Cana-Isla-Saona-Buggys.pdf"
   },
   {
     "id": "guatemala-aventura-cultura",

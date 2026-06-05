@@ -4,17 +4,24 @@ import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// Lista de Turitours actualizada
 const TURITOURS_LIST = [
   { 
     id: "rafting", 
     title: "Turitour Rafting", 
-    file_url: "/assets/pdfs/Turitour-Rafting.pdf" 
+    file_url: "/assets/pdfs/Turitour-Rafting.pdf",
+    image: "/assets/turitours/Rafting.jpg"
   },
   { 
     id: "acapulco", 
     title: "Turitour Acapulco", 
-    file_url: "/assets/pdfs/Turitour-Acapulco.pdf" 
+    file_url: "/assets/pdfs/Turitour-Acapulco.pdf",
+    image: "/assets/turitours/Acapulco.jpg" 
+  },
+  { 
+    id: "sierra-cafe", 
+    title: "Turitour Sierra de Café", 
+    file_url: "/assets/pdfs/Turitour-Sierra-Cafe.pdf",
+    image: "/assets/turitours/Cafe.jpg" 
   }
 ];
 
@@ -22,7 +29,6 @@ export default function Turitours() {
   const [selectedTour, setSelectedTour] = useState<any>(null);
   const [countdown, setCountdown] = useState(0);
 
-  // Temporizador para el modal
   useEffect(() => {
     if (!selectedTour) return;
 
@@ -39,7 +45,6 @@ export default function Turitours() {
     return () => window.clearInterval(timer);
   }, [selectedTour]);
 
-  // Función de descarga
   const handleConfirmDownload = () => {
     if (!selectedTour) return;
     
@@ -61,7 +66,6 @@ export default function Turitours() {
       <Navbar />
 
       <main className="pt-12 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full">
-        {/* Encabezado Simple */}
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Catálogo Turitours</h1>
@@ -74,20 +78,27 @@ export default function Turitours() {
           </div>
         </div>
 
-        {/* Grid de Tarjetas Minimalistas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {TURITOURS_LIST.map((tour) => (
-            <div key={tour.id} className="relative group">
-              {/* Sombra Tonal Asimétrica */}
-              <div className="absolute inset-0 bg-secondary/15 rounded-2xl translate-x-2.5 translate-y-2.5 -z-10 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"></div>
-              
-              {/* Tarjeta Frontal */}
-              <div className="bg-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between h-full border border-transparent shadow-sm">
-                <div className="mb-8">
-                  <div className="bg-primary/10 w-10 h-10 flex items-center justify-center rounded-xl mb-4">
-                    <Map className="w-5 h-5 text-primary" />
+            <div key={tour.id} className="relative group h-80">
+              <div className="absolute inset-0 bg-secondary/30 rounded-2xl translate-x-2.5 translate-y-2.5 -z-10 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"></div>
+              <div className="relative rounded-2xl p-6 sm:p-8 flex flex-col justify-between h-full overflow-hidden border border-transparent shadow-sm">
+                
+                <img 
+                  src={tour.image} 
+                  alt={tour.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
+
+                <div className="relative z-10 mb-8 mt-auto">
+                  <div className="bg-white/20 backdrop-blur-md border border-white/10 w-10 h-10 flex items-center justify-center rounded-xl mb-4 shadow-sm">
+                    <Map className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-foreground text-xl leading-tight">{tour.title}</h3>
+                  <h3 className="font-bold text-white text-2xl leading-tight drop-shadow-md">
+                    {tour.title}
+                  </h3>
                 </div>
                 
                 <button
@@ -95,7 +106,7 @@ export default function Turitours() {
                     setCountdown(5);
                     setSelectedTour(tour);
                   }}
-                  className="w-full bg-primary/5 hover:bg-primary text-primary hover:text-primary-foreground font-semibold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="relative z-10 w-full bg-white/10 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/20 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
                 >
                   <Download className="w-5 h-5" /> 
                   Descargar PDF

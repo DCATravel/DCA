@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary dark:bg-card text-primary-foreground dark:text-card-foreground pt-10 pb-6 transition-colors duration-300">
+    <footer className="bg-primary dark:bg-card text-primary-foreground dark:text-card-foreground pt-8 pb-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Content */}
@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright & Legal */}
-        <div className="pt-6 border-t border-primary-foreground/10 dark:border-border/30 flex flex-col md:flex-row justify-between items-center gap-5 text-xs md:text-sm text-primary-foreground/60 dark:text-muted-foreground">
+        <div className="pt-4 border-t border-primary-foreground/10 dark:border-border/30 flex flex-col md:flex-row justify-between items-center gap-5 text-xs md:text-sm text-primary-foreground/60 dark:text-muted-foreground">
           <p className="text-center md:text-left">
             &copy; {currentYear} DCA Travel. Todos los derechos reservados.
           </p>

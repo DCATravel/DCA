@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, Image, FileText, Layout, Search, LucideIcon, X, Heart } from 'lucide-react';
+import { Download, Image, FileText, Layout, Search, LucideIcon, X, Heart, Map } from 'lucide-react';
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -103,29 +103,29 @@ const MOCK_MATERIALS: Material[] = [
   {
     id: 10,
     title: 'Destinos de Latinoamérica',
-    type: 'flyer',
+    type: 'banner',
     destination_name: 'Multidestino',
     file_url: '/assets/material/Latam.jpg',
     thumbnail_url: '/assets/material/Latam.jpg',
-    dimensions: '1080x1920',
+    dimensions: '80x180',
   },
   {
     id: 11,
     title: 'Vive México: Sus Playas',
-    type: 'flyer',
+    type: 'banner',
     destination_name: 'México',
     file_url: '/assets/material/Vive-Mexico.jpg',
     thumbnail_url: '/assets/material/Vive-Mexico.jpg',
-    dimensions: '1080x1920',
+    dimensions: '80x180',
   },
   {
     id: 12,
     title: 'Barrancas y Los Cabos',
-    type: 'flyer',
+    type: 'banner',
     destination_name: 'México',
     file_url: '/assets/material/Barrancas-Cabos.jpg',
     thumbnail_url: '/assets/material/Barrancas-Cabos.jpg',
-    dimensions: '1080x1920',
+    dimensions: '80x180',
   },
   {
     id: 13,
@@ -134,7 +134,7 @@ const MOCK_MATERIALS: Material[] = [
     destination_name: 'Latinoamérica',
     file_url: '/assets/material/Latinoamerica.jpg',
     thumbnail_url: '/assets/material/Latinoamerica.jpg',
-    dimensions: '1080x1080',
+    dimensions: '1254x1254',
   },
   {
     id: 14,
@@ -143,7 +143,7 @@ const MOCK_MATERIALS: Material[] = [
     destination_name: 'Colombia',
     file_url: '/assets/material/Colombia-Zipaquira.jpg',
     thumbnail_url: '/assets/material/Colombia-Zipaquira.jpg',
-    dimensions: '1080x1080',
+    dimensions: '1254x1254',
   },
   {
     id: 15,
@@ -152,7 +152,7 @@ const MOCK_MATERIALS: Material[] = [
     destination_name: 'Colombia',
     file_url: '/assets/material/colombia-islas-del-rosario.jpg',
     thumbnail_url: '/assets/material/colombia-islas-del-rosario.jpg',
-    dimensions: '1080x1080',
+    dimensions: '1254x1254',
   },
   {
     id: 16,
@@ -161,7 +161,34 @@ const MOCK_MATERIALS: Material[] = [
     destination_name: 'Colombia',
     file_url: '/assets/material/Colombia-Cartagena.jpg',
     thumbnail_url: '/assets/material/Colombia-Cartagena.jpg',
-    dimensions: '1080x1080',
+    dimensions: '1254x1254',
+  },
+  {
+    id: 17,
+    title: 'Post Turitour Sierra de Café',
+    type: 'turitour',
+    destination_name: 'Veracruz',
+    file_url: 'assets/material/Cafe.jpg',
+    thumbnail_url: '/assets/material/Cafe.jpg', 
+    dimensions: '2550x2300',
+  },
+  {
+    id: 18,
+    title: 'Post Turitour Acapulco',
+    type: 'turitour',
+    destination_name: 'México',
+    file_url: 'assets/material/Acapulco.jpg',
+    thumbnail_url: '/assets/material/Acapulco.jpg', 
+    dimensions: '2550x2300',
+  },
+  {
+    id: 19,
+    title: 'Post Turitour Rafting',
+    type: 'turitour',
+    destination_name: 'Veracruz',
+    file_url: 'assets/material/Rafting.jpg',
+    thumbnail_url: '/assets/material/Rafting.jpg', 
+    dimensions: '2550x2300',
   }
 ];
 
@@ -170,6 +197,7 @@ const typeIcons: Record<string, LucideIcon> = {
   post: Image,
   flyer: FileText,
   cover: Layout,
+  turitour: Map,
 };
 
 const typeColors: Record<string, string> = {
@@ -177,6 +205,7 @@ const typeColors: Record<string, string> = {
   post: 'bg-secondary text-secondary-foreground border-transparent',
   flyer: 'bg-muted text-muted-foreground border-transparent',
   cover: 'bg-accent text-accent-foreground border-transparent',
+  turitour: 'bg-[#056099] text-white border-transparent', 
 };
 
 export default function MaterialsPage() {
@@ -231,35 +260,39 @@ export default function MaterialsPage() {
     return matchesType && matchesSearch;
   });
 
-  // Función de descarga que se ejecuta al confirmar en el popup
+
   const handleConfirmDownload = () => {
     if (!selectedMaterial) return;
 
     toast({ title: 'Descarga Iniciada', description: `Preparando archivo de "${selectedMaterial.title}"...` });
     
-    const link = document.createElement('a');
-    link.href = selectedMaterial.file_url;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    const extension = selectedMaterial.file_url.split('.').pop() || 'jpg';
-    link.download = `DCA-${selectedMaterial.title.replace(/\s+/g, '-')}.${extension}`;
-    
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+
+    if (selectedMaterial.file_url.startsWith('http')) {
+      window.open(selectedMaterial.file_url, '_blank');
+    } else {
+      const link = document.createElement('a');
+      link.href = selectedMaterial.file_url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      const extension = selectedMaterial.file_url.split('.').pop() || 'jpg';
+      link.download = `DCA-${selectedMaterial.title.replace(/\s+/g, '-')}.${extension}`;
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
 
     setSelectedMaterial(null);
   };
 
-  const types = ['all', 'banner', 'post', 'flyer', 'cover'];
+  const types = ['all', 'banner', 'post', 'flyer', 'cover', 'turitour'];
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navbar />
 
       <main className="pt-12 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full">
-        
-        {/* Header Decorativo */}
+
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 mb-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Materiales de Marketing</h1>
@@ -304,7 +337,6 @@ export default function MaterialsPage() {
           </div>
         </div>
 
-        {/* Materials Grid */}
         {loading ? (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -324,10 +356,8 @@ export default function MaterialsPage() {
               const Icon = typeIcons[material.type] || Image;
               return (
                 <div key={material.id} className="relative group">
-                  {/* Capa tonal asimétrica trasera */}
                   <div className="absolute inset-0 bg-secondary/10 rounded-2xl translate-x-2.5 translate-y-2.5 -z-10 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"></div>
                   
-                  {/* Tarjeta Principal */}
                   <Card className="overflow-hidden border-transparent shadow-none bg-card rounded-2xl h-full flex flex-col">
                     <div className="h-52 overflow-hidden relative bg-muted">
                       <img
@@ -354,8 +384,8 @@ export default function MaterialsPage() {
                         variant="outline"
                         className="w-full mt-auto rounded-xl border-transparent bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer font-semibold py-5"
                         onClick={() => {
-                          setCountdown(5); // Inicia el temporizador
-                          setSelectedMaterial(material); // Abre el modal
+                          setCountdown(5); 
+                          setSelectedMaterial(material); 
                         }}
                       >
                         <Download className="w-4 h-4 mr-2" /> 
@@ -393,7 +423,6 @@ export default function MaterialsPage() {
             onClick={(e) => e.stopPropagation()} 
             className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200"
           >
-            {/* Botón Cerrar */}
             <button
               onClick={() => setSelectedMaterial(null)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10"
@@ -401,7 +430,6 @@ export default function MaterialsPage() {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Cabecera del Popup */}
             <div className="bg-primary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
               <div className="bg-primary text-primary-foreground p-3 rounded-full mb-4 shadow-md">
                 <Heart className="w-8 h-8" />
@@ -411,7 +439,6 @@ export default function MaterialsPage() {
               </h2>
             </div>
 
-            {/* Contenido del Popup */}
             <div className="p-6 text-center">
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Antes de descargar <strong className="text-foreground">{selectedMaterial.title}</strong>, te invitamos a seguirnos en nuestras redes sociales para no perderte ningún material nuevo ni promociones exclusivas.
@@ -442,7 +469,6 @@ export default function MaterialsPage() {
                 </div>
               </div>
 
-              {/* Botón Principal (Con Timer) */}
               <button
                 onClick={handleConfirmDownload}
                 disabled={countdown > 0}
