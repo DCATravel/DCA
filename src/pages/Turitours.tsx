@@ -20,7 +20,7 @@ const TURITOURS_LIST = [
   { 
     id: "sierra-cafe", 
     title: "Turitour Sierra de Café", 
-    file_url: "/assets/pdfs/Turitour-Sierra-Cafe.pdf",
+    file_url: "/assets/pdfs/Cafe.pdf",
     image: "/assets/turitours/Cafe.jpg" 
   }
 ];
