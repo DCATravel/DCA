@@ -15,7 +15,7 @@ const TURITOURS_LIST: Tour[] = [
   { 
     id: "rafting", 
     title: "Turitour Rafting", 
-    file_url: "/assets/pdfs/Turitour-Rafting.pdf",
+    file_url: "/assets/pdfs/TuritourRafting.pdf",
     image: "/assets/turitours/Rafting.jpg"
   },
   { 
@@ -59,7 +59,7 @@ export default function Turitours() {
     link.href = selectedTour.file_url;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.download = `DCA-${selectedTour.title.replace(/\s+/g, '-')}.pdf`;
+    link.download = `${selectedTour.title.replace(/\s+/g, '-')}.pdf`;
     
     document.body.appendChild(link);
     link.click();
