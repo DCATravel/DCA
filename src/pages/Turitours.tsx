@@ -52,7 +52,6 @@ export default function Turitours() {
     return () => window.clearInterval(timer);
   }, [selectedTour]);
 
-  // FUNCIÓN DE DESCARGA SIMPLE Y DIRECTA
   const handleConfirmDownload = () => {
     if (!selectedTour) return;
     

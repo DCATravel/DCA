@@ -7,8 +7,6 @@ import ThemeToggle from "./ThemeToggle";
 export default function Navbar() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Arreglo actualizado con la nueva ruta de Turitours
   const links = [
     { name: "Home", path: "/" },
     { name: "Explora", path: "/explora" },
