@@ -4,7 +4,14 @@ import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const TURITOURS_LIST = [
+type Tour = {
+  id: string;
+  title: string;
+  file_url: string;
+  image: string;
+};
+
+const TURITOURS_LIST: Tour[] = [
   { 
     id: "rafting", 
     title: "Turitour Rafting", 
@@ -20,7 +27,7 @@ const TURITOURS_LIST = [
   { 
     id: "sierra-cafe", 
     title: "Turitour Sierra de Café", 
-    file_url: "/assets/pdfs/Cafe.pdf",
+    file_url: "/assets/pdfs/Turitour-Sierra-Cafe.pdf",
     image: "/assets/turitours/Cafe.jpg" 
   }
 ];
@@ -45,6 +52,7 @@ export default function Turitours() {
     return () => window.clearInterval(timer);
   }, [selectedTour]);
 
+  // FUNCIÓN DE DESCARGA SIMPLE Y DIRECTA
   const handleConfirmDownload = () => {
     if (!selectedTour) return;
     
