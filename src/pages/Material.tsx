@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useDeferredValue, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -19,177 +19,25 @@ interface Material {
 }
 
 const MOCK_MATERIALS: Material[] = [
-  {
-    id: 1,
-    title: 'Guía de Equipaje Permitido',
-    type: 'post',
-    destination_name: 'Tips de Viaje',
-    file_url: '/assets/material/equipaje.jpg', 
-    thumbnail_url: '/assets/material/equipaje.jpg', 
-    dimensions: '720x1280',
-  },
-  {
-    id: 2,
-    title: 'Explora Destinos Únicos',
-    type: 'flyer',
-    destination_name: 'Multidestino',
-    file_url: '/assets/material/explora.jpg',
-    thumbnail_url: '/assets/material/explora.jpg',
-    dimensions: '500x890',
-  },
-  {
-    id: 3,
-    title: 'Linda Costa Rica',
-    type: 'flyer',
-    destination_name: 'Costa Rica',
-    file_url: '/assets/material/linda-costa-rica.jpg',
-    thumbnail_url: '/assets/material/linda-costa-rica.jpg',
-    dimensions: '750x938',
-  },
-  {
-    id: 4,
-    title: 'Puerto Rico',
-    type: 'post',
-    destination_name: 'Puerto Rico',
-    file_url: '/assets/material/puerto-rico.jpg',
-    thumbnail_url: '/assets/material/puerto-rico.jpg',
-    dimensions: '1280x1600',
-  },
-  {
-    id: 5,
-    title: 'Puerto Rico Bahía Mosquito',
-    type: 'post',
-    destination_name: 'Puerto Rico',
-    file_url: '/assets/material/puerto-rico-bahia.jpg',
-    thumbnail_url: '/assets/material/puerto-rico-bahia.jpg',
-    dimensions: '1280x1600',
-  },
-  {
-    id: 6,
-    title: 'Promocional',
-    type: 'post',
-    destination_name: 'Latinoamérica',
-    file_url: '/assets/material/promocional.jpg',
-    thumbnail_url: '/assets/material/promocional.jpg',
-    dimensions: '630x788',
-  },
-  {
-    id: 7,
-    title: 'Parque Nacional Costa Rica',
-    type: 'post',
-    destination_name: 'Costa Rica',
-    file_url: '/assets/material/costa-rica-parque.jpg',
-    thumbnail_url: '/assets/material/costa-rica-parque.jpg',
-    dimensions: '1280x1600',
-  },
-  {
-    id: 8,
-    title: 'Guatemala',
-    type: 'post',
-    destination_name: 'Guatemala',
-    file_url: '/assets/material/guatemala.jpg',
-    thumbnail_url: '/assets/material/guatemala.jpg',
-    dimensions: '1280x1600',
-  },
-  {
-    id: 9,
-    title: 'Guatemala Tikal',
-    type: 'post',
-    destination_name: 'Guatemala - Tikal',
-    file_url: '/assets/material/guatemala-tikal.jpg',
-    thumbnail_url: '/assets/material/guatemala-tikal.jpg',
-    dimensions: '1280x1600',
-  },
-  {
-    id: 10,
-    title: 'Destinos de Latinoamérica',
-    type: 'banner',
-    destination_name: 'Multidestino',
-    file_url: '/assets/material/Latam.jpg',
-    thumbnail_url: '/assets/material/Latam.jpg',
-    dimensions: '80x180',
-  },
-  {
-    id: 11,
-    title: 'Vive México: Sus Playas',
-    type: 'banner',
-    destination_name: 'México',
-    file_url: '/assets/material/Vive-Mexico.jpg',
-    thumbnail_url: '/assets/material/Vive-Mexico.jpg',
-    dimensions: '80x180',
-  },
-  {
-    id: 12,
-    title: 'Barrancas y Los Cabos',
-    type: 'banner',
-    destination_name: 'México',
-    file_url: '/assets/material/Barrancas-Cabos.jpg',
-    thumbnail_url: '/assets/material/Barrancas-Cabos.jpg',
-    dimensions: '80x180',
-  },
-  {
-    id: 13,
-    title: 'Países Más Visitados de Latam',
-    type: 'post',
-    destination_name: 'Latinoamérica',
-    file_url: '/assets/material/Latinoamerica.jpg',
-    thumbnail_url: '/assets/material/Latinoamerica.jpg',
-    dimensions: '1254x1254',
-  },
-  {
-    id: 14,
-    title: 'Catedral de Sal Zipaquirá',
-    type: 'post',
-    destination_name: 'Colombia',
-    file_url: '/assets/material/Colombia-Zipaquira.jpg',
-    thumbnail_url: '/assets/material/Colombia-Zipaquira.jpg',
-    dimensions: '1254x1254',
-  },
-  {
-    id: 15,
-    title: 'Islas del Rosario',
-    type: 'post',
-    destination_name: 'Colombia',
-    file_url: '/assets/material/colombia-islas-del-rosario.jpg',
-    thumbnail_url: '/assets/material/colombia-islas-del-rosario.jpg',
-    dimensions: '1254x1254',
-  },
-  {
-    id: 16,
-    title: 'Cartagena Colonial',
-    type: 'post',
-    destination_name: 'Colombia',
-    file_url: '/assets/material/Colombia-Cartagena.jpg',
-    thumbnail_url: '/assets/material/Colombia-Cartagena.jpg',
-    dimensions: '1254x1254',
-  },
-  {
-    id: 17,
-    title: 'Post Turitour Sierra de Café',
-    type: 'turitour',
-    destination_name: 'Veracruz',
-    file_url: 'assets/material/Cafe.jpg',
-    thumbnail_url: '/assets/material/Cafe.jpg', 
-    dimensions: '2550x2300',
-  },
-  {
-    id: 18,
-    title: 'Post Turitour Acapulco',
-    type: 'turitour',
-    destination_name: 'México',
-    file_url: 'assets/material/Acapulco.jpg',
-    thumbnail_url: '/assets/material/Acapulco.jpg', 
-    dimensions: '2550x2300',
-  },
-  {
-    id: 19,
-    title: 'Post Turitour Rafting',
-    type: 'turitour',
-    destination_name: 'Veracruz',
-    file_url: 'assets/material/Rafting.jpg',
-    thumbnail_url: '/assets/material/Rafting.jpg', 
-    dimensions: '2550x2300',
-  }
+  { id: 1, title: 'Guía de Equipaje Permitido', type: 'post', destination_name: 'Tips de Viaje', file_url: '/assets/material/equipaje.jpg', thumbnail_url: '/assets/material/equipaje.jpg', dimensions: '720x1280' },
+  { id: 2, title: 'Explora Destinos Únicos', type: 'flyer', destination_name: 'Multidestino', file_url: '/assets/material/explora.jpg', thumbnail_url: '/assets/material/explora.jpg', dimensions: '500x890' },
+  { id: 3, title: 'Linda Costa Rica', type: 'flyer', destination_name: 'Costa Rica', file_url: '/assets/material/linda-costa-rica.jpg', thumbnail_url: '/assets/material/linda-costa-rica.jpg', dimensions: '750x938' },
+  { id: 4, title: 'Puerto Rico', type: 'post', destination_name: 'Puerto Rico', file_url: '/assets/material/puerto-rico.jpg', thumbnail_url: '/assets/material/puerto-rico.jpg', dimensions: '1280x1600' },
+  { id: 5, title: 'Puerto Rico Bahía Mosquito', type: 'post', destination_name: 'Puerto Rico', file_url: '/assets/material/puerto-rico-bahia.jpg', thumbnail_url: '/assets/material/puerto-rico-bahia.jpg', dimensions: '1280x1600' },
+  { id: 6, title: 'Promocional', type: 'post', destination_name: 'Latinoamérica', file_url: '/assets/material/promocional.jpg', thumbnail_url: '/assets/material/promocional.jpg', dimensions: '630x788' },
+  { id: 7, title: 'Parque Nacional Costa Rica', type: 'post', destination_name: 'Costa Rica', file_url: '/assets/material/costa-rica-parque.jpg', thumbnail_url: '/assets/material/costa-rica-parque.jpg', dimensions: '1280x1600' },
+  { id: 8, title: 'Guatemala', type: 'post', destination_name: 'Guatemala', file_url: '/assets/material/guatemala.jpg', thumbnail_url: '/assets/material/guatemala.jpg', dimensions: '1280x1600' },
+  { id: 9, title: 'Guatemala Tikal', type: 'post', destination_name: 'Guatemala - Tikal', file_url: '/assets/material/guatemala-tikal.jpg', thumbnail_url: '/assets/material/guatemala-tikal.jpg', dimensions: '1280x1600' },
+  { id: 10, title: 'Destinos de Latinoamérica', type: 'banner', destination_name: 'Multidestino', file_url: '/assets/material/Latam.jpg', thumbnail_url: '/assets/material/Latam.jpg', dimensions: '80x180' },
+  { id: 11, title: 'Vive México: Sus Playas', type: 'banner', destination_name: 'México', file_url: '/assets/material/Vive-Mexico.jpg', thumbnail_url: '/assets/material/Vive-Mexico.jpg', dimensions: '80x180' },
+  { id: 12, title: 'Barrancas y Los Cabos', type: 'banner', destination_name: 'México', file_url: '/assets/material/Barrancas-Cabos.jpg', thumbnail_url: '/assets/material/Barrancas-Cabos.jpg', dimensions: '80x180' },
+  { id: 13, title: 'Países Más Visitados de Latam', type: 'post', destination_name: 'Latinoamérica', file_url: '/assets/material/Latinoamerica.jpg', thumbnail_url: '/assets/material/Latinoamerica.jpg', dimensions: '1254x1254' },
+  { id: 14, title: 'Catedral de Sal Zipaquirá', type: 'post', destination_name: 'Colombia', file_url: '/assets/material/Colombia-Zipaquira.jpg', thumbnail_url: '/assets/material/Colombia-Zipaquira.jpg', dimensions: '1254x1254' },
+  { id: 15, title: 'Islas del Rosario', type: 'post', destination_name: 'Colombia', file_url: '/assets/material/colombia-islas-del-rosario.jpg', thumbnail_url: '/assets/material/colombia-islas-del-rosario.jpg', dimensions: '1254x1254' },
+  { id: 16, title: 'Cartagena Colonial', type: 'post', destination_name: 'Colombia', file_url: '/assets/material/Colombia-Cartagena.jpg', thumbnail_url: '/assets/material/Colombia-Cartagena.jpg', dimensions: '1254x1254' },
+  { id: 17, title: 'Post Turitour Sierra de Café', type: 'turitour', destination_name: 'Veracruz', file_url: 'assets/material/Cafe.jpg', thumbnail_url: '/assets/material/Cafe.jpg', dimensions: '2550x2300' },
+  { id: 18, title: 'Post Turitour Acapulco', type: 'turitour', destination_name: 'México', file_url: 'assets/material/Acapulco.jpg', thumbnail_url: '/assets/material/Acapulco.jpg', dimensions: '2550x2300' },
+  { id: 19, title: 'Post Turitour Rafting', type: 'turitour', destination_name: 'Veracruz', file_url: 'assets/material/Rafting.jpg', thumbnail_url: '/assets/material/Rafting.jpg', dimensions: '2550x2300' }
 ];
 
 const typeIcons: Record<string, LucideIcon> = {
@@ -208,32 +56,101 @@ const typeColors: Record<string, string> = {
   turitour: 'bg-[#056099] text-white border-transparent', 
 };
 
+const DownloadModal = ({ material, onClose }: { material: Material, onClose: () => void }) => {
+  const [countdown, setCountdown] = useState(5);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (countdown <= 0) return;
+    const timer = window.setInterval(() => setCountdown((prev) => prev - 1), 1000);
+    return () => window.clearInterval(timer);
+  }, [countdown]);
+
+  const handleConfirmDownload = () => {
+    toast({ title: 'Descarga Iniciada', description: `Preparando archivo de "${material.title}"...` });
+    
+    if (material.file_url.startsWith('http')) {
+      window.open(material.file_url, '_blank');
+    } else {
+      const link = document.createElement('a');
+      link.href = material.file_url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      const extension = material.file_url.split('.').pop() || 'jpg';
+      link.download = `DCA-${material.title.replace(/\s+/g, '-')}.${extension}`;
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+    onClose();
+  };
+
+  return (
+    <div onClick={onClose} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-all duration-300">
+      <div onClick={(e) => e.stopPropagation()} className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200">
+        <button onClick={onClose} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10">
+          <X className="w-5 h-5" />
+        </button>
+
+        <div className="bg-primary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
+          <div className="bg-primary text-primary-foreground p-3 rounded-full mb-4 shadow-md">
+            <Heart className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-bold text-foreground text-center">
+            ¡Únete a nuestra comunidad!
+          </h2>
+        </div>
+
+        <div className="p-6 text-center">
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Antes de descargar <strong className="text-foreground">{material.title}</strong>, te invitamos a seguirnos en nuestras redes sociales para no perderte ningún material nuevo ni promociones exclusivas.
+          </p>
+          
+          <div className="bg-muted/40 rounded-xl p-5 mb-6 border border-border">
+            <p className="text-sm font-semibold text-foreground mb-4">Síguenos en:</p>
+            <div className="flex justify-center gap-4">
+              <a href="https://www.facebook.com/people/DCA-Travel/61590488308493/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#1877F2] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30">
+                <SiFacebook className="w-6 h-6" />
+              </a>
+              <a href="https://instagram.com/dca.travel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#E4405F] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30">
+                <SiInstagram className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+
+          <button
+            onClick={handleConfirmDownload}
+            disabled={countdown > 0}
+            className={`w-full font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 ${
+              countdown > 0 ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground cursor-pointer'
+            }`}
+          >
+            <Download className="w-5 h-5" />
+            {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
+          </button>
+          
+          <button
+            onClick={handleConfirmDownload}
+            className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
+          >
+            Ya los sigo, descargar material
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function MaterialsPage() {
   const [materials, setMaterials] = useState<Material[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   
   const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
-  const [countdown, setCountdown] = useState(0);
-  
-  const { toast } = useToast();
-
-  useEffect(() => {
-    if (!selectedMaterial) return;
-
-    const timer = window.setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          window.clearInterval(timer);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => window.clearInterval(timer);
-  }, [selectedMaterial]);
 
   useEffect(() => {
     const fetchMaterials = async () => {
@@ -247,43 +164,19 @@ export default function MaterialsPage() {
         setLoading(false);
       }
     };
-    
     fetchMaterials();
   }, []);
 
-  const filtered = materials.filter((m) => {
-    const matchesType = filterType === 'all' || m.type === filterType;
-    const matchesSearch = 
-      m.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      m.destination_name.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    return matchesType && matchesSearch;
-  });
-
-
-  const handleConfirmDownload = () => {
-    if (!selectedMaterial) return;
-
-    toast({ title: 'Descarga Iniciada', description: `Preparando archivo de "${selectedMaterial.title}"...` });
-    
-
-    if (selectedMaterial.file_url.startsWith('http')) {
-      window.open(selectedMaterial.file_url, '_blank');
-    } else {
-      const link = document.createElement('a');
-      link.href = selectedMaterial.file_url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      const extension = selectedMaterial.file_url.split('.').pop() || 'jpg';
-      link.download = `DCA-${selectedMaterial.title.replace(/\s+/g, '-')}.${extension}`;
+  const filtered = useMemo(() => {
+    return materials.filter((m) => {
+      const matchesType = filterType === 'all' || m.type === filterType;
+      const matchesSearch = 
+        m.title.toLowerCase().includes(deferredSearchQuery.toLowerCase()) || 
+        m.destination_name.toLowerCase().includes(deferredSearchQuery.toLowerCase());
       
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    setSelectedMaterial(null);
-  };
+      return matchesType && matchesSearch;
+    });
+  }, [materials, filterType, deferredSearchQuery]);
 
   const types = ['all', 'banner', 'post', 'flyer', 'cover', 'turitour'];
 
@@ -305,7 +198,6 @@ export default function MaterialsPage() {
 
         {/* Toolbar: Search + Filter Tabs */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10 bg-card p-2 rounded-2xl">
-          {/* Filter Tabs */}
           <div className="flex flex-wrap gap-2 w-full lg:w-auto">
             {types.map((type) => (
               <Button
@@ -324,7 +216,6 @@ export default function MaterialsPage() {
             ))}
           </div>
 
-          {/* Search Bar */}
           <div className="relative w-full lg:w-80">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
@@ -383,10 +274,7 @@ export default function MaterialsPage() {
                       <Button
                         variant="outline"
                         className="w-full mt-auto rounded-xl border-transparent bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer font-semibold py-5"
-                        onClick={() => {
-                          setCountdown(5); 
-                          setSelectedMaterial(material); 
-                        }}
+                        onClick={() => setSelectedMaterial(material)}
                       >
                         <Download className="w-4 h-4 mr-2" /> 
                         Descargar
@@ -411,87 +299,11 @@ export default function MaterialsPage() {
         )}
       </main>
 
-      {/* ========================================= */}
-      {/* POPUP DE DESCARGA CON TIMER               */}
-      {/* ========================================= */}
       {selectedMaterial && (
-        <div 
-          onClick={() => setSelectedMaterial(null)} 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-all duration-300"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()} 
-            className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200"
-          >
-            <button
-              onClick={() => setSelectedMaterial(null)}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="bg-primary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
-              <div className="bg-primary text-primary-foreground p-3 rounded-full mb-4 shadow-md">
-                <Heart className="w-8 h-8" />
-              </div>
-              <h2 className="text-2xl font-bold text-foreground text-center">
-                ¡Únete a nuestra comunidad!
-              </h2>
-            </div>
-
-            <div className="p-6 text-center">
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Antes de descargar <strong className="text-foreground">{selectedMaterial.title}</strong>, te invitamos a seguirnos en nuestras redes sociales para no perderte ningún material nuevo ni promociones exclusivas.
-              </p>
-              
-              <div className="bg-muted/40 rounded-xl p-5 mb-6 border border-border">
-                <p className="text-sm font-semibold text-foreground mb-4">
-                  Síguenos en:
-                </p>
-                
-                <div className="flex justify-center gap-4">
-                  <a 
-                    href="https://www.facebook.com/people/DCA-Travel/61590488308493/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-[#1877F2] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
-                  >
-                    <SiFacebook className="w-6 h-6" />
-                  </a>
-                  <a 
-                    href="https://instagram.com/dca.travel" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-[#E4405F] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
-                  >
-                    <SiInstagram className="w-6 h-6" />
-                  </a>
-                </div>
-              </div>
-
-              <button
-                onClick={handleConfirmDownload}
-                disabled={countdown > 0}
-                className={`w-full font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 ${
-                  countdown > 0 
-                    ? 'bg-muted text-muted-foreground cursor-not-allowed' 
-                    : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground cursor-pointer'
-                }`}
-              >
-                <Download className="w-5 h-5" />
-                {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
-              </button>
-              
-              {/* Botón Secundario (Sin Timer) */}
-              <button
-                onClick={handleConfirmDownload}
-                className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
-              >
-                Ya los sigo, descargar material
-              </button>
-            </div>
-          </div>
-        </div>
+        <DownloadModal 
+          material={selectedMaterial} 
+          onClose={() => setSelectedMaterial(null)} 
+        />
       )}
 
       <Footer />

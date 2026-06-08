@@ -19,14 +19,12 @@ export default function LoginButton() {
       {/* Overlay y Popup (Modal) */}
       {isOpen && (
         <div 
-          /* 1. Al dar clic en este fondo oscuro, se cierra el modal */
           onClick={() => setIsOpen(false)} 
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-all duration-300"
         >
           
           {/* Contenedor del Modal */}
           <div 
-            /* 2. Este freno evita que los clics DENTRO de la tarjeta cierren el modal */
             onClick={(e) => e.stopPropagation()} 
             className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200"
           >

@@ -11,20 +11,16 @@ export default function AuthErrorPage() {
     'Sorry, your authentication information is invalid or has expired';
 
   useEffect(() => {
-    // Countdown logic
     const timer = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
           clearInterval(timer);
-          // Redirect to home page
           window.location.href = '/';
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
-
-    // Clean up timer
     return () => clearInterval(timer);
   }, []);
 

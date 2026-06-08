@@ -183,9 +183,7 @@ export default function Itineraries() {
         )}
       </section>
 
-      {/* ========================================= */}
-      {/* POPUP DE DESCARGA CON TIMER               */}
-      {/* ========================================= */}
+      {/* POPUP DE DESCARGA CON TIMER */}
       {selectedItinerary && (
         <div 
           onClick={() => setSelectedItinerary(null)} 

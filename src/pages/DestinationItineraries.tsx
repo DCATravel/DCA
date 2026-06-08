@@ -110,11 +110,10 @@ export default function DestinationItineraries() {
               <div className="relative h-48 overflow-hidden shrink-0">
                 <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" />
                 
-                {/* Botón de descarga para el popup */}
                 <button 
                   onClick={(e) => {
                     e.stopPropagation(); 
-                    setCountdown(5); // Inicia el temporizador
+                    setCountdown(5);
                     setSelectedItinerary(it);
                   }} 
                   className="absolute top-3 right-3 bg-background/90 hover:bg-background text-primary hover:text-secondary p-2.5 rounded-full shadow-sm transition-colors z-10"
@@ -173,9 +172,7 @@ export default function DestinationItineraries() {
         )}
       </section>
 
-      {/* ========================================= */}
-      {/* POPUP DE DESCARGA Y REDES SOCIALES        */}
-      {/* ========================================= */}
+      {/* POPUP DE DESCARGA Y REDES SOCIALES */}
       {selectedItinerary && (
         <div 
           onClick={() => setSelectedItinerary(null)} 
@@ -248,7 +245,7 @@ export default function DestinationItineraries() {
                 {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
               </button>
               
-              {/* Botón Secundario (Sin Timer) */}
+              {/* Botón Secundario*/}
               <button
                 onClick={handleConfirmDownload}
                 className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
