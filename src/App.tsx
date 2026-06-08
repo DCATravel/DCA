@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import ScrollToTop from "@/components/ScrollToTop"; 
 import Index from "@/pages/Index";
 import Explore from "@/pages/Explore";
@@ -14,6 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <SpeedInsights />
       
       <Routes>
         <Route path="/" element={<Index />} />
