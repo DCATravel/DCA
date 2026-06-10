@@ -2,7 +2,7 @@ import { useEffect, useState, useDeferredValue, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, Image, FileText, Layout, Search, LucideIcon, X, Heart, Map } from 'lucide-react';
+import { Download, Image, FileText, Layout, Search, LucideIcon, X, Heart, Map, ZoomIn } from 'lucide-react';
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -35,9 +35,9 @@ const MOCK_MATERIALS: Material[] = [
   { id: 14, title: 'Catedral de Sal Zipaquirá', type: 'post', destination_name: 'Colombia', file_url: '/assets/material/Colombia-Zipaquira.jpg', thumbnail_url: '/assets/material/Colombia-Zipaquira.jpg', dimensions: '1254x1254' },
   { id: 15, title: 'Islas del Rosario', type: 'post', destination_name: 'Colombia', file_url: '/assets/material/colombia-islas-del-rosario.jpg', thumbnail_url: '/assets/material/colombia-islas-del-rosario.jpg', dimensions: '1254x1254' },
   { id: 16, title: 'Cartagena Colonial', type: 'post', destination_name: 'Colombia', file_url: '/assets/material/Colombia-Cartagena.jpg', thumbnail_url: '/assets/material/Colombia-Cartagena.jpg', dimensions: '1254x1254' },
-  { id: 17, title: 'Post Turitour Sierra de Café', type: 'turitour', destination_name: 'Veracruz', file_url: 'assets/material/Cafe.jpg', thumbnail_url: '/assets/material/Cafe.jpg', dimensions: '2550x2300' },
-  { id: 18, title: 'Post Turitour Acapulco', type: 'turitour', destination_name: 'México', file_url: 'assets/material/Acapulco.jpg', thumbnail_url: '/assets/material/Acapulco.jpg', dimensions: '2550x2300' },
-  { id: 19, title: 'Post Turitour Rafting', type: 'turitour', destination_name: 'Veracruz', file_url: 'assets/material/Rafting.jpg', thumbnail_url: '/assets/material/Rafting.jpg', dimensions: '2550x2300' }
+  { id: 17, title: 'Post Turitour Sierra de Café', type: 'turitour', destination_name: 'Veracruz', file_url: '/assets/material/Cafe.jpg', thumbnail_url: '/assets/material/Cafe.jpg', dimensions: '2550x2300' },
+  { id: 18, title: 'Post Turitour Acapulco', type: 'turitour', destination_name: 'México', file_url: '/assets/material/Acapulco.jpg', thumbnail_url: '/assets/material/Acapulco.jpg', dimensions: '2550x2300' },
+  { id: 19, title: 'Post Turitour Rafting', type: 'turitour', destination_name: 'Veracruz', file_url: '/assets/material/Rafting.jpg', thumbnail_url: '/assets/material/Rafting.jpg', dimensions: '2550x2300' }
 ];
 
 const typeIcons: Record<string, LucideIcon> = {
@@ -56,9 +56,58 @@ const typeColors: Record<string, string> = {
   turitour: 'bg-[#056099] text-white border-transparent', 
 };
 
+// =========================================================================
+// COMPONENTE: Modal de Previsualización de Imagen
+// =========================================================================
+const ImagePreviewModal = ({ material, onClose }: { material: Material, onClose: () => void }) => {
+  // Efecto para bloquear el scroll del fondo
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
+  return (
+    <div 
+      onClick={onClose} 
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer transition-all duration-300"
+    >
+      <div 
+        onClick={(e) => e.stopPropagation()} 
+        className="relative animate-in fade-in zoom-in duration-200 cursor-default"
+      >
+        <button 
+          onClick={onClose} 
+          className="absolute -top-12 right-0 text-white hover:text-gray-300 bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors z-10 cursor-pointer"
+          aria-label="Cerrar vista previa"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <img
+          src={material.thumbnail_url}
+          alt={material.title}
+          className="max-w-[95vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
+        />
+      </div>
+    </div>
+  );
+};
+
+// =========================================================================
+// COMPONENTE: Modal de Descarga
+// =========================================================================
 const DownloadModal = ({ material, onClose }: { material: Material, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
   const { toast } = useToast();
+
+  // Efecto combinado: Temporizador + Bloqueo de Scroll
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -151,6 +200,7 @@ export default function MaterialsPage() {
   const deferredSearchQuery = useDeferredValue(searchQuery);
   
   const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
+  const [previewMaterial, setPreviewMaterial] = useState<Material | null>(null);
 
   useEffect(() => {
     const fetchMaterials = async () => {
@@ -250,19 +300,29 @@ export default function MaterialsPage() {
                   <div className="absolute inset-0 bg-secondary/10 rounded-2xl translate-x-2.5 translate-y-2.5 -z-10 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"></div>
                   
                   <Card className="overflow-hidden border-transparent shadow-none bg-card rounded-2xl h-full flex flex-col">
-                    <div className="h-52 overflow-hidden relative bg-muted">
+                    
+                    <div 
+                      className="h-52 overflow-hidden relative bg-muted cursor-pointer group/image"
+                      onClick={() => setPreviewMaterial(material)}
+                    >
                       <img
                         src={material.thumbnail_url}
                         alt={material.title}
-                        className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+                        className="w-full h-full object-cover transition-transform group-hover/image:scale-105 duration-500"
                       />
-                      <div className="absolute top-4 left-4">
+                      
+                      <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-all duration-300 flex items-center justify-center z-10">
+                        <ZoomIn className="text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 w-10 h-10 drop-shadow-lg" />
+                      </div>
+
+                      <div className="absolute top-4 left-4 z-20">
                         <Badge variant="outline" className={`${typeColors[material.type]} shadow-sm font-medium px-3 py-1 rounded-lg border-0`}>
                           <Icon className="w-3.5 h-3.5 mr-2" />
                           <span className="capitalize">{material.type}</span>
                         </Badge>
                       </div>
                     </div>
+
                     <CardContent className="p-6 flex flex-col flex-1">
                       <h3 className="font-bold text-foreground text-lg mb-2 line-clamp-2">{material.title}</h3>
                       <div className="flex items-center text-sm text-muted-foreground mb-6 font-medium">
@@ -287,7 +347,6 @@ export default function MaterialsPage() {
           </div>
         )}
 
-        {/* Empty State */}
         {!loading && filtered.length === 0 && (
           <div className="text-center py-24 bg-muted/20 rounded-3xl mt-4">
             <div className="bg-background w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
@@ -298,6 +357,13 @@ export default function MaterialsPage() {
           </div>
         )}
       </main>
+
+      {previewMaterial && (
+        <ImagePreviewModal 
+          material={previewMaterial} 
+          onClose={() => setPreviewMaterial(null)} 
+        />
+      )}
 
       {selectedMaterial && (
         <DownloadModal 
