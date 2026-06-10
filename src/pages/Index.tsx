@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 export default function Index() {
   const [popularIndex, setPopularIndex] = useState(0);
   const [mustSeeIndex, setMustSeeIndex] = useState(0);
-
   const popularDestinations = destinations.slice(0, 6);
   const mustSeeDestinations = destinations.slice(0, 4);
 

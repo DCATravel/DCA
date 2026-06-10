@@ -56,11 +56,7 @@ const typeColors: Record<string, string> = {
   turitour: 'bg-[#056099] text-white border-transparent', 
 };
 
-// =========================================================================
-// COMPONENTE: Modal de Previsualización de Imagen
-// =========================================================================
 const ImagePreviewModal = ({ material, onClose }: { material: Material, onClose: () => void }) => {
-  // Efecto para bloquear el scroll del fondo
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -101,7 +97,6 @@ const DownloadModal = ({ material, onClose }: { material: Material, onClose: () 
   const [countdown, setCountdown] = useState(5);
   const { toast } = useToast();
 
-  // Efecto combinado: Temporizador + Bloqueo de Scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {

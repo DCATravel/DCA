@@ -45,9 +45,8 @@ export default defineConfig(({ command }) => {
         : []),
         {
         name: 'force-close-build',
-        apply: 'build', // Solo se ejecutará cuando hagas pnpm build
+        apply: 'build', 
         closeBundle() {
-          // Damos 1 segundo de margen para que cualquier archivo rezagado se termine de escribir
           setTimeout(() => {
             console.log('Finalizando el proceso de fondo...');
             process.exit(0);
@@ -62,7 +61,7 @@ export default defineConfig(({ command }) => {
       },
     },
     server: {
-      host: '0.0.0.0', // Listen on all network interfaces.
+      host: '0.0.0.0', 
       port: parseInt(process.env.VITE_PORT || '3000'),
       proxy: {
         '/api': {
