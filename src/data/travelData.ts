@@ -423,7 +423,7 @@ export const itineraries: Itinerary[] = [
     "season": [
       "Verano"
     ],
-    "pricePerPerson": 810,
+    "pricePerPerson": 0,
     "flights": {
       "outbound": {
         "from": "CDMX (MEX)",
@@ -1061,7 +1061,7 @@ export const itineraries: Itinerary[] = [
     "season": [
       "Todas"
     ],
-    "pricePerPerson": 1935,
+    "pricePerPerson": 0,
     "flights": {
       "outbound": {
         "from": "A consultar",
