@@ -40,7 +40,7 @@ export const destinations: Destination[] = [
     "location": "Río de Janeiro, Iguazú, Angra dos Reis y Petrópolis, Brasil",
     "image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80",
     "rating": 5,
-    "price": 1765,
+    "price": 0,
     "description": "Programas por Brasil que combinan los íconos de Río de Janeiro, el Cristo Redentor, Pan de Azúcar, cultura carioca, playas, naturaleza e incluso las Cataratas de Iguazú según el itinerario elegido.",
     "category": "Latinoamérica"
   },
@@ -90,7 +90,7 @@ export const destinations: Destination[] = [
     "location": "Antigua, Chichicastenango, Lago Atitlán, Tikal, Yaxhá y Ciudad de Guatemala",
     "image": "https://images.unsplash.com/photo-1606503809729-40646b716a36?auto=format&fit=crop&w=800&q=80",
     "rating": 4.9,
-    "price": 1935,
+    "price": 0,
     "description": "Rutas culturales y de naturaleza por Antigua, mercados tradicionales, Lago Atitlán, San Juan La Laguna, Tikal, Yaxhá y experiencias de aventura como Acatenango.",
     "category": "Centroamérica"
   },
@@ -122,7 +122,7 @@ export const itineraries: Itinerary[] = [
     "season": [
       "Otoño"
     ],
-    "pricePerPerson": 1895,
+    "pricePerPerson": 0,
     "flights": {
       "outbound": {
         "from": "A consultar",
@@ -182,7 +182,7 @@ export const itineraries: Itinerary[] = [
     "season": [
       "Todas"
     ],
-    "pricePerPerson": 1765,
+    "pricePerPerson": 0,
     "flights": {
       "outbound": {
         "from": "A consultar",

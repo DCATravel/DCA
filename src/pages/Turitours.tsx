@@ -32,8 +32,19 @@ const TURITOURS_LIST: Tour[] = [
   }
 ];
 
+// =========================================================================
+// COMPONENTE AISLADO: Modal de Descarga
+// =========================================================================
 const DownloadModal = ({ tour, onClose }: { tour: Tour, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
+
+  // Bloqueo de Scroll al montar el modal
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -173,12 +184,14 @@ export default function Turitours() {
                   </h3>
                 </div>
                 
+                {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
                 <button
-                  onClick={() => setSelectedTour(tour)}
-                  className="relative z-10 w-full bg-white/10 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/20 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                  disabled
+                  // onClick={() => setSelectedTour(tour)} // <-- Deshabilitado
+                  className="relative z-10 w-full bg-black/40 text-white/50 backdrop-blur-md border border-white/10 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-not-allowed shadow-lg"
                 >
-                  <Download className="w-5 h-5" /> 
-                  Descargar PDF
+                  <Download className="w-5 h-5 opacity-50" /> 
+                  Descarga inactiva
                 </button>
               </div>
             </div>

@@ -326,13 +326,15 @@ export default function MaterialsPage() {
                         <span>{material.dimensions}</span>
                       </div>
                       
+                      {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
                       <Button
                         variant="outline"
-                        className="w-full mt-auto rounded-xl border-transparent bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer font-semibold py-5"
-                        onClick={() => setSelectedMaterial(material)}
+                        disabled
+                        className="w-full mt-auto rounded-xl border-transparent bg-muted/50 text-muted-foreground cursor-not-allowed font-semibold py-5"
+                        // onClick={() => setSelectedMaterial(material)} // <-- Deshabilitado
                       >
                         <Download className="w-4 h-4 mr-2" /> 
-                        Descargar
+                        Descarga inactiva
                       </Button>
                     </CardContent>
                   </Card>

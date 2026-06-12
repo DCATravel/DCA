@@ -6,32 +6,29 @@ import { itineraries } from "@/data/travelData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function ItineraryDetail() {
-  const { id } = useParams();
-  const itinerary = itineraries.find((it) => it.id === id);
+type ItineraryType = typeof itineraries[0];
 
-  const [showDownloadModal, setShowDownloadModal] = useState(false);
-  const [countdown, setCountdown] = useState(0);
+// =========================================================================
+// COMPONENTE AISLADO: Modal de Descarga
+// =========================================================================
+const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClose: () => void }) => {
+  const [countdown, setCountdown] = useState(5);
+
+  // Efecto combinado: Temporizador + Bloqueo de Scroll
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
   useEffect(() => {
-    if (!showDownloadModal) return;
-
-    const timer = window.setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          window.clearInterval(timer);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
+    if (countdown <= 0) return;
+    const timer = window.setInterval(() => setCountdown((prev) => prev - 1), 1000);
     return () => window.clearInterval(timer);
-  }, [showDownloadModal]);
+  }, [countdown]);
 
   const handleConfirmDownload = () => {
-    if (!itinerary) return;
-    
     const link = document.createElement('a');
     link.href = itinerary.pdfUrl || "#";
     link.target = '_blank';
@@ -41,8 +38,88 @@ export default function ItineraryDetail() {
     link.click();
     document.body.removeChild(link);
     
-    setShowDownloadModal(false);
+    onClose();
   };
+
+  return (
+    <div onClick={onClose} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-all duration-300">
+      <div onClick={(e) => e.stopPropagation()} className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <div className="bg-primary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
+          <div className="bg-primary text-primary-foreground p-3 rounded-full mb-4 shadow-md">
+            <Heart className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-bold text-foreground text-center">
+            ¡Únete a nuestra comunidad!
+          </h2>
+        </div>
+
+        <div className="p-6 text-center">
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Antes de descargar el itinerario de <strong className="text-foreground">{itinerary.title}</strong>, te invitamos a seguirnos en nuestras redes sociales para no perderte ningún paquete nuevo ni promociones exclusivas.
+          </p>
+          
+          <div className="bg-muted/40 rounded-xl p-5 mb-6 border border-border">
+            <p className="text-sm font-semibold text-foreground mb-4">Síguenos en:</p>
+            <div className="flex justify-center gap-4">
+              <a 
+                href="https://www.facebook.com/people/DCA-Travel/61590488308493/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-[#1877F2] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
+              >
+                <SiFacebook className="w-6 h-6" />
+              </a>
+              <a 
+                href="https://instagram.com/dca.travel" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-[#E4405F] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
+              >
+                <SiInstagram className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+
+          <button
+            onClick={handleConfirmDownload}
+            disabled={countdown > 0}
+            className={`w-full font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 ${
+              countdown > 0 
+                ? 'bg-muted text-muted-foreground cursor-not-allowed' 
+                : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground cursor-pointer'
+            }`}
+          >
+            <Download className="w-5 h-5" />
+            {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
+          </button>
+          
+          <button
+            onClick={handleConfirmDownload}
+            className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
+          >
+            Ya los sigo, descargar itinerario
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// =========================================================================
+// PÁGINA PRINCIPAL
+// =========================================================================
+export default function ItineraryDetail() {
+  const { id } = useParams();
+  const itinerary = itineraries.find((it) => it.id === id);
+
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
   if (!itinerary) {
     return (
@@ -91,15 +168,15 @@ export default function ItineraryDetail() {
             </div>
           </div>
           
+          {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
           <button 
-            onClick={() => {
-              setCountdown(5);
-              setShowDownloadModal(true);
-            }}
-            className="inline-flex items-center gap-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold rounded-xl px-5 py-3 transition-colors shrink-0 cursor-pointer"
+            disabled
+            // onClick={() => setShowDownloadModal(true)} // <-- Deshabilitado
+            className="inline-flex items-center gap-2 bg-primary-foreground/20 text-primary-foreground/60 font-semibold rounded-xl px-5 py-3 transition-colors shrink-0 cursor-not-allowed"
+            title="Descarga inactiva temporalmente"
           >
-            <Download className="w-5 h-5" />
-            <span>Descargar PDF</span>
+            <Download className="w-5 h-5 opacity-70" />
+            <span>Descarga inactiva</span>
           </button>
         </div>
       </section>
@@ -272,80 +349,12 @@ export default function ItineraryDetail() {
         </div>
       </section>
 
+      {/* Renderizado condicional del modal aislado */}
       {showDownloadModal && (
-        <div 
-          onClick={() => setShowDownloadModal(false)} 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-all duration-300"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()} 
-            className="bg-background rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-in fade-in zoom-in duration-200"
-          >
-            <button
-              onClick={() => setShowDownloadModal(false)}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 rounded-full p-1.5 transition-colors z-10"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="bg-primary/10 pt-8 pb-6 px-6 flex flex-col items-center border-b border-border">
-              <div className="bg-primary text-primary-foreground p-3 rounded-full mb-4 shadow-md">
-                <Heart className="w-8 h-8" />
-              </div>
-              <h2 className="text-2xl font-bold text-foreground text-center">
-                ¡Únete a nuestra comunidad!
-              </h2>
-            </div>
-
-            <div className="p-6 text-center">
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Antes de descargar el itinerario de <strong className="text-foreground">{itinerary.title}</strong>, te invitamos a seguirnos en nuestras redes sociales para no perderte ningún paquete nuevo ni promociones exclusivas.
-              </p>
-              
-              <div className="bg-muted/40 rounded-xl p-5 mb-6 border border-border">
-                <p className="text-sm font-semibold text-foreground mb-4">Síguenos en:</p>
-                <div className="flex justify-center gap-4">
-                  <a 
-                    href="https://www.facebook.com/people/DCA-Travel/61590488308493/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-[#1877F2] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#1877F2]/30"
-                  >
-                    <SiFacebook className="w-6 h-6" />
-                  </a>
-                  <a 
-                    href="https://instagram.com/dca.travel" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-[#E4405F] transition-transform hover:scale-110 p-2.5 bg-background rounded-full shadow-sm border border-border hover:border-[#E4405F]/30"
-                  >
-                    <SiInstagram className="w-6 h-6" />
-                  </a>
-                </div>
-              </div>
-
-              <button
-                onClick={handleConfirmDownload}
-                disabled={countdown > 0}
-                className={`w-full font-semibold py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 ${
-                  countdown > 0 
-                    ? 'bg-muted text-muted-foreground cursor-not-allowed' 
-                    : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground cursor-pointer'
-                }`}
-              >
-                <Download className="w-5 h-5" />
-                {countdown > 0 ? `Espera ${countdown}s para descargar...` : 'Continuar a la descarga'}
-              </button>
-              
-              <button
-                onClick={handleConfirmDownload}
-                className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline cursor-pointer"
-              >
-                Ya los sigo, descargar itinerario
-              </button>
-            </div>
-          </div>
-        </div>
+        <DownloadModal 
+          itinerary={itinerary} 
+          onClose={() => setShowDownloadModal(false)} 
+        />
       )}
 
       <Footer />
