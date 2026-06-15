@@ -8,13 +8,8 @@ import Footer from "@/components/Footer";
 
 type ItineraryType = typeof itineraries[0];
 
-// =========================================================================
-// COMPONENTE AISLADO: Modal de Descarga
-// =========================================================================
 const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
-
-  // Efecto combinado: Temporizador + Bloqueo de Scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -112,9 +107,6 @@ const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClo
   );
 };
 
-// =========================================================================
-// PÁGINA PRINCIPAL
-// =========================================================================
 export default function ItineraryDetail() {
   const { id } = useParams();
   const itinerary = itineraries.find((it) => it.id === id);
@@ -123,7 +115,7 @@ export default function ItineraryDetail() {
 
   if (!itinerary) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
+      <div className="min-h-screen bg-background text-foreground flex flex-col dark:bg-[radial-gradient(circle_at_top,rgba(5,96,153,0.12),transparent_34%),hsl(var(--background))]">
         <Navbar />
         <div className="flex-1 flex flex-col items-center justify-center px-4 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-4">Itinerario no encontrado</h1>
@@ -137,7 +129,7 @@ export default function ItineraryDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background text-foreground flex flex-col dark:bg-[radial-gradient(circle_at_top,rgba(5,96,153,0.12),transparent_34%),hsl(var(--background))]">
       <Navbar />
       
       <section className="bg-primary py-8 px-4 rounded-b-3xl">
@@ -240,15 +232,15 @@ export default function ItineraryDetail() {
 
             <div className="bg-muted/40 rounded-2xl p-6">
               <div className="flex justify-between items-center mb-6">
-                <span className="bg-secondary/15 text-secondary-foreground text-xs font-bold px-3 py-1.5 rounded-md">VUELO DE REGRESO</span>
+                <span className="bg-secondary/15 text-secondary text-xs font-bold px-3 py-1.5 rounded-md">VUELO DE REGRESO</span>
                 <span className="text-sm font-medium text-muted-foreground">{itinerary.flights.return.arrival}</span>
               </div>
               
               <div className="flex items-stretch gap-4 mb-6">
                 <div className="flex flex-col items-center py-1">
-                  <Circle className="w-3.5 h-3.5 text-secondary-foreground fill-secondary-foreground" />
+                  <Circle className="w-3.5 h-3.5 text-secondary fill-secondary" />
                   <div className="w-0.5 flex-1 bg-border my-1" />
-                  <Circle className="w-3.5 h-3.5 text-secondary-foreground fill-secondary-foreground" />
+                  <Circle className="w-3.5 h-3.5 text-secondary fill-secondary" />
                 </div>
                 <div className="flex flex-col justify-between space-y-6">
                   <div>
@@ -263,8 +255,8 @@ export default function ItineraryDetail() {
               </div>
               
               <div className="bg-background rounded-xl p-4 text-sm text-muted-foreground">
-                <p className="flex items-center gap-2 mb-1"><span className="w-1.5 h-1.5 rounded-full bg-secondary-foreground" /> {itinerary.flights.return.stops}</p>
-                <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-secondary-foreground" /> {itinerary.flights.return.estimatedPrice}</p>
+                <p className="flex items-center gap-2 mb-1"><span className="w-1.5 h-1.5 rounded-full bg-secondary" /> {itinerary.flights.return.stops}</p>
+                <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-secondary" /> {itinerary.flights.return.estimatedPrice}</p>
               </div>
             </div>
           </div>
@@ -273,7 +265,7 @@ export default function ItineraryDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold text-foreground mb-6">¿Qué harás en tu viaje?</h2>
-            <div className="bg-primary/5 rounded-2xl p-6 md:p-8">
+            <div className="bg-primary/5 dark:bg-primary/[0.08] border border-transparent dark:border-primary/10 rounded-2xl p-6 md:p-8 shadow-sm">
               <ul className="space-y-4">
                 {itinerary.activities.map((activity, i) => (
                   <li key={i} className="flex items-start gap-4">
@@ -288,14 +280,14 @@ export default function ItineraryDetail() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-muted/30 rounded-2xl p-6">
+            <div className="bg-muted/30 dark:bg-card border border-transparent dark:border-border/70 rounded-2xl p-6 shadow-sm">
               <h3 className="font-bold text-foreground mb-4">Detalles del Paquete</h3>
               <div className="space-y-5">
                 <div>
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Temporada</p>
                   <div className="flex flex-wrap gap-2">
                     {itinerary.season.map((s, i) => (
-                      <span key={i} className="bg-background text-foreground text-sm px-3 py-1 rounded-md font-medium">
+                      <span key={i} className="bg-background dark:bg-primary/10 text-foreground dark:text-primary-foreground border border-transparent dark:border-primary/20 text-sm px-3 py-1 rounded-md font-medium">
                         {s}
                       </span>
                     ))}
@@ -307,7 +299,7 @@ export default function ItineraryDetail() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Precio Por Persona</p>
-                  <p className="text-2xl font-bold text-primary">
+                  <p className="text-2xl font-bold text-primary dark:text-sky-400">
                     {itinerary.pricePerPerson === 0 ? 'Cotizar tarifa' : `$${itinerary.pricePerPerson} USD`}
                   </p>
                 </div>
@@ -319,28 +311,34 @@ export default function ItineraryDetail() {
         <div>
           <h2 className="text-2xl font-bold text-foreground mb-6">Consideraciones</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-green-50/50 dark:bg-green-950/20 rounded-2xl p-6 md:p-8">
-              <h3 className="font-bold text-green-800 dark:text-green-400 mb-5 flex items-center gap-2">
+            <div className="bg-green-50/50 dark:bg-emerald-500/[0.07] border border-transparent dark:border-emerald-400/15 rounded-2xl p-6 md:p-8 shadow-sm">
+              <h3 className="font-bold text-green-800 dark:text-emerald-300 mb-5 flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5" /> Incluido
               </h3>
+
               <ul className="space-y-3">
                 {itinerary.included.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2 shrink-0" />
-                    <span className="text-green-900/80 dark:text-green-200/80 text-sm leading-relaxed">{item}</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-emerald-300 mt-2 shrink-0" />
+                    <span className="text-green-900/80 dark:text-emerald-50/80 text-sm leading-relaxed">
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-red-50/50 dark:bg-red-950/20 rounded-2xl p-6 md:p-8">
-              <h3 className="font-bold text-red-800 dark:text-red-400 mb-5 flex items-center gap-2">
+            <div className="bg-red-50/50 dark:bg-rose-500/[0.07] border border-transparent dark:border-rose-400/15 rounded-2xl p-6 md:p-8 shadow-sm">
+              <h3 className="font-bold text-red-800 dark:text-rose-300 mb-5 flex items-center gap-2">
                 <XCircle className="w-5 h-5" /> No Incluido
               </h3>
+
               <ul className="space-y-3">
                 {itinerary.notIncluded.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 shrink-0" />
-                    <span className="text-red-900/80 dark:text-red-200/80 text-sm leading-relaxed">{item}</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 dark:bg-rose-300 mt-2 shrink-0" />
+                    <span className="text-red-900/80 dark:text-rose-50/80 text-sm leading-relaxed">
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>

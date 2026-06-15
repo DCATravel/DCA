@@ -30,6 +30,11 @@ export default function Footer() {
                 <Link to="/" className="inline-block hover:text-secondary hover:translate-x-1 transition-all duration-300">Inicio</Link>
               </li>
               <li>
+                <Link to="/nosotros" className="inline-block hover:text-secondary hover:translate-x-1 transition-all duration-300">
+                  Nosotros
+                </Link>
+              </li>
+              <li>
                 <Link to="/explora" className="inline-block text-secondary font-semibold hover:opacity-80 hover:translate-x-1 transition-all duration-300">Explora</Link>
               </li>
               <li>

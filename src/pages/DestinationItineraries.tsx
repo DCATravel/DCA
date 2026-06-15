@@ -8,13 +8,9 @@ import Footer from "@/components/Footer";
 
 type ItineraryType = typeof itineraries[0];
 
-// =========================================================================
-// COMPONENTE AISLADO: Modal de Descarga
-// =========================================================================
 const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
 
-  // Bloqueo de Scroll al montar el modal
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -115,10 +111,6 @@ const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClo
   );
 };
 
-
-// =========================================================================
-// PÁGINA PRINCIPAL
-// =========================================================================
 export default function DestinationItineraries() {
   const { id } = useParams();
   const navigate = useNavigate();

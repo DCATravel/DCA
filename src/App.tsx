@@ -10,6 +10,7 @@ import DestinationItineraries from "./pages/DestinationItineraries";
 import Turitours from './pages/Turitours';
 import Contact from "@/pages/Contact";
 import Agency from "@/pages/Agency";
+import Nosotros from "./pages/About";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/turitours" element={<Turitours />} />
         <Route path="/contacto" element={<Contact />} />
         <Route path="/agencias" element={<Agency />} />
+        <Route path="/nosotros" element={<Nosotros />} />
       </Routes>
     </BrowserRouter>
   );

@@ -37,7 +37,7 @@ export const destinations: Destination[] = [
   {
     "id": "brasil",
     "name": "Brasil",
-    "location": "Río de Janeiro, Iguazú, Angra dos Reis y Petrópolis, Brasil",
+    "location": "Río de Janeiro e Iguazú, Brasil",
     "image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80",
     "rating": 5,
     "price": 0,
@@ -57,7 +57,7 @@ export const destinations: Destination[] = [
   {
     "id": "costa-rica",
     "name": "Costa Rica",
-    "location": "San José, Irazú, Orosí y Manuel Antonio, Costa Rica",
+    "location": "San José, Irazú y Orosí, Costa Rica",
     "image": "https://images.unsplash.com/photo-1536709017021-ce8f99c17e38?auto=format&fit=crop&w=800&q=80",
     "rating": 5,
     "price": 0,

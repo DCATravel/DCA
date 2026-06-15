@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
     /* Fondos y textos generales */
     --background: 0 0% 100%;
     --foreground: 203 50% 10%;
@@ -52,47 +56,47 @@
   }
 
   .dark {
-    /* Fondos oscuros basados en el azul  */
-    --background: 203 50% 5%;
-    --foreground: 203 20% 98%;
+  --background: 203 52% 6%;
+  --foreground: 203 24% 96%;
 
-    --card: 203 40% 8%;
-    --card-foreground: 203 20% 98%;
+  --card: 203 42% 9%;
+  --card-foreground: 203 24% 96%;
 
-    --popover: 203 40% 8%;
-    --popover-foreground: 203 20% 98%;
+  --popover: 203 42% 9%;
+  --popover-foreground: 203 24% 96%;
 
-    /* Azul primario  */
-    --primary: 203 94% 45%;
-    --primary-foreground: 0 0% 100%;
+  --primary: 202 92% 48%;
+  --primary-foreground: 0 0% 100%;
 
-    /* Naranja  */
-    --secondary: 22 86% 53%;
-    --secondary-foreground: 0 0% 100%;
+  /* Naranja cálido */
+  --secondary: 24 88% 56%;
+  --secondary-foreground: 0 0% 100%;
 
-    --muted: 203 30% 15%;
-    --muted-foreground: 203 20% 65%;
+  /* Muted  */
+  --muted: 203 34% 13%;
+  --muted-foreground: 203 18% 72%;
 
-    --accent: 203 30% 15%;
-    --accent-foreground: 203 20% 98%;
+  --accent: 203 36% 15%;
+  --accent-foreground: 203 24% 96%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 203 20% 98%;
+  --destructive: 0 74% 58%;
+  --destructive-foreground: 0 0% 100%;
 
-    --border: 203 30% 18%;
-    --input: 203 30% 18%;
-    --ring: 203 94% 45%;
+  /* Bordes */
+  --border: 203 28% 20%;
+  --input: 203 28% 20%;
+  --ring: 202 92% 48%;
 
-    /* Sidebar oscuro */
-    --sidebar-background: 203 50% 5%;
-    --sidebar-foreground: 203 20% 98%;
-    --sidebar-primary: 203 94% 45%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 203 30% 15%;
-    --sidebar-accent-foreground: 203 20% 98%;
-    --sidebar-border: 203 30% 18%;
-    --sidebar-ring: 203 94% 45%;
-  }
+  /* Sidebar / dashboard */
+  --sidebar-background: 203 52% 6%;
+  --sidebar-foreground: 203 24% 96%;
+  --sidebar-primary: 202 92% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 203 36% 15%;
+  --sidebar-accent-foreground: 203 24% 96%;
+  --sidebar-border: 203 28% 20%;
+  --sidebar-ring: 202 92% 48%;
+}
 }
 
 @layer base {

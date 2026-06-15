@@ -9,6 +9,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const links = [
     { name: "Home", path: "/" },
+    { name: "Nosotros", path: "/nosotros" },
     { name: "Explora", path: "/explora" },
     { name: "Itinerarios", path: "/itinerarios" },
     { name: "Turitours", path: "/turitours" },

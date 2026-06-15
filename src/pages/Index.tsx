@@ -25,7 +25,7 @@ export default function Index() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-16 px-4 overflow-hidden">
+      <section className="relative py-20 px-4 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
           {/* Decorative airplane path */}
           <div className="absolute top-8 left-0 w-full">
@@ -38,7 +38,7 @@ export default function Index() {
           <div className="relative w-full md:w-1/2 flex justify-center">
             <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-secondary shadow-xl" style={{ borderRadius: "60% 40% 50% 50% / 50% 60% 40% 50%" }}>
               <img
-                src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1628301764660-af899e6151bb?auto=format&fit=crop&w=800&q=80"
                 alt="Travel Hero"
                 className="w-full h-full object-cover"
               />
@@ -56,10 +56,10 @@ export default function Index() {
             </p>
             {/* Main Button */}
             <Link
-              to="/itinerarios"
+              to="/nosotros"
               className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-3 rounded transition-colors shadow-sm"
             >
-              ¡Viaja!
+              ¡Conócenos!
             </Link>
           </div>
         </div>
@@ -102,8 +102,48 @@ export default function Index() {
         </div>
       </section>
 
+      {/* About Us */}
+      <section id="nosotros" className="py-20 px-4 bg-background">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
+          {/* Photo Grid */}
+          <div className="w-full md:w-1/2 grid grid-cols-3 gap-2">
+            {destinations.slice(0, 6).map((dest, i) => (
+              <div key={i} className="rounded-lg overflow-hidden aspect-square border border-border/50">
+                <img src={dest.image} alt={dest.name} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+
+          {/* Text */}
+          <div className="w-full md:w-1/2">
+            <h2 className="text-3xl font-bold text-foreground mb-4 italic">Sobre Nosotros</h2>
+            <p className="text-muted-foreground mb-3 leading-relaxed">
+              En <strong className="text-foreground font-semibold">DCA Travel</strong> somos una operadora mayorista de viajes liderada por mujeres, expertas en Latinoamérica y el mundo. Nos especializamos en crear viajes en paquete y a la medida, trabajando de la mano con proveedores locales para ofrecer experiencias auténticas y de alta calidad.
+            </p>
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              Seleccionamos cuidadosamente cada destino y experiencia diferenciada para garantizar autenticidad en cada detalle. Diseñamos propuestas personalizadas según las necesidades de cada viajero, asegurando que la aventura comience desde el primer momento.
+            </p>
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <p className="text-3xl font-bold text-primary">1K+</p>
+                <p className="text-sm text-muted-foreground">Paquetes A Medida</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-primary">3K+</p>
+                <p className="text-sm text-muted-foreground">Destinos</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-primary">15+</p>
+                <p className="text-sm text-muted-foreground">Años De Experiencia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Must-See of the Month */}
-      <section className="py-16 px-4 bg-muted/50">
+      <section className="py-20 px-4 bg-muted/50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-10 uppercase">Imperdibles Del Mes</h2>
           <div className="relative">
@@ -147,46 +187,6 @@ export default function Index() {
                   className={`w-3 h-3 rounded-full transition-colors ${mustSeeIndex === i ? "bg-secondary" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"}`}
                 />
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Us */}
-      <section id="nosotros" className="py-16 px-4 bg-background">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          {/* Photo Grid */}
-          <div className="w-full md:w-1/2 grid grid-cols-3 gap-2">
-            {destinations.slice(0, 6).map((dest, i) => (
-              <div key={i} className="rounded-lg overflow-hidden aspect-square border border-border/50">
-                <img src={dest.image} alt={dest.name} className="w-full h-full object-cover" />
-              </div>
-            ))}
-          </div>
-
-          {/* Text */}
-          <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-bold text-foreground mb-4 italic">Sobre Nosotros</h2>
-            <p className="text-muted-foreground mb-3 leading-relaxed">
-              En <strong className="text-foreground font-semibold">DCA Travel</strong> somos una operadora mayorista de viajes liderada por mujeres, expertas en Latinoamérica y el mundo. Nos especializamos en crear viajes en paquete y a la medida, trabajando de la mano con proveedores locales para ofrecer experiencias auténticas y de alta calidad.
-            </p>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Seleccionamos cuidadosamente cada destino y experiencia diferenciada para garantizar autenticidad en cada detalle. Diseñamos propuestas personalizadas según las necesidades de cada viajero, asegurando que la aventura comience desde el primer momento.
-            </p>
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <p className="text-3xl font-bold text-primary">1K+</p>
-                <p className="text-sm text-muted-foreground">Paquetes A Medida</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-primary">3K+</p>
-                <p className="text-sm text-muted-foreground">Destinos</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-primary">15+</p>
-                <p className="text-sm text-muted-foreground">Años De Experiencia</p>
-              </div>
             </div>
           </div>
         </div>
