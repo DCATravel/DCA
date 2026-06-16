@@ -139,7 +139,6 @@ export default function DestinationItineraries() {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navbar />
 
-      {/* Hero Banner */}
       <section className="relative h-64 mx-4 mt-4 rounded-xl overflow-hidden shadow-sm border border-border shrink-0">
         <img
           src={destination.image}
@@ -157,7 +156,6 @@ export default function DestinationItineraries() {
         </div>
       </section>
 
-      {/* Itineraries */}
       <section className="max-w-7xl mx-auto px-4 py-12 flex-grow w-full">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -181,26 +179,23 @@ export default function DestinationItineraries() {
               <div className="relative h-48 overflow-hidden shrink-0">
                 <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" />
                 
-                {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
+                {/* Descarga */}
                 <button 
-                  disabled
                   onClick={(e) => {
-                    e.stopPropagation(); 
-                    // setSelectedItinerary(it); // <-- Deshabilitado
+                    e.stopPropagation();
+                    setSelectedItinerary(it);
                   }} 
-                  className="absolute top-3 right-3 bg-background/50 backdrop-blur-sm text-muted-foreground p-2.5 rounded-full shadow-sm cursor-not-allowed z-10"
-                  title="Descarga inactiva temporalmente"
+                  className="absolute top-3 right-3 bg-background/90 hover:bg-background text-primary hover:text-secondary p-2.5 rounded-full shadow-sm transition-colors z-10"
+                  title="Descargar PDF"
                 >
-                  <Download className="w-5 h-5 opacity-50" />
+                  <Download className="w-5 h-5" />
                 </button>
               </div>
               
               <div className="p-5 flex flex-col flex-1">
-                {/* Título Principal */}
                 <h3 className="font-bold text-lg text-foreground mb-1 leading-tight">{it.title}</h3>
                 <p className="text-sm text-primary font-medium mb-4">{it.destination}</p>
                 
-                {/* Badges Info */}
                 <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-primary" /> {it.duration}
@@ -234,7 +229,6 @@ export default function DestinationItineraries() {
           ))}
         </div>
 
-        {/* Empty State */}
         {destinationItineraries.length === 0 && (
           <div className="text-center py-20 bg-muted/30 rounded-xl border border-dashed border-border mt-4">
             <Search className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-50" />
@@ -244,7 +238,6 @@ export default function DestinationItineraries() {
         )}
       </section>
 
-      {/* Renderizado del Modal Aislado */}
       {selectedItinerary && (
         <DownloadModal 
           itinerary={selectedItinerary} 

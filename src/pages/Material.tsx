@@ -90,9 +90,7 @@ const ImagePreviewModal = ({ material, onClose }: { material: Material, onClose:
   );
 };
 
-// =========================================================================
 // COMPONENTE: Modal de Descarga
-// =========================================================================
 const DownloadModal = ({ material, onClose }: { material: Material, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
   const { toast } = useToast();
@@ -326,7 +324,7 @@ export default function MaterialsPage() {
                         <span>{material.dimensions}</span>
                       </div>
                       
-                      {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
+                      {/* BOTÓN DE DESCARGA */}
                       <Button
                         variant="outline"
                         disabled

@@ -32,13 +32,9 @@ const TURITOURS_LIST: Tour[] = [
   }
 ];
 
-// =========================================================================
 // COMPONENTE AISLADO: Modal de Descarga
-// =========================================================================
 const DownloadModal = ({ tour, onClose }: { tour: Tour, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
-
-  // Bloqueo de Scroll al montar el modal
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -137,10 +133,7 @@ const DownloadModal = ({ tour, onClose }: { tour: Tour, onClose: () => void }) =
   );
 };
 
-
-// =========================================================================
 // PÁGINA PRINCIPAL
-// =========================================================================
 export default function Turitours() {
   const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
 
@@ -184,7 +177,7 @@ export default function Turitours() {
                   </h3>
                 </div>
                 
-                {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
+                {/* BOTÓN DE DESCARGA */}
                 <button
                   disabled
                   // onClick={() => setSelectedTour(tour)} // <-- Deshabilitado

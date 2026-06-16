@@ -8,13 +8,9 @@ import Footer from "@/components/Footer";
 
 type ItineraryType = typeof itineraries[0];
 
-// =========================================================================
-// COMPONENTE AISLADO: Modal de Descarga
-// =========================================================================
 const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
-
-  // Efecto combinado: Temporizador + Bloqueo de Scroll
+  
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -112,21 +108,15 @@ const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClo
   );
 };
 
-// =========================================================================
-// PÁGINA PRINCIPAL
-// =========================================================================
 export default function Itineraries() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedSeason, setSelectedSeason] = useState("Todas");
   const navigate = useNavigate();
 
-  // Optimización de búsqueda
   const deferredSearchQuery = useDeferredValue(searchQuery);
-
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryType | null>(null);
 
-  // Memorización de filtros
   const filteredItineraries = useMemo(() => {
     return itineraries.filter((it) => {
       const matchesSearch =
@@ -142,7 +132,6 @@ export default function Itineraries() {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navbar />
 
-      {/* Header */}
       <section className="bg-primary py-10 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-3xl font-bold text-primary-foreground mb-2">Catálogo de Itinerarios</h1>
@@ -150,10 +139,8 @@ export default function Itineraries() {
         </div>
       </section>
 
-      {/* Search & Filters */}
       <section className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-4 items-center">
-          {/* Search Bar */}
           <div className="relative flex-1 w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <input
@@ -165,7 +152,6 @@ export default function Itineraries() {
             />
           </div>
 
-          {/* Category Filter */}
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
@@ -176,7 +162,6 @@ export default function Itineraries() {
             ))}
           </select>
 
-          {/* Season Filter */}
           <select
             value={selectedSeason}
             onChange={(e) => setSelectedSeason(e.target.value)}
@@ -189,7 +174,6 @@ export default function Itineraries() {
         </div>
       </section>
 
-      {/* Itinerary Cards */}
       <section className="max-w-7xl mx-auto px-4 pb-16 flex-grow w-full">
         <p className="text-sm text-muted-foreground mb-6">{filteredItineraries.length} itinerarios encontrados</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -202,17 +186,16 @@ export default function Itineraries() {
               <div className="relative h-48 overflow-hidden shrink-0">
                 <img src={it.image} alt={it.title} className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" />
                 
-                {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
+                {/* BOTÓN REACTIVADO */}
                 <button 
-                  disabled
                   onClick={(e) => {
                     e.stopPropagation(); 
-                    // setSelectedItinerary(it); // <-- Deshabilitado
+                    setSelectedItinerary(it);
                   }} 
-                  className="absolute top-3 right-3 bg-background/50 backdrop-blur-sm text-muted-foreground p-2.5 rounded-full shadow-sm cursor-not-allowed z-10"
-                  title="Descarga inactiva temporalmente"
+                  className="absolute top-3 right-3 bg-background/90 hover:bg-background text-primary hover:text-secondary p-2.5 rounded-full shadow-sm transition-colors z-10"
+                  title="Descargar PDF"
                 >
-                  <Download className="w-5 h-5 opacity-50" />
+                  <Download className="w-5 h-5" />
                 </button>
               </div>
               
@@ -254,7 +237,6 @@ export default function Itineraries() {
           ))}
         </div>
 
-        {/* Empty State */}
         {filteredItineraries.length === 0 && (
           <div className="text-center py-20 bg-muted/30 rounded-xl border border-dashed border-border">
             <Search className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-50" />
@@ -264,7 +246,6 @@ export default function Itineraries() {
         )}
       </section>
 
-      {/* Renderizado del Modal Aislado */}
       {selectedItinerary && (
         <DownloadModal 
           itinerary={selectedItinerary} 

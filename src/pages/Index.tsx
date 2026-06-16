@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Star, MapPin } from "lucide-react";
+import {ArrowRight} from "lucide-react";
 import { useState } from "react";
 import { destinations } from "@/data/travelData";
 import Navbar from "@/components/Navbar";
@@ -120,9 +121,21 @@ export default function Index() {
             <p className="text-muted-foreground mb-3 leading-relaxed">
               En <strong className="text-foreground font-semibold">DCA Travel</strong> somos una operadora mayorista de viajes liderada por mujeres, expertas en Latinoamérica y el mundo. Nos especializamos en crear viajes en paquete y a la medida, trabajando de la mano con proveedores locales para ofrecer experiencias auténticas y de alta calidad.
             </p>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-muted-foreground mb-4 leading-relaxed">
               Seleccionamos cuidadosamente cada destino y experiencia diferenciada para garantizar autenticidad en cada detalle. Diseñamos propuestas personalizadas según las necesidades de cada viajero, asegurando que la aventura comience desde el primer momento.
             </p>
+            
+            {/* Link hacia la página completa */}
+            <div className="mb-8">
+              <Link 
+                to="/nosotros" 
+                className="inline-flex items-center gap-2 text-secondary hover:text-primary/80 transition-colors font-medium group"
+              >
+                Conocer nuestra historia 
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>

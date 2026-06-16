@@ -24,8 +24,22 @@ export interface Itinerary {
   season: string[];
   pricePerPerson: number;
   flights: {
-    outbound: { from: string; departure: string; to: string; arrival: string; stops: string; estimatedPrice: string };
-    return: { from: string; departure: string; to: string; arrival: string; stops: string; estimatedPrice: string };
+    outbound: {
+      from: string;
+      departure: string;
+      to: string;
+      arrival: string;
+      stops: string;
+      estimatedPrice: string;
+    };
+    return: {
+      from: string;
+      departure: string;
+      to: string;
+      arrival: string;
+      stops: string;
+      estimatedPrice: string;
+    };
   };
   activities: string[];
   included: string[];
@@ -35,1144 +49,658 @@ export interface Itinerary {
 
 export const destinations: Destination[] = [
   {
-    "id": "brasil",
-    "name": "Brasil",
-    "location": "Río de Janeiro e Iguazú, Brasil",
-    "image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80",
-    "rating": 5,
-    "price": 0,
-    "description": "Programas por Brasil que combinan los íconos de Río de Janeiro, el Cristo Redentor, Pan de Azúcar, cultura carioca, playas, naturaleza e incluso las Cataratas de Iguazú según el itinerario elegido.",
-    "category": "Latinoamérica"
+    id: "colombia",
+    name: "Colombia",
+    location: "Bogotá, Cartagena, Medellín e Islas del Caribe",
+    image:
+      "https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80",
+    rating: 4.8,
+    price: 716,
+    description:
+      "Programas por Colombia que combinan historia, arquitectura colonial, ciudades vibrantes y descanso en el Caribe colombiano.",
+    category: "Latinoamérica",
   },
   {
-    "id": "colombia",
-    "name": "Colombia",
-    "location": "Bogotá, Cartagena y Medellín, Colombia",
-    "image": "https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80",
-    "rating": 4.8,
-    "price": 0,
-    "description": "Una ruta ideal para conocer Bogotá, Cartagena y Medellín entre historia, arquitectura colonial, museos, miradores y energía urbana.",
-    "category": "Latinoamérica"
+    id: "costa-rica",
+    name: "Costa Rica",
+    location: "San José, Irazú, Orosí y Manuel Antonio",
+    image:
+      "https://images.unsplash.com/photo-1536709017021-ce8f99c17e38?auto=format&fit=crop&w=800&q=80",
+    rating: 5,
+    price: 534,
+    description:
+      "Experiencias por Costa Rica que combinan cultura, historia, volcanes, naturaleza, aventura y la esencia de la Pura Vida.",
+    category: "Centroamérica",
   },
   {
-    "id": "costa-rica",
-    "name": "Costa Rica",
-    "location": "San José, Irazú y Orosí, Costa Rica",
-    "image": "https://images.unsplash.com/photo-1536709017021-ce8f99c17e38?auto=format&fit=crop&w=800&q=80",
-    "rating": 5,
-    "price": 0,
-    "description": "Una experiencia de naturaleza, cultura y aventura con San José, Volcán Irazú, Valle de Orosí, Manuel Antonio, cena-show y actividades de canopy y rappel.",
-    "category": "Latinoamérica"
+    id: "guatemala",
+    name: "Guatemala",
+    location: "Antigua, Acatenango, Chichicastenango, Atitlán y Ciudad de Guatemala",
+    image:
+      "https://images.unsplash.com/photo-1606503809729-40646b716a36?auto=format&fit=crop&w=800&q=80",
+    rating: 4.9,
+    price: 754,
+    description:
+      "Un recorrido cultural y de aventura por Guatemala entre historia colonial, tradiciones vivas, paisajes volcánicos, Lago Atitlán y la energía de Antigua.",
+    category: "Centroamérica",
   },
   {
-    "id": "cuba",
-    "name": "Cuba",
-    "location": "La Habana, Varadero y Cayo Santa María, Cuba",
-    "image": "https://images.unsplash.com/photo-1500759285222-a95626b934cb?auto=format&fit=crop&w=800&q=80",
-    "rating": 4.7,
-    "price": 0,
-    "description": "Programas por Cuba que combinan historia, arquitectura colonial, ritmo caribeño, playas de Varadero y escapadas de descanso en Cayo Santa María.",
-    "category": "Caribe"
-  },
-  {
-    "id": "republica-dominicana",
-    "name": "República Dominicana",
-    "location": "Santo Domingo, Bonao, La Vega, Jarabacoa, Puerto Plata y Santiago",
-    "image": "https://images.unsplash.com/photo-1575950674322-3a1977724f2e?auto=format&fit=crop&w=800&q=80",
-    "rating": 4.7,
-    "price": 0,
-    "description": "Un recorrido cultural y caribeño entre Santo Domingo, montaña, café, ron, funicular, Puerto Plata y la esencia dominicana.",
-    "category": "Caribe"
-  },
-  {
-    "id": "guatemala",
-    "name": "Guatemala",
-    "location": "Antigua, Chichicastenango, Lago Atitlán, Tikal, Yaxhá y Ciudad de Guatemala",
-    "image": "https://images.unsplash.com/photo-1606503809729-40646b716a36?auto=format&fit=crop&w=800&q=80",
-    "rating": 4.9,
-    "price": 0,
-    "description": "Rutas culturales y de naturaleza por Antigua, mercados tradicionales, Lago Atitlán, San Juan La Laguna, Tikal, Yaxhá y experiencias de aventura como Acatenango.",
-    "category": "Centroamérica"
-  },
-  {
-    "id": "puerto-rico",
-    "name": "Puerto Rico",
-    "location": "San Juan, Puerto Rico",
-    "image": "https://images.unsplash.com/photo-1599582871426-a44765cedca0?auto=format&fit=crop&w=800&q=80",
-    "rating": 4.8,
-    "price": 0,
-    "description": "Una escapada caribeña a San Juan con historia, paseo por la bahía al atardecer, Castillo San Cristóbal y experiencia en Casa Bacardí.",
-    "category": "Caribe"
-  }
+  id: "puerto-rico",
+  name: "Puerto Rico",
+  location: "San Juan, Puerto Rico",
+  image:
+    "https://images.unsplash.com/photo-1599582871426-a44765cedca0?auto=format&fit=crop&w=800&q=80",
+  rating: 4.8,
+  price: 750,
+  description:
+    "Una escapada caribeña a San Juan que combina historia, playas, gastronomía local, paseo por la bahía al atardecer, Viejo San Juan, Castillo San Cristóbal y la icónica destilería Bacardí.",
+  category: "Caribe",
+},
+{
+  id: "republica-dominicana",
+  name: "República Dominicana",
+  location: "Punta Cana y Santo Domingo, República Dominicana",
+  image:
+    "https://images.unsplash.com/photo-1575950674322-3a1977724f2e?auto=format&fit=crop&w=800&q=80",
+  rating: 4.8,
+  price: 692,
+  description:
+    "Una escapada caribeña que combina el descanso en Punta Cana con una experiencia cultural en Santo Domingo, la primera ciudad fundada por los europeos en América.",
+  category: "Caribe",
+},
 ];
 
 export const itineraries: Itinerary[] = [
-  {
-    "id": "brasil-expreso-2026",
-    "title": "Brasil Expreso 2026",
-    "destination": "Río de Janeiro & Iguazú, Brasil",
-    "dates": "16 al 23 de noviembre 2026",
-    "duration": "8 Días",
-    "days": 8,
-    "cities": 2,
-    "hotelNights": 7,
-    "image": "https://images.unsplash.com/photo-1544991337-95176b5233c4?auto=format&fit=crop&w=800&q=80",
-    "description": "Viaje completo por Brasil iniciando en Río de Janeiro para conocer Cristo Redentor, Pan de Azúcar, Maracaná, Sambódromo, Catedral Metropolitana, Santa Teresa y Escaleras de Selarón, finalizando en Iguazú con el lado brasileño, Macuco Safari y el lado argentino de las cataratas.",
-    "category": "Latinoamérica",
-    "season": [
-      "Otoño"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "RÍO DE JANEIRO",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "IGUAZÚ",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      }
+{
+id: "colombia-3-joyas",
+title: "Las Tres Joyas de Colombia",
+destination: "Bogotá, Cartagena y Medellín",
+dates: "Tarifas 2026",
+duration: "8 Días",
+days: 8,
+cities: 3,
+hotelNights: 7,
+image:
+"https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80",
+description:
+"Descubre lo mejor de Bogotá, Cartagena y Medellín en un viaje que combina historia, arquitectura colonial y energía urbana. Desde las vistas de Monserrate y La Candelaria hasta la magia amurallada de Cartagena y el espíritu innovador de Medellín.",
+category: "Latinoamérica",
+season: ["Todas", "Verano"],
+pricePerPerson: 886,
+flights: {
+outbound: {
+from: "A consultar",
+departure: "A coordinar",
+to: "BOGOTÁ (BOG)",
+arrival: "A coordinar",
+stops: "Vuelos según cotización",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "MEDELLÍN (MDE)",
+departure: "A coordinar",
+to: "A consultar",
+arrival: "A coordinar",
+stops: "Vuelos según cotización",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada al Aeropuerto Internacional El Dorado, recepción y traslado al hotel en Bogotá.",
+"City tour por Bogotá con Cerro de Monserrate, Museo del Oro, La Candelaria y Plaza de Bolívar.",
+"Visita al Museo Botero con obras de Fernando Botero y maestros como Picasso y Dalí.",
+"Traslado al aeropuerto para tomar vuelo con destino a Cartagena.",
+"City tour Cartagena con bahía, barrio Manga, Castillo de San Felipe y centro histórico amurallado.",
+"Día libre en Cartagena para actividades personales o tours opcionales.",
+"Traslado al aeropuerto para tomar vuelo con destino a Medellín.",
+"City tour Medellín en bus turístico con Parque de los Pies Descalzos, Parque del Río, Pueblito Paisa y Parque de la Inflexión.",
+],
+included: [
+"Traslados Aeropuerto - Hotel - Aeropuerto.",
+"7 noches de alojamiento en la categoría de hotel elegida con desayuno incluido.",
+"City Tour en Bogotá.",
+"City Tour en Cartagena.",
+"City Tour en Medellín.",
+"Seguro de viajero Assist Card.",
+"Impuestos aéreos y de hospedaje.",
+],
+notIncluded: [
+"Alimentaciones y gastos no mencionados.",
+"Gastos personales.",
+"Actividades extras y opcionales.",
+"Propinas.",
+],
+pdfUrl: "/assets/pdfs/Colombia-3Joyas.pdf",
+},
+{
+id: "caribe-colombiano",
+title: "Caribe Colombiano",
+destination: "Cartagena e Isla del Caribe",
+dates: "Tarifas 2026",
+duration: "6 Días",
+days: 6,
+cities: 2,
+hotelNights: 5,
+image:
+"https://images.unsplash.com/photo-1583531352515-8884af319dc1?auto=format&fit=crop&w=800&q=80",
+description:
+"Una escapada que combina la riqueza histórica de Cartagena de Indias con el descanso y la belleza natural del Caribe colombiano. Recorre el Castillo de San Felipe, el barrio de Manga y el centro histórico amurallado, y continúa hacia una isla del Caribe para disfrutar playas y paisajes tropicales.",
+category: "Latinoamérica",
+season: ["Todas"],
+pricePerPerson: 716,
+flights: {
+outbound: {
+from: "A consultar",
+departure: "A coordinar",
+to: "CARTAGENA (CTG)",
+arrival: "A coordinar",
+stops: "Vuelos según cotización",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "CARTAGENA (CTG)",
+departure: "A coordinar",
+to: "A consultar",
+arrival: "A coordinar",
+stops: "Vuelos según cotización",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada al Aeropuerto Internacional Rafael Núñez, recepción y traslado al hotel en Cartagena.",
+"City tour Cartagena con recorrido panorámico por la bahía, barrio Manga y Castillo de San Felipe.",
+"Recorrido a pie por el centro histórico amurallado con tiempo libre para compras.",
+"Traslado desde Cartagena hacia una isla cercana, en embarcación compartida o transporte terrestre según la opción elegida.",
+"Día libre en la isla para descanso, playa o actividades opcionales.",
+"Regreso a Cartagena para la última noche de alojamiento.",
+"Traslado al Aeropuerto Rafael Núñez para tomar el vuelo de regreso.",
+],
+included: [
+"Traslados Aeropuerto - Hotel - Aeropuerto en servicio compartido.",
+"3 noches de alojamiento en Cartagena, 2 al inicio y 1 al final.",
+"2 noches de alojamiento en isla cercana en la categoría de hotel elegida y con plan alimenticio según elección.",
+"Excursiones descritas en el itinerario con guía profesional en español.",
+"Entradas a los sitios especificados.",
+"Seguro de viajero Assist Card.",
+"Impuestos de hospedaje.",
+],
+notIncluded: [
+"Impuestos de muelle.",
+"Seguro hotelero voluntario.",
+"Alimentaciones y gastos no mencionados.",
+"Gastos personales.",
+"Actividades extras y opcionales.",
+"Propinas.",
+],
+pdfUrl: "/assets/pdfs/Colombia-Cartagena.pdf",
+},
+{
+id: "costa-rica-linda",
+title: "Linda Costa Rica",
+destination: "San José, Volcán Irazú, Cartago y Valle de Orosí",
+dates: "Viaja del 01 de enero al 31 de diciembre 2026",
+duration: "5 Días",
+days: 5,
+cities: 4,
+hotelNights: 4,
+image:
+"https://images.unsplash.com/photo-1536708880921-03a9306ec47d?auto=format&fit=crop&w=800&q=80",
+description:
+"Descubre lo mejor de Costa Rica en una experiencia que combina cultura, historia y naturaleza. Explora San José, sus museos y arquitectura, continúa hacia el Volcán Irazú, Cartago y el Valle de Orosí, y disfruta un día libre para descansar o añadir experiencias opcionales.",
+category: "Centroamérica",
+season: ["Todas"],
+pricePerPerson: 534,
+flights: {
+outbound: {
+from: "MÉXICO",
+departure: "A coordinar",
+to: "SAN JOSÉ (SJO)",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "SAN JOSÉ (SJO)",
+departure: "A coordinar",
+to: "MÉXICO",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada a Costa Rica, recepción en el aeropuerto y traslado al hotel.",
+"City tour por San José visitando Museo de Arte Costarricense, Parque La Sabana, Teatro Nacional, Catedral Metropolitana, Plaza de la Cultura y Mercado Central.",
+"Almuerzo típico costarricense durante el recorrido por San José.",
+"Tour al Volcán Irazú, Cartago, Basílica de Nuestra Señora de los Ángeles y Valle de Orosí.",
+"Día libre para descansar o añadir experiencias opcionales como Manuel Antonio, puentes colgantes o aguas termales del Arenal.",
+"Traslado al aeropuerto para tomar el vuelo de regreso.",
+],
+included: [
+"Traslado Aeropuerto - Hotel - Aeropuerto.",
+"4 noches de alojamiento en hotel de su elección.",
+"Todos los desayunos.",
+"City tour de San José con comida.",
+"Tour Volcán Irazú, Basílica de Nuestra Señora de los Ángeles en Cartago y Valle de Orosí, con comida.",
+"Seguro de viajero Assist Card.",
+"Transportación terrestre en el circuito.",
+"Impuestos de hospedaje.",
+],
+notIncluded: [
+"Vuelos internacionales.",
+"Alimentaciones y gastos no mencionados.",
+"Actividades extras y opcionales.",
+"Propinas.",
+"Nada que no se mencione explícitamente en el apartado incluido.",
+],
+pdfUrl: "/assets/pdfs/CostaRica-Linda.pdf",
+},
+{
+id: "costa-rica-para-todos",
+title: "Costa Rica Para Todos",
+destination:
+"San José, Volcán Irazú, Valle de Orosí, Manuel Antonio y Bosque Nuboso",
+dates: "Viaja del 01 de enero al 31 de diciembre 2026",
+duration: "8 Días",
+days: 8,
+cities: 5,
+hotelNights: 7,
+image:
+"https://images.unsplash.com/photo-1536709017021-ce8f99c17e38?auto=format&fit=crop&w=800&q=80",
+description:
+"Una experiencia completa por Costa Rica que combina historia, cultura, naturaleza y aventura. Recorre San José, el Volcán Irazú, Cartago, Valle de Orosí, Parque Nacional Manuel Antonio, una cena-show típica y una aventura de canopy y rappel en el bosque nuboso.",
+category: "Centroamérica",
+season: ["Todas"],
+pricePerPerson: 1223,
+flights: {
+outbound: {
+from: "MÉXICO",
+departure: "A coordinar",
+to: "SAN JOSÉ (SJO)",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "SAN JOSÉ (SJO)",
+departure: "A coordinar",
+to: "MÉXICO",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada a Costa Rica, recepción en el aeropuerto y traslado al hotel.",
+"Tour de la ciudad de San José con Museo de Arte Costarricense, Parque La Sabana, Teatro Nacional, Catedral Metropolitana, Plaza de la Cultura y Mercado Central.",
+"Tour al Volcán Irazú, Basílica de Nuestra Señora de los Ángeles en Cartago y Valle de Orosí.",
+"Visita al Parque Nacional Manuel Antonio con playas, senderos, selva tropical y biodiversidad.",
+"Mañana libre y cena-show típica en Restaurante Mirador Ram Luna.",
+"Día libre para actividades opcionales como Isla Tortuga, rafting en el Río Pacuare o aguas termales del Volcán Arenal.",
+"Tour de aventura con canopy, 13 cables, 19 plataformas y rappel en el bosque nuboso.",
+"Traslado al aeropuerto para tomar el vuelo de regreso.",
+],
+included: [
+"Traslado Aeropuerto - Hotel - Aeropuerto.",
+"7 noches de alojamiento en hotel de su elección.",
+"Todos los desayunos.",
+"City tour de San José con comida incluida.",
+"Tour Volcán Irazú, Basílica de Nuestra Señora de los Ángeles en Cartago y Valle de Orosí, con comida incluida.",
+"Tour de playa en el Parque Nacional Manuel Antonio, con comida incluida.",
+"Tour de aventura en canopy y 2 cables de rappel, con comida incluida.",
+"Cena-show típico en el hotel Mirador Ram Luna.",
+"Seguro de viajero Assist Card.",
+"Transportación terrestre en el circuito.",
+"Impuestos de alojamiento.",
+],
+notIncluded: [
+"Vuelos internacionales.",
+"Alimentaciones y gastos no mencionados.",
+"Actividades extras y opcionales.",
+"Propinas.",
+"Nada que no sea explícitamente mencionado en el apartado incluido.",
+],
+pdfUrl: "/assets/pdfs/CostaRica-ParaTodos.pdf",
+},
+{
+id: "guatemala-aventura-cultura",
+title: "Guatemala - Aventura y Cultura",
+destination:
+"Antigua, Acatenango, Chichicastenango, Lago Atitlán y Ciudad de Guatemala",
+dates: "Inicia en domingo del 01 de enero al 31 de diciembre 2026",
+duration: "8 Días",
+days: 8,
+cities: 6,
+hotelNights: 7,
+image:
+"https://images.unsplash.com/photo-1528543606781-2f6e6857f318?auto=format&fit=crop&w=800&q=80",
+description:
+"Un recorrido que combina historia colonial, tradiciones vivas, naturaleza y aventura. El viaje inicia en Antigua Guatemala, continúa con el trekking al Volcán Acatenango, visita el mercado de Chichicastenango, el Lago Atitlán, San Juan La Laguna y finaliza con un recorrido por Ciudad de Guatemala y Cayalá.",
+category: "Centroamérica",
+season: ["Todas"],
+pricePerPerson: 1443,
+flights: {
+outbound: {
+from: "A consultar",
+departure: "A coordinar",
+to: "GUATEMALA (GUA)",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "GUATEMALA (GUA)",
+departure: "A coordinar",
+to: "A consultar",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada al Aeropuerto Internacional La Aurora y traslado al hotel en Antigua Guatemala.",
+"Tour guiado de medio día por Antigua, visitando Iglesia de la Merced, Plaza de Armas y Catedral.",
+"Trekking al Volcán Acatenango con caminata hacia campamento base y vistas al Volcán de Fuego.",
+"Amanecer en el Volcán Acatenango, descenso y tarde libre para descansar.",
+"Visita al mercado de Chichicastenango, Iglesia de Santo Tomás y traslado al Lago Atitlán.",
+"Paseo en bote a San Juan La Laguna con visita a cooperativas de chocolate, textiles y plantas medicinales.",
+"Tour por Ciudad de Guatemala, Centro Histórico, Avenida de Las Américas y Ciudad Cayalá.",
+],
+included: [
+"Traslado Aeropuerto - Hotel - Aeropuerto.",
+"7 noches de alojamiento.",
+"Todos los desayunos.",
+"City tour de Antigua de medio día.",
+"Trekking en Volcán Acatenango con comida, cena, desayuno, snack, 2 litros de agua, chocolate caliente, café o té, kit de higiene, sleeping bag, cabaña compartida, litera con colchón, almohada y frazada, chaqueta, gorro y guantes.",
+"Tour Chichicastenango, Lago Atitlán y Panajachel de día completo.",
+"Tour San Juan La Laguna con visita a cooperativas, lancha incluida.",
+"Tour Ciudad de Guatemala y Cayalá.",
+"Guía certificado durante los tours.",
+"Entradas según sea necesario en el itinerario.",
+"Transportación terrestre en el circuito.",
+"Seguro de viajero Assist Card.",
+"Impuestos de hospedaje.",
+],
+notIncluded: [
+"Property fee aplicable para hoteles en Antigua y Atitlán.",
+"Vuelos internacionales.",
+"Alimentaciones y gastos no mencionados.",
+"Actividades extras y opcionales.",
+"Propinas.",
+"Nada que no se haya mencionado explícitamente en el apartado incluido.",
+],
+pdfUrl: "/assets/pdfs/Guatemala-Aventura-Cultura.pdf",
+},
+{
+id: "guatemala-descubriendo",
+title: "Descubriendo Guatemala",
+destination: "Antigua, Chichicastenango, Lago Atitlán y Ciudad de Guatemala",
+dates: "Inicio de viaje todos los martes y viernes del 2026",
+duration: "5 Días",
+days: 5,
+cities: 4,
+hotelNights: 4,
+image:
+"https://images.unsplash.com/photo-1637966201771-b0b251baa2ef?auto=format&fit=crop&w=800&q=80",
+description:
+"Un viaje que combina historia, cultura viva y paisajes naturales únicos de Guatemala. Inicia en Antigua, continúa hacia el mercado indígena de Chichicastenango y el majestuoso Lago Atitlán, con visita a San Juan La Laguna y sus cooperativas tradicionales.",
+category: "Centroamérica",
+season: ["Todas"],
+pricePerPerson: 754,
+flights: {
+outbound: {
+from: "A consultar",
+departure: "A coordinar",
+to: "GUATEMALA (GUA)",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "GUATEMALA (GUA)",
+departure: "A coordinar",
+to: "A consultar",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada al Aeropuerto Internacional La Aurora, recepción y traslado al hotel en Antigua Guatemala.",
+"Tour guiado de medio día por Antigua, visitando Iglesia de la Merced, Plaza de Armas y Catedral.",
+"Tiempo libre en Antigua para compra de artesanías y souvenirs.",
+"Visita al mercado indígena de Chichicastenango y a la Iglesia de Santo Tomás.",
+"Traslado hacia el Lago Atitlán, rodeado por los volcanes Atitlán, Tolimán y San Pedro.",
+"Visita panorámica de Panajachel.",
+"Paseo en bote a San Juan La Laguna con visita a cooperativas de chocolate, textiles y plantas medicinales.",
+"Traslado a Ciudad de Guatemala para descansar antes del regreso.",
+],
+included: [
+"Traslado Aeropuerto - Hotel - Aeropuerto.",
+"4 noches de alojamiento en hotel de su elección.",
+"Todos los desayunos.",
+"City tour de Antigua de medio día.",
+"Tour Chichicastenango, Lago Atitlán y Panajachel de día completo.",
+"Tour San Juan La Laguna con visita a cooperativas, lancha incluida.",
+"Guía certificado durante los tours.",
+"Entradas según sea necesario en el itinerario.",
+"Transportación terrestre en el circuito.",
+"Seguro de viajero Assist Card.",
+"Impuestos de hospedaje.",
+],
+notIncluded: [
+"Property fee aplicable para hoteles en Antigua y Atitlán.",
+"Vuelos internacionales.",
+"Alimentaciones y gastos no mencionados.",
+"Actividades extras y opcionales.",
+"Nada que no sea explícitamente mencionado en el apartado incluido.",
+],
+pdfUrl: "/assets/pdfs/Guatemala-Descubriendo.pdf",
+},
+{
+id: "guatemala-magica",
+title: "Guatemala Mágica",
+destination: "Antigua, Chichicastenango, Lago Atitlán, Tikal y Ciudad de Guatemala",
+dates: "Inicia martes y viernes del 2026",
+duration: "6 Días",
+days: 6,
+cities: 5,
+hotelNights: 5,
+image:
+"https://images.unsplash.com/photo-1580250642511-1660fe42ad58?auto=format&fit=crop&w=800&q=80",
+description:
+"Un recorrido que combina lo mejor de Guatemala: historia colonial, tradiciones vivas, Lago Atitlán y legado maya. La experiencia se completa con una excursión a Tikal, uno de los sitios arqueológicos más importantes del mundo maya.",
+category: "Centroamérica",
+season: ["Todas"],
+pricePerPerson: 1426,
+flights: {
+outbound: {
+from: "A consultar",
+departure: "A coordinar",
+to: "GUATEMALA (GUA)",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "GUATEMALA (GUA)",
+departure: "A coordinar",
+to: "A consultar",
+arrival: "A coordinar",
+stops: "Vuelos internacionales no incluidos",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada al Aeropuerto Internacional La Aurora, recepción y traslado al hotel en Antigua Guatemala.",
+"Tour guiado de medio día por Antigua, visitando Iglesia de la Merced, Plaza de Armas y Catedral.",
+"Tiempo libre en Antigua para compra de artesanías y souvenirs.",
+"Visita al mercado de Chichicastenango y a la Iglesia de Santo Tomás.",
+"Traslado al Lago Atitlán y visita panorámica de Panajachel.",
+"Paseo en bote a San Juan La Laguna con visita a cooperativas de chocolate, textiles y plantas medicinales.",
+"Excursión a Tikal con recorrido por sus templos, plazas y puntos emblemáticos del mundo maya.",
+"Comida campestre incluida en el Centro de Visitantes de Tikal.",
+"Vuelo interno Guatemala - Flores - Guatemala incluido según itinerario.",
+],
+included: [
+"Traslado Aeropuerto - Hotel - Aeropuerto.",
+"5 noches de alojamiento en hotel de su elección.",
+"Todos los desayunos.",
+"City tour de Antigua de medio día.",
+"Tour Chichicastenango, Lago Atitlán y Panajachel de día completo.",
+"Tour San Juan La Laguna con visita a cooperativas, lancha incluida.",
+"Tour Tikal al completo con comida campestre incluida.",
+"Guía certificado durante los tours.",
+"Entradas según sea necesario en el itinerario.",
+"Transportación terrestre en el circuito.",
+"Vuelo Guatemala - Las Flores - Guatemala, incluye una pieza de equipaje de 20 lbs y una de 10 lbs por persona.",
+"Seguro de viajero Assist Card.",
+"Impuestos de hospedaje.",
+],
+notIncluded: [
+"Property fee aplicable para hoteles en Antigua y Atitlán.",
+"Vuelos internacionales.",
+"Alimentaciones y gastos no mencionados.",
+"Actividades extras y opcionales.",
+"Propinas.",
+"Nada que no sea explícitamente mencionado en el apartado incluido.",
+],
+pdfUrl: "/assets/pdfs/Guatemala-Magica.pdf",
+},
+{
+id: "puerto-rico-isla-del-encanto",
+title: "Puerto Rico: La Isla del Encanto",
+destination: "San Juan, Puerto Rico",
+dates: "Inicio de viaje todos los jueves del 2026",
+duration: "5 Días",
+days: 5,
+cities: 1,
+hotelNights: 4,
+image:
+"https://images.unsplash.com/photo-1717263209162-ea0cda01ff70?auto=format&fit=crop&w=800&q=80",
+description:
+"Una escapada a San Juan donde la historia y el Caribe se encuentran. El viaje combina días libres para disfrutar del ambiente, playas y gastronomía local, con un paseo por la bahía al atardecer, una excursión histórica por el Viejo San Juan, Castillo San Cristóbal y visita a la destilería Bacardí.",
+category: "Caribe",
+season: ["Todas"],
+pricePerPerson: 750,
+flights: {
+outbound: {
+from: "MÉXICO",
+departure: "A coordinar",
+to: "SAN JUAN (SJU)",
+arrival: "A coordinar",
+stops: "Vuelos no incluidos",
+estimatedPrice: "A consultar",
+},
+return: {
+from: "SAN JUAN (SJU)",
+departure: "A coordinar",
+to: "MÉXICO",
+arrival: "A coordinar",
+stops: "Vuelos no incluidos",
+estimatedPrice: "A consultar",
+},
+},
+activities: [
+"Llegada al Aeropuerto Internacional de San Juan, recibimiento y traslado al hotel.",
+"Mañana libre para actividades personales.",
+"Paseo por la bahía al atardecer de 90 minutos, con vistas del Paseo de La Princesa, Mansión del Gobernador, murallas de San Juan y destilería Bacardí.",
+"Excursión histórica por el Viejo San Juan con recorrido guiado y visita al Castillo San Cristóbal.",
+"Visita a Casa Bacardí con coctel de bienvenida, recorrido en trolley, Museo Casa Bacardí y degustación de Bacardí Reserve para mayores de 21 años.",
+"Día libre para disfrutar San Juan, sus playas, gastronomía o actividades personales.",
+"Traslado al aeropuerto para tomar el vuelo de regreso.",
+],
+included: [
+"Traslados Aeropuerto - Hotel - Aeropuerto.",
+"4 noches de alojamiento con desayuno incluido.",
+"Paseo por la bahía al atardecer.",
+"Excursión histórica por el Viejo San Juan con visita a Destilería Bacardí.",
+"Traslados desde y hacia hoteles durante las actividades incluidas.",
+"Costo de entrada al Fuerte y a Bacardí.",
+"Bebida complementaria y degustación de ron Bacardí Reserve para mayores de 21 años.",
+"Seguro de viajero Assist Card.",
+],
+notIncluded: [
+"Consumos y servicios adicionales.",
+"Propinas.",
+"Resort fee San Juan City de pago directo, 40 USD por habitación.",
+"Gastos personales.",
+"Nada que no sea explícitamente mencionado en el apartado incluido.",
+],
+pdfUrl: "/assets/pdfs/PuertoRico-Isla.pdf",
+},
+{
+  id: "republica-dominicana-esencia-dominicana",
+  title: "Esencia Dominicana",
+  destination: "Punta Cana y Santo Domingo, República Dominicana",
+  dates: "Salidas diarias 2026",
+  duration: "6 Días",
+  days: 6,
+  cities: 2,
+  hotelNights: 5,
+  image:
+    "https://images.unsplash.com/photo-1697302611781-5166533305da?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Disfruta una escapada a Punta Cana que combina descanso en el Caribe con una enriquecedora experiencia cultural. Además de relajarte en playas paradisíacas y disfrutar el servicio todo incluido del resort, vivirás una excursión de día completo a Santo Domingo para conocer su historia, cultura y sabores dominicanos.",
+  category: "Caribe",
+  season: ["Todas"],
+  pricePerPerson: 692,
+  flights: {
+    outbound: {
+      from: "A consultar",
+      departure: "A coordinar",
+      to: "PUNTA CANA (PUJ)",
+      arrival: "A coordinar",
+      stops: "Vuelos no incluidos",
+      estimatedPrice: "A consultar",
     },
-    "activities": [
-      "Cristo Redentor con ascenso por el bosque de Tijuca.",
-      "Pan de Azúcar en teleférico con vistas panorámicas de Río.",
-      "Recorrido panorámico por Maracaná, Sambódromo y Catedral Metropolitana.",
-      "Medio día de Río histórico, Santa Teresa y Escaleras de Selarón.",
-      "Cataratas de Iguazú del lado brasileño con entrada y Macuco Safari.",
-      "Cataratas de Iguazú del lado argentino con Garganta del Diablo y circuitos panorámicos."
-    ],
-    "included": [
-      "04 noches de acomodación en Río de Janeiro con desayuno.",
-      "03 noches de acomodación en Iguazú con desayuno.",
-      "Traslados privados In & Out en Río y en Iguazú.",
-      "Día completo Corcovado & Pan de Azúcar con entradas, city tour y almuerzo.",
-      "Medio día Río Histórico.",
-      "Medio día Cataratas Brasileñas con entradas + Macuco Safari.",
-      "Día completo Cataratas Argentinas con entradas.",
-      "Seguro de viajero AC 60 Assist Card."
-    ],
-    "notIncluded": [
-      "Gastos personales.",
-      "Comidas no mencionadas en la programación.",
-      "Vuelos domésticos o internacionales.",
-      "Servicios o excursiones no mencionados anteriormente."
-    ],
-    "pdfUrl": "/assets/pdfs/Brasil-Iguazu.pdf"
+    return: {
+      from: "PUNTA CANA (PUJ)",
+      departure: "A coordinar",
+      to: "A consultar",
+      arrival: "A coordinar",
+      stops: "Vuelos no incluidos",
+      estimatedPrice: "A consultar",
+    },
   },
-  {
-    "id": "rio-ciudad-maravillosa",
-    "title": "Río Ciudad Maravillosa",
-    "destination": "Río de Janeiro, Brasil",
-    "dates": "Válidas hasta noviembre 2026",
-    "duration": "8 Días",
-    "days": 8,
-    "cities": 3,
-    "hotelNights": 7,
-    "image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80",
-    "description": "Programa ideal para descubrir Río de Janeiro a través de historia, samba, tradición brasileña, Cristo Redentor, Pan de Azúcar, Bahía de Guanabara, Angra dos Reis, Petrópolis, Maracaná y experiencia de Carnaval.",
-    "category": "Latinoamérica",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "RÍO DE JANEIRO",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "RÍO DE JANEIRO",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Día completo Corcovado & Pan de Azúcar con entradas, city tour y almuerzo.",
-      "Río Histórico y Bahía de Guanabara con paseo en catamarán.",
-      "Angra dos Reis con paseo de escuna y almuerzo.",
-      "Petrópolis con Museo Imperial y almuerzo.",
-      "Estadio Maracaná y experiencia cultural del Carnaval con entradas."
-    ],
-    "included": [
-      "07 noches de hospedaje en Río de Janeiro con desayuno.",
-      "Traslados privados In & Out.",
-      "Día completo Corcovado & Pan de Azúcar con entradas, city tour y almuerzo.",
-      "Día completo Río Histórico & Bahía de Guanabara con catamarán.",
-      "Día completo Angra dos Reis con paseo de escuna y almuerzo.",
-      "Día completo Petrópolis con Museo Imperial y almuerzo.",
-      "Día completo Estadio Maracaná & Experiencia del Carnaval con entradas.",
-      "Seguro de viajero AC 60 Assist Card."
-    ],
-    "notIncluded": [
-      "Gastos personales.",
-      "Comidas no mencionadas en la programación.",
-      "Vuelos domésticos o internacionales.",
-      "Excursiones o servicios no mencionados anteriormente."
-    ],
-    "pdfUrl": "/assets/pdfs/Rio-Ciudad-Maravillosa.pdf"
-  },
-  {
-    "id": "maravillas-de-brasil",
-    "title": "Maravillas de Brasil",
-    "destination": "Brasilia, Río de Janeiro, Iguazú y São Paulo, Brasil",
-    "dates": "16 al 25 de noviembre 2026",
-    "duration": "10 Días",
-    "days": 10,
-    "cities": 4,
-    "hotelNights": 9,
-    "image": "https://images.unsplash.com/photo-1558732314-f2ee01b9ee51?auto=format&fit=crop&w=800&q=80",
-    "description": "Viaje completo por Brasil descubriendo la arquitectura de Brasilia, los íconos de Río de Janeiro como el Cristo Redentor y el Maracaná, la majestuosidad de las Cataratas del Iguazú en ambos lados y la cultura y gastronomía vibrante de São Paulo.",
-    "category": "Latinoamérica",
-    "season": [
-      "Otoño"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "BRASILIA (BSB)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "SÃO PAULO (GRU/CGH)",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "City Tour en Brasilia visitando la Catedral Metropolitana, Congreso Nacional y Memorial JK.",
-      "Corcovado, Pan de Azúcar y City Tour en Río de Janeiro con almuerzo.",
-      "Estadio Maracaná y experiencia en los bastidores del Carnaval en Río.",
-      "Paseo en barco Macuco Safari y Cataratas del Iguazú lado brasileño.",
-      "Circuito Inferior y Superior en Cataratas del Iguazú lado argentino con Garganta del Diablo.",
-      "Tour São Paulo Cultural visitando el Parque Ibirapuera, MASP y Beco do Batman.",
-      "Tour By Night São Paulo Gastronómico con cena en asador brasileño."
-    ],
-    "included": [
-      "01 noche de hospedaje en Brasilia, 03 en Río de Janeiro, 03 en Iguazú y 02 en São Paulo con desayuno.",
-      "Traslados privados In & Out en Brasilia, Río de Janeiro, Iguazú y São Paulo.",
-      "Día Completo Brasília Cultural & Arquitectónico con Museo con entradas.",
-      "Día Completo Corcovado & Pan de Azúcar con entradas + City tour + Almuerzo.",
-      "Día Completo: Estadio Maracaná con Experiencia del Carnaval con entradas.",
-      "Medio día Cataratas Brasileñas con entradas + Macuco Safari (Barco Compartido).",
-      "Día Completo Cataratas Argentinas con entradas.",
-      "Día Completo São Paulo Cultural con Museo con entradas.",
-      "By Night (05 hrs) Tour privado São Paulo Gastronômico con Cena Asador Fogo de Chão.",
-      "Seguro de viajero AC 60 Assist Card."
-    ],
-    "notIncluded": [
-      "Vuelos Domésticos o Internacionales.",
-      "Gastos Personales.",
-      "Comidas no mencionadas en la programación.",
-      "Seguros de Viajes Personales adicionales o servicios no especificados."
-    ],
-    "pdfUrl": "/assets/pdfs/Brasil-Maravillas.pdf"
-  },
-  {
-    "id": "brasil-fin-de-ano-2026",
-    "title": "Fin de Año en Río de Janeiro",
-    "destination": "Río de Janeiro, Brasil",
-    "dates": "28 dic 2026 al 02 ene 2027",
-    "duration": "6 Días",
-    "days": 6,
-    "cities": 1,
-    "hotelNights": 5,
-    "image": "https://images.unsplash.com/photo-1699570638045-7d3e736db619?auto=format&fit=crop&w=800&q=80",
-    "description": "Una experiencia vibrante para recibir el Año Nuevo en uno de los destinos más icónicos del mundo. Combina la historia del centro, la emoción del Maracaná, las vistas del Cristo Redentor y el Pan de Azúcar, culminando con la mágica fiesta y fuegos artificiales en Copacabana.",
-    "category": "Latinoamérica",
-    "season": [
-      "Invierno"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "RÍO DE JANEIRO (GIG/SDU)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "RÍO DE JANEIRO (GIG/SDU)",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Llegada a Río de Janeiro y traslado privado al hotel.",
-      "City tour histórico por Santa Teresa, Escalera de Selarón, Arcos de Lapa y entrada al legendario Estadio Maracaná.",
-      "Tour a la cima del Corcovado para conocer el Cristo Redentor y ascenso en teleférico al Pan de Azúcar.",
-      "Celebración de Año Nuevo en Copacabana con el tradicional show de fuegos artificiales sobre el mar.",
-      "Día libre para descansar en la playa, recorrer Ipanema o realizar actividades opcionales."
-    ],
-    "included": [
-      "Traslado Aeropuerto - Hotel - Aeropuerto en servicio privado.",
-      "5 noches de alojamiento en hotel de su elección.",
-      "Todos los desayunos.",
-      "Tour día completo Corcovado y Pan de Azúcar con entradas, city tour y almuerzo.",
-      "Tour día completo Río Histórico y Estadio Maracaná con Entradas.",
-      "Seguro de viajero Assist Card.",
-      "Transportación terrestre en el circuito con guías en español.",
-      "Impuestos de hospedaje."
-    ],
-    "notIncluded": [
-      "Vuelos internacionales y/o domésticos.",
-      "Alimentaciones y gastos no mencionados.",
-      "Bebidas en los almuerzos incluidos.",
-      "Actividades extras y opcionales."
-    ],
-    "pdfUrl": "/assets/pdfs/Rio-Finde.pdf"
-  },
-  {
-    "id": "colombia-3-joyas",
-    "title": "Las 3 Joyas de Colombia",
-    "destination": "Bogotá, Cartagena y Medellín, Colombia",
-    "dates": "20 al 27 de julio 2026",
-    "duration": "8 Días",
-    "days": 8,
-    "cities": 3,
-    "hotelNights": 7,
-    "image": "https://images.unsplash.com/photo-1536308037887-165852797016?auto=format&fit=crop&w=800&q=80",
-    "description": "Recorrido por Bogotá, Cartagena y Medellín que combina historia, arquitectura colonial, vistas desde Monserrate, La Candelaria, Cartagena amurallada y la energía urbana de Medellín.",
-    "category": "Latinoamérica",
-    "season": [
-      "Verano"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "CDMX (MEX)",
-        "departure": "A coordinar",
-        "to": "BOGOTÁ (BOG)",
-        "arrival": "A coordinar",
-        "stops": "Vuelo redondo directo / ruta MEX-BOG-CTG-MED-MEX",
-        "estimatedPrice": "Incluido en tarifa"
-      },
-      "return": {
-        "from": "MEDELLÍN (MDE)",
-        "departure": "A coordinar",
-        "to": "CDMX (MEX)",
-        "arrival": "A coordinar",
-        "stops": "Vuelo redondo directo / ruta MEX-BOG-CTG-MED-MEX",
-        "estimatedPrice": "Incluido en tarifa"
-      }
-    },
-    "activities": [
-      "City tour Bogotá con Monserrate, Museo del Oro, La Candelaria y Plaza de Bolívar.",
-      "Museo Botero y obras de maestros como Picasso y Dalí.",
-      "Traslado/vuelo hacia Cartagena.",
-      "City tour Cartagena con bahía, barrio Manga y Castillo de San Felipe.",
-      "Día libre en Cartagena para actividades personales u opcionales.",
-      "City tour Medellín en bus turístico por Parque de los Pies Descalzos, Parque del Río, Pueblito Paisa y Parque de la Inflexión."
-    ],
-    "included": [
-      "Vuelo redondo directo desde Ciudad de México en la ruta MEX-BOG-CTG-MED-MEX con artículo personal y equipaje de mano de 10 kg.",
-      "Traslados Aeropuerto - Hotel - Aeropuerto.",
-      "7 noches de alojamiento en categoría elegida con desayuno incluido.",
-      "City Tour en Bogotá.",
-      "City Tour en Cartagena.",
-      "City Tour en Medellín.",
-      "Seguro de viajero Assist Card.",
-      "Impuestos aéreos y de hospedaje."
-    ],
-    "notIncluded": [
-      "Alimentaciones y gastos no mencionados.",
-      "Gastos personales.",
-      "Actividades extras y opcionales.",
-      "Propinas."
-    ],
-    "pdfUrl": "/assets/pdfs/Colombia-3-Joyas.pdf"
-  },
-  {
-    "id": "colombia-cartagena-encanto",
-    "title": "Cartagena, El Encanto de Colombia",
-    "destination": "Cartagena e Isla, Colombia",
-    "dates": "22 al 27 de junio",
-    "duration": "6 Días",
-    "days": 6,
-    "cities": 2,
-    "hotelNights": 5,
-    "image": "https://images.unsplash.com/photo-1583531352515-8884af319dc1?auto=format&fit=crop&w=800&q=80",
-    "description": "Cartagena se caracteriza por su riqueza histórica, cultural y arquitectónica, especialmente en su centro histórico amurallado, declarado Patrimonio de la Humanidad por la UNESCO.",
-    "category": "Latinoamérica",
-    "season": [
-      "Verano"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "CDMX (MEX)",
-        "departure": "09:20",
-        "to": "CARTAGENA (CTG)",
-        "arrival": "14:30",
-        "stops": "Vuelo directo",
-        "estimatedPrice": "699 USD"
-      },
-      "return": {
-        "from": "CARTAGENA (CTG)",
-        "departure": "16:00",
-        "to": "CDMX (MEX)",
-        "arrival": "19:15",
-        "stops": "Vuelo directo",
-        "estimatedPrice": "Incluido en tarifa aérea"
-      }
-    },
-    "activities": [
-      "Recepción y traslado desde el Aeropuerto Rafael Núñez al hotel.",
-      "Tour de Ciudad Cartagena con recorrido panorámico por la bahía y el barrio Manga.",
-      "Visita al majestuoso Castillo de San Felipe de Barajas.",
-      "Recorrido a pie por el centro histórico amurallado con tiempo libre para compras.",
-      "Traslado desde Cartagena a una de las Islas cercanas según elección.",
-      "Día libre en la isla para realizar actividades personales o tour opcional.",
-      "Recogida y traslado de regreso a la ciudad de Cartagena."
-    ],
-    "included": [
-      "Traslado aeropuerto - hotel - aeropuerto en servicios compartidos.",
-      "Desayunos.",
-      "3 noches en Cartagena (2 al inicio y 1 al final) y 2 noches en la Isla cercana.",
-      "Tours y guía.",
-      "Impuestos y propinas.",
-      "Tarjeta Assist Card."
-    ],
-    "notIncluded": [
-      "Consumos adicionales y retorno al hotel al finalizar la cena en el Club de Pesca.",
-      "Seguro hotelero (voluntario).",
-      "Impuestos de muelle.",
-      "Servicios y gastos no especificados.",
-      "Nada que no venga especificado en el apartado INCLUYE."
-    ],
-    "pdfUrl": "/assets/pdfs/Colombia-Cartagena.pdf"
-  },
-  {
-    "id": "costa-rica-linda",
-    "title": "Linda Costa Rica 2026",
-    "destination": "San José, Cartago y Orosí, Costa Rica",
-    "dates": "A consultar",
-    "duration": "5 Días",
-    "days": 5,
-    "cities": 3,
-    "hotelNights": 4,
-    "image": "https://images.unsplash.com/photo-1536708880921-03a9306ec47d?auto=format&fit=crop&w=800&q=80",
-    "description": "Descubre lo mejor de Costa Rica en una experiencia que combina cultura, historia y naturaleza en solo cinco días. Comenzarás en San José y continuarás con paisajes volcánicos en el Volcán Irazú, Cartago y el Valle de Orosí.",
-    "category": "Latinoamérica",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "CDMX (MEX)",
-        "departure": "A coordinar",
-        "to": "SAN JOSÉ (SJO)",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "SAN JOSÉ (SJO)",
-        "departure": "A coordinar",
-        "to": "CDMX (MEX)",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Tour de la ciudad de San José con Museo de Arte Costarricense, Parque La Sabana, Teatro Nacional y Catedral Metropolitana.",
-      "Visita al Volcán Irazú, Basílica de Nuestra Señora de los Ángeles en Cartago y Valle de Orosí.",
-      "Día libre para disfrutar a tu ritmo o añadir experiencias opcionales como Parque Nacional Manuel Antonio o aguas termales del Volcán Arenal."
-    ],
-    "included": [
-      "Traslado Aeropuerto - Hotel - Aeropuerto.",
-      "4 noches de alojamiento en hotel de su elección.",
-      "Todos los desayunos y 2 comidas.",
-      "City tour de San José.",
-      "Tour Volcán Irazú, Basílica de Nuestra Señora de los Ángeles en Cartago y Valle de Orosí.",
-      "Seguro de viajero Assist Card.",
-      "Transportación terrestre en el circuito.",
-      "Impuestos de hospedaje."
-    ],
-    "notIncluded": [
-      "Alimentaciones y gastos no mencionados.",
-      "Actividades extras y opcionales."
-    ],
-    "pdfUrl": "/assets/pdfs/CostaRica-Linda.pdf"
-  },
-  {
-    "id": "costa-rica-para-todos",
-    "title": "Costa Rica Para Todos",
-    "destination": "San José, Irazú, Orosí y Manuel Antonio, Costa Rica",
-    "dates": "A consultar",
-    "duration": "8 Días",
-    "days": 8,
-    "cities": 4,
-    "hotelNights": 7,
-    "image": "https://images.unsplash.com/photo-1536709017021-ce8f99c17e38?auto=format&fit=crop&w=800&q=80",
-    "description": "Experiencia por Costa Rica con ciudad, cultura, naturaleza y aventura: San José, Volcán Irazú, Cartago, Valle de Orosí, Manuel Antonio, cena-show típica y canopy/rappel.",
-    "category": "Latinoamérica",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "CDMX (MEX)",
-        "departure": "A coordinar",
-        "to": "SAN JOSÉ (SJO)",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "SAN JOSÉ (SJO)",
-        "departure": "A coordinar",
-        "to": "CDMX (MEX)",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Tour de la ciudad de San José con Museo de Arte Costarricense, Parque La Sabana, Teatro Nacional, Catedral Metropolitana, Plaza de la Cultura y Mercado Central.",
-      "Volcán Irazú, Basílica de Nuestra Señora de los Ángeles, Cartago y Valle de Orosí.",
-      "Parque Nacional Manuel Antonio con playas, senderos y biodiversidad.",
-      "Cena-show típico en Restaurante Mirador Ran Luna.",
-      "Día libre para actividades personales o experiencias opcionales.",
-      "Tour de aventura con canopy, plataformas y rappel."
-    ],
-    "included": [
-      "Recepción y traslado al hotel a la llegada.",
-      "Tours descritos en itinerario.",
-      "Desayunos y comidas indicadas en los días mencionados.",
-      "Traslado al aeropuerto para vuelo de regreso."
-    ],
-    "notIncluded": [
-      "Actividades opcionales no indicadas como incluidas.",
-      "Traslado de regreso desde la cena-show cuando se indique por cuenta del pasajero.",
-      "Gastos personales.",
-      "Servicios no especificados."
-    ],
-    "pdfUrl": "/assets/pdfs/CostaRica-ParaTodos.pdf"
-  },
-  {
-    "id": "cuba-habana-varadero",
-    "title": "Cuba - La Habana & Varadero",
-    "destination": "La Habana y Varadero, Cuba",
-    "dates": "A consultar",
-    "duration": "5 Días",
-    "days": 5,
-    "cities": 2,
-    "hotelNights": 4,
-    "image": "https://images.unsplash.com/photo-1602515677088-2643f5eabaa6?auto=format&fit=crop&w=800&q=80",
-    "description": "Programa equilibrado entre ciudad y descanso para vivir La Habana colonial, tradiciones caribeñas y playas de arena blanca en Varadero.",
-    "category": "Caribe",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "CDMX/AIFA",
-        "departure": "A coordinar",
-        "to": "LA HABANA (HAV)",
-        "arrival": "A coordinar",
-        "stops": "Vuelo directo",
-        "estimatedPrice": "Incluido en tarifa"
-      },
-      "return": {
-        "from": "LA HABANA (HAV)",
-        "departure": "A coordinar",
-        "to": "CDMX/AIFA",
-        "arrival": "A coordinar",
-        "stops": "Vuelo directo",
-        "estimatedPrice": "Incluido en tarifa"
-      }
-    },
-    "activities": [
-      "Traslado de La Habana a Varadero y tiempo libre para playa.",
-      "Día libre en Varadero en plan Todo Incluido.",
-      "Traslado de Varadero a La Habana.",
-      "City Tour guiado por La Habana, Centro Histórico y La Habana Moderna.",
-      "Visitas panorámicas a Palacio Presidencial, Parque Central, Capitolio, Floridita, Bodeguita del Medio, Plaza de la Catedral, Plaza de Armas, Malecón, Universidad de La Habana y Plaza de la Revolución.",
-      "Mirador del Gran Parque Histórico Militar Morro-Cabaña."
-    ],
-    "included": [
-      "Vuelo CDMX/AIFA - Habana - CDMX/AIFA.",
-      "2 noches en Varadero en plan Todo Incluido.",
-      "2 noches en La Habana con desayunos incluidos.",
-      "Traslado In: aeropuerto - hotel Varadero.",
-      "Traslado Inter: hotel Varadero - hotel La Habana.",
-      "Traslado Out: hotel La Habana - aeropuerto.",
-      "City Tour en La Habana.",
-      "Seguro de asistencia médica.",
-      "Visa electrónica."
-    ],
-    "notIncluded": [
-      "Gastos personales.",
-      "Comidas no mencionadas.",
-      "Cualquier servicio no mencionado en las inclusiones.",
-      "Servicios y gastos no especificados."
-    ],
-    "pdfUrl": "/assets/pdfs/Cuba-Habana-Varadero.pdf"
-  },
-  {
-    "id": "cuba-hvc",
-    "title": "Habana, Varadero & Cayo Santa María",
-    "destination": "La Habana, Varadero y Cayo Santa María, Cuba",
-    "dates": "Salidas: Martes, Jueves y Sábados",
-    "duration": "8 Días",
-    "days": 8,
-    "cities": 3,
-    "hotelNights": 7,
-    "image": "https://images.unsplash.com/photo-1574436713488-0d99167108cf?auto=format&fit=crop&w=800&q=80",
-    "description": "Experiencia por Cuba que combina la esencia cultural de La Habana, la tranquilidad de Varadero y el entorno paradisíaco de Cayo Santa María.",
-    "category": "Caribe",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "AIFA",
-        "departure": "A coordinar",
-        "to": "LA HABANA (HAV)",
-        "arrival": "A coordinar",
-        "stops": "Vuelo directo / a confirmar",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "LA HABANA (HAV)",
-        "departure": "A coordinar",
-        "to": "AIFA",
-        "arrival": "A coordinar",
-        "stops": "Vuelo directo / a confirmar",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Traslado inicial a Varadero y tiempo libre de playa.",
-      "Día de playa y relajación en Varadero.",
-      "Traslado a Cayo Santa María con tarde libre.",
-      "Días libres en Cayo Santa María con opción de snorkel, kayak o paseo en barco.",
-      "Traslado a La Habana.",
-      "City Tour guiado por La Habana, Centro Histórico y La Habana Moderna.",
-      "Visita panorámica a puntos icónicos de La Habana y mirador del Morro-Cabaña."
-    ],
-    "included": [
-      "2 noches en Varadero en plan Todo Incluido.",
-      "2 noches en Cayo Santa María en plan Todo Incluido.",
-      "2 noches en La Habana con desayunos incluidos.",
-      "Traslado In: aeropuerto - hotel Varadero.",
-      "Traslados Inter: Varadero - Cayo Santa María - La Habana.",
-      "Traslado Out: hotel La Habana - aeropuerto.",
-      "City Tour en La Habana.",
-      "Seguro de asistencia médica.",
-      "Visa electrónica."
-    ],
-    "notIncluded": [
-      "Gastos personales.",
-      "Comidas no mencionadas.",
-      "Cualquier servicio no mencionado en las inclusiones.",
-      "Servicios y gastos no especificados."
-    ],
-    "pdfUrl": "/assets/pdfs/Cuba-HVC.pdf"
-  },
-  {
-    "id": "cuba-varadero",
-    "title": "Varadero",
-    "destination": "Varadero, Cuba",
-    "dates": "A consultar",
-    "duration": "6 Días",
-    "days": 6,
-    "cities": 1,
-    "hotelNights": 5,
-    "image": "https://images.unsplash.com/photo-1500759285222-a95626b934cb?auto=format&fit=crop&w=800&q=80",
-    "description": "Estancia de playa en Varadero, reconocido por sus playas de arena blanca, aguas turquesa, arrecifes para buceo y snorkel, cuevas naturales y reservas ecológicas.",
-    "category": "Caribe",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "AIFA",
-        "departure": "A coordinar",
-        "to": "LA HABANA (HAV)",
-        "arrival": "A coordinar",
-        "stops": "Vuelo directo",
-        "estimatedPrice": "Incluido en tarifa"
-      },
-      "return": {
-        "from": "LA HABANA (HAV)",
-        "departure": "A coordinar",
-        "to": "AIFA",
-        "arrival": "A coordinar",
-        "stops": "Vuelo directo",
-        "estimatedPrice": "Incluido en tarifa"
-      }
-    },
-    "activities": [
-      "Llegada a La Habana y traslado incluido a Varadero.",
-      "Días libres para disfrutar playas y servicios del hotel en plan Todo Incluido.",
-      "Tiempo libre para descanso, actividades recreativas o playa.",
-      "Traslado al aeropuerto de La Habana para vuelo de regreso."
-    ],
-    "included": [
-      "Vuelo AIFA - Habana - AIFA con equipaje de 10 kg y bolso de mano.",
-      "5 noches en Varadero en plan Todo Incluido.",
-      "Traslado aeropuerto - hotel Varadero - aeropuerto.",
-      "Seguro de asistencia médica.",
-      "Visa electrónica."
-    ],
-    "notIncluded": [
-      "Gastos personales.",
-      "Comidas no mencionadas.",
-      "Cualquier servicio no mencionado en las inclusiones.",
-      "Servicios y gastos no especificados."
-    ],
-    "pdfUrl": "/assets/pdfs/Cuba-Varadero.pdf"
-  },
-  {
-    "id": "republica-dominicana-merengue-bachata",
-    "title": "República Dominicana: Merengue y Bachata",
-    "destination": "Santo Domingo, Bonao, La Vega, Jarabacoa, Puerto Plata y Santiago",
-    "dates": "A consultar",
-    "duration": "6 Días",
-    "days": 6,
-    "cities": 6,
-    "hotelNights": 5,
-    "image": "https://images.unsplash.com/photo-1575950674322-3a1977724f2e?auto=format&fit=crop&w=800&q=80",
-    "description": "Recorrido por República Dominicana que combina Santo Domingo colonial, naturaleza, café, montaña, Puerto Plata, funicular, Ron Macorix y Santiago de los Caballeros.",
-    "category": "Caribe",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "SANTO DOMINGO",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "PUERTO PLATA",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Llegada a Santo Domingo con traslado incluido y cena de bienvenida.",
-      "City tour de Santo Domingo con Los Tres Ojos, Faro a Colón, Zona Colonial, Catedral Primada de América y Alcázar de Colón.",
-      "Ruta hacia Bonao con degustación de café dominicano.",
-      "Visita al Santuario del Santo Cerro en La Vega.",
-      "Estancia en Jarabacoa con cena incluida y visita a Calle Café Colao.",
-      "Recorrido por Puerto Plata, calle de los paraguas, paseo de Doña Blanca y funicular de Puerto Plata.",
-      "Casa del Ron Macorix con degustación y recorrido panorámico por Santiago de los Caballeros."
-    ],
-    "included": [
-      "Recepción y traslado al hotel a la llegada.",
-      "Cena de bienvenida.",
-      "City tours y recorridos descritos en el itinerario.",
-      "Cena incluida en Jarabacoa.",
-      "Alojamiento en Puerto Plata en hotel todo incluido según itinerario.",
-      "Traslado al aeropuerto para regreso."
-    ],
-    "notIncluded": [
-      "Vuelos internacionales.",
-      "Almuerzos señalados como no incluidos.",
-      "Gastos personales.",
-      "Servicios no especificados en el itinerario."
-    ],
-    "pdfUrl": "/assets/pdfs/Dominicana-Merengue-Bachata.pdf"
-  },
-  {
-    "id": "republica-dominicana",
-    "title": "Punta Cana, Isla Saona y Buggys",
-    "destination": "Punta Cana e Isla Saona, República Dominicana",
-    "dates": "A consultar",
-    "duration": "7 Días",
-    "days": 7,
-    "cities": 2,
-    "hotelNights": 6,
-    "image": "https://images.unsplash.com/photo-1697302611781-5166533305da?auto=format&fit=crop&w=800&q=80",
-    "description": "Una escapada perfecta al paraíso caribeño con alojamiento de primera. El viaje combina días de descanso en Punta Cana con experiencias a elección como aventura en buggy o excursión a Santo Domingo, además de una travesía en catamarán a Isla Saona.",
-    "category": "Caribe",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "MÉXICO",
-        "departure": "A coordinar",
-        "to": "PUNTA CANA (PUJ)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "PUNTA CANA (PUJ)",
-        "departure": "A coordinar",
-        "to": "MÉXICO",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Llegada al Aeropuerto Internacional de Punta Cana y traslado al hotel.",
-      "Días libres para disfrutar de las instalaciones y el servicio premium todo incluido del resort.",
-      "Aventura a elegir: Paseo en Buggys por la zona de Punta Cana o excursión cultural de día completo a Santo Domingo.",
-      "Excursión a Isla Saona navegando en catamarán desde Bayahibe, con almuerzo buffet, baile merengue y parada en la piscina natural.",
-      "Retorno al aeropuerto para tomar el vuelo de regreso a casa."
-    ],
-    "included": [
-      "Traslados Aeropuerto - Hotel - Aeropuerto.",
-      "6 noches de alojamiento.",
-      "A elegir: Paseo en buggys en Punta Cana o City tour de día completo en Santo Domingo, comida y entradas necesarias incluidas.",
-      "Excursión Isla Saona.",
-      "Impuestos hoteleros.",
-      "Seguro de viajero Assist Card."
-    ],
-    "notIncluded": [
-      "Consumos y servicios adicionales en los hoteles (Spa, estética, etc).",
-      "Propinas.",
-      "Gastos personales.",
-      "Cualquier otro servicio no especificado en el apartado de incluye."
-    ],
-    "pdfUrl": "/assets/pdfs/Punta-Cana-Isla-Saona-Buggys.pdf"
-  },
-  {
-    "id": "republica-dominicana-punta-cana",
-    "title": "Punta Cana",
-    "destination": "Punta Cana, República Dominicana",
-    "dates": "A consultar",
-    "duration": "5 Días",
-    "days": 5,
-    "cities": 1,
-    "hotelNights": 4,
-    "image": "https://images.unsplash.com/photo-1619680939776-4eadd78709a4?auto=format&fit=crop&w=800&q=80",
-    "description": "Una escapada perfecta al paraíso caribeño con alojamiento en el exclusivo Iberostar Waves Dominicana. El plan todo incluido permite disfrutar sin preocupaciones de playas de arena blanca, gastronomía, entretenimiento y descanso absoluto en Punta Cana.",
-    "category": "Caribe",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "MÉXICO",
-        "departure": "A coordinar",
-        "to": "PUNTA CANA (PUJ)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "PUNTA CANA (PUJ)",
-        "departure": "A coordinar",
-        "to": "MÉXICO",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Día 1: Llegada al Aeropuerto Internacional de Punta Cana y traslado al hotel para check-in.",
-      "Días 2, 3 y 4: Días libres para disfrutar de las instalaciones, restaurantes, bares y el servicio premium todo incluido del resort Iberostar Waves Dominicana, descansando en sus playas paradisíacas.",
-      "Día 5: Check-out y recogida en el hotel para su traslado al aeropuerto y tomar el vuelo de regreso a casa."
-    ],
-    "included": [
-      "Traslados Aeropuerto - Hotel - Aeropuerto.",
-      "4 noches de alojamiento en plan todo incluido en el hotel Iberostar Waves Dominicana.",
-      "Impuestos hoteleros.",
-      "Seguro de viajero Assist Card."
-    ],
-    "notIncluded": [
-      "Consumos y servicios adicionales en los hoteles (Spa, estética, etc).",
-      "Propinas.",
-      "Gastos personales.",
-      "Cualquier otro servicio no especificado en el apartado de incluye."
-    ],
-    "pdfUrl": "/assets/pdfs/PuntaCana.pdf"
-  },
-  {
-    "id": "guatemala-aventura-cultura",
-    "title": "Aventura y Cultura",
-    "destination": "Antigua, Acatenango, Chichicastenango, Atitlán y Ciudad de Guatemala",
-    "dates": "A consultar",
-    "duration": "8 Días",
-    "days": 8,
-    "cities": 5,
-    "hotelNights": 7,
-    "image": "https://images.unsplash.com/photo-1528543606781-2f6e6857f318?auto=format&fit=crop&w=800&q=80",
-    "description": "Recorrido por Guatemala que combina historia colonial, tradiciones vivas, legado maya, trekking al Volcán Acatenango, Chichicastenango, Lago Atitlán, San Juan La Laguna y Ciudad Cayalá.",
-    "category": "Centroamérica",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "GUATEMALA (GUA)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "GUATEMALA (GUA)",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Tour guiado por Antigua con Iglesia de la Merced, Plaza de Armas y Catedral.",
-      "Trekking al Volcán Acatenango con caminata al campamento base y vistas al Volcán de Fuego.",
-      "Descenso del Volcán Acatenango y tarde libre.",
-      "Visita al mercado de Chichicastenango e Iglesia de Santo Tomás.",
-      "Lago Atitlán y visita panorámica de Panajachel.",
-      "Bote a San Juan La Laguna con cooperativas de chocolate, textiles y plantas medicinales.",
-      "Tour por Ciudad de Guatemala y Ciudad Cayalá."
-    ],
-    "included": [
-      "Recepción y traslado al hotel en Antigua.",
-      "Tours y traslados descritos en el itinerario.",
-      "Desayunos según itinerario.",
-      "Transporte terrestre en circuito.",
-      "Guías durante actividades indicadas."
-    ],
-    "notIncluded": [
-      "Vuelos internacionales.",
-      "Gastos personales.",
-      "Servicios no especificados.",
-      "Equipo o gastos personales requeridos para Acatenango."
-    ],
-    "pdfUrl": "/assets/pdfs/Guatemala-Aventura-Cultura.pdf"
-  },
-  {
-    "id": "guatemala-descubriendo",
-    "title": "Descubriendo Guatemala",
-    "destination": "Antigua, Chichicastenango, Lago Atitlán y Ciudad de Guatemala",
-    "dates": "Salidas: Martes y Viernes",
-    "duration": "5 Días",
-    "days": 5,
-    "cities": 4,
-    "hotelNights": 4,
-    "image": "https://images.unsplash.com/photo-1637966201771-b0b251baa2ef?auto=format&fit=crop&w=800&q=80",
-    "description": "Viaje corto por Guatemala que mezcla historia, cultura viva y naturaleza: Antigua, mercado de Chichicastenango, Lago Atitlán, San Juan La Laguna y regreso a Ciudad de Guatemala.",
-    "category": "Centroamérica",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "GUATEMALA (GUA)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos internacionales no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "GUATEMALA (GUA)",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos internacionales no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Tour de medio día por Antigua con Iglesia de la Merced, Plaza de Armas y Catedral.",
-      "Mercado de Chichicastenango e Iglesia de Santo Tomás.",
-      "Lago Atitlán, Panajachel y paisajes volcánicos.",
-      "Paseo en bote a San Juan La Laguna.",
-      "Visita a cooperativas de chocolate, textiles y plantas medicinales."
-    ],
-    "included": [
-      "Traslado Aeropuerto - Hotel - Aeropuerto.",
-      "4 noches de alojamiento en hotel de su elección.",
-      "Todos los desayunos.",
-      "City tour de Antigua medio día.",
-      "Tour Chichicastenango - Lago Atitlán y Panajachel día completo.",
-      "Tour San Juan La Laguna con visita a cooperativas, incluye lancha.",
-      "Guía certificado durante los tours.",
-      "Entradas según sea necesario según itinerario.",
-      "Transportación terrestre en el circuito.",
-      "Seguro de viajero Assist Card.",
-      "Impuestos de hospedaje."
-    ],
-    "notIncluded": [
-      "Property fee aplicable para hoteles en Antigua y Atitlán.",
-      "Vuelos internacionales.",
-      "Alimentaciones y gastos no mencionados.",
-      "Actividades extras y opcionales."
-    ],
-    "pdfUrl": "/assets/pdfs/Guatemala-Descubriendo.pdf"
-  },
-  {
-    "id": "guatemala-espectacular",
-    "title": "Guatemala Espectacular",
-    "destination": "Antigua, Chichicastenango, Lago Atitlán, Tikal, Yaxhá y Ciudad de Guatemala",
-    "dates": "Salidas: Martes y Viernes · Válidas hasta 20 diciembre 2026",
-    "duration": "7 Días",
-    "days": 7,
-    "cities": 6,
-    "hotelNights": 6,
-    "image": "https://images.unsplash.com/photo-1580250642511-1660fe42ad58?auto=format&fit=crop&w=800&q=80",
-    "description": "Recorrido por los destinos más impresionantes de Guatemala: Antigua, Chichicastenango, Lago Atitlán, San Juan La Laguna, Tikal y Yaxhá.",
-    "category": "Centroamérica",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "A consultar",
-        "departure": "A coordinar",
-        "to": "GUATEMALA (GUA)",
-        "arrival": "A coordinar",
-        "stops": "Vuelos internacionales no incluidos",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "GUATEMALA (GUA)",
-        "departure": "A coordinar",
-        "to": "A consultar",
-        "arrival": "A coordinar",
-        "stops": "Vuelos internacionales no incluidos",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Traslado del aeropuerto a Antigua Guatemala.",
-      "Tour de Antigua medio día con Iglesia de la Merced, Plaza de Armas y Catedral.",
-      "Chichicastenango, Iglesia de Santo Tomás y Lago Atitlán.",
-      "Bote a San Juan La Laguna con cooperativas de chocolate, textiles y plantas medicinales.",
-      "Vuelo interno a Flores y visita al sitio arqueológico de Tikal.",
-      "Visita arqueológica a Yaxhá y regreso a Ciudad de Guatemala."
-    ],
-    "included": [
-      "6 noches de alojamiento.",
-      "Desayunos diarios, excepto día 05 que es Box Lunch.",
-      "Impuestos hoteleros.",
-      "Traslados y tours detallados.",
-      "Guía durante tours.",
-      "Entradas según itinerario.",
-      "Almuerzo campestre en Tikal.",
-      "Lancha en Panajachel."
-    ],
-    "notIncluded": [
-      "Property fee aplicable en hoteles en Antigua y Atitlán.",
-      "Vuelos internacionales.",
-      "Gastos personales.",
-      "Servicios no especificados."
-    ],
-    "pdfUrl": "/assets/pdfs/Guatemala-Espectacular.pdf"
-  },
-  {
-    "id": "puerto-rico-isla-del-encanto",
-    "title": "Puerto Rico: La Isla del Encanto",
-    "destination": "San Juan, Puerto Rico",
-    "dates": "Salidas: Jueves",
-    "duration": "5 Días",
-    "days": 5,
-    "cities": 2,
-    "hotelNights": 4,
-    "image": "https://images.unsplash.com/photo-1717263209162-ea0cda01ff70?auto=format&fit=crop&w=800&q=80",
-    "description": "Escapada a San Juan que combina días libres, paseo por la bahía al atardecer, historia del Viejo San Juan, Castillo San Cristóbal y visita a la destilería Bacardí.",
-    "category": "Caribe",
-    "season": [
-      "Todas"
-    ],
-    "pricePerPerson": 0,
-    "flights": {
-      "outbound": {
-        "from": "MÉXICO",
-        "departure": "A coordinar",
-        "to": "SAN JUAN (SJU)",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      },
-      "return": {
-        "from": "SAN JUAN (SJU)",
-        "departure": "A coordinar",
-        "to": "MÉXICO",
-        "arrival": "A coordinar",
-        "stops": "A consultar",
-        "estimatedPrice": "A consultar"
-      }
-    },
-    "activities": [
-      "Llegada a San Juan y traslado al hotel.",
-      "Paseo por la bahía al atardecer de 90 minutos.",
-      "Vistas del Paseo de La Princesa, Mansión del Gobernador, murallas de San Juan y destilería Bacardí desde el agua.",
-      "Excursión histórica por el Viejo San Juan con Castillo San Cristóbal.",
-      "Visita a Casa Bacardí con bebida complementaria y degustación para mayores de 21 años.",
-      "Día libre para actividades personales."
-    ],
-    "included": [
-      "Traslados Aeropuerto - Hotel - Aeropuerto.",
-      "4 noches de alojamiento con desayuno incluido.",
-      "Paseo por la bahía al atardecer.",
-      "Excursión Histórica por el Viejo San Juan con visita a Destilería Bacardí.",
-      "Seguro de viajero Assist Card."
-    ],
-    "notIncluded": [
-      "Consumos y servicios adicionales.",
-      "Propinas.",
-      "Resort fee San Juan City, pago directo de 40 USD por habitación.",
-      "Gastos personales.",
-      "Cualquier otro servicio no especificado en el apartado de incluye."
-    ],
-    "pdfUrl": "/assets/pdfs/PuertoRico-Isla.pdf"
-  }
+  activities: [
+    "Llegada al Aeropuerto Internacional de Punta Cana, recibimiento y traslado al hotel.",
+    "Alojamiento en hotel de su elección en plan todo incluido.",
+    "Excursión de día completo a Santo Domingo, la primera ciudad fundada por los europeos en América.",
+    "Visita a Los Tres Ojos, Faro a Colón y Palacio Presidencial.",
+    "Recorrido por la Zona Colonial, Catedral Primada de América, Calle Las Damas, Panteón Nacional y Alcázar de Colón.",
+    "Almuerzo buffet con sabores típicos dominicanos y recorrido por el Malecón.",
+    "Días libres para disfrutar las instalaciones del resort, playas de Punta Cana y actividades opcionales.",
+    "Posibilidad de añadir experiencias opcionales como Isla Saona, Los Haitises o recorridos de aventura.",
+    "Traslado al aeropuerto para tomar el vuelo de regreso.",
+  ],
+  included: [
+    "Traslados Aeropuerto - Hotel - Aeropuerto en servicio privado.",
+    "5 noches de alojamiento en hotel a su elección, en plan todo incluido.",
+    "Excursión de día completo a Santo Domingo con entradas necesarias y comida buffet.",
+    "Recogida en el hotel y traslado de regreso durante la excursión.",
+    "Transporte en minibús o autobús.",
+    "Guía en español.",
+    "Comida tipo buffet con bebidas sin alcohol.",
+    "Impuestos hoteleros aplicables.",
+    "Seguro de viajero Assist Card.",
+  ],
+  notIncluded: [
+    "Consumos y servicios adicionales en los hoteles, como spa o estética.",
+    "Propinas.",
+    "Gastos personales.",
+    "Actividades opcionales no incluidas.",
+    "Cualquier otro servicio no especificado en el apartado incluido.",
+  ],
+  pdfUrl: "/assets/pdfs/Dominicana-Esencia.pdf",
+},
 ];
 
 export const categories: string[] = [
   "Todos",
   "Latinoamérica",
-  "Caribe",
   "Centroamérica",
-  "Europa",
-  "Asia"
+  "Caribe",
 ];
 
 export const seasons: string[] = [
@@ -1180,6 +708,5 @@ export const seasons: string[] = [
   "Primavera",
   "Verano",
   "Otoño",
-  "Invierno"
+  "Invierno",
 ];
-

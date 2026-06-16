@@ -346,7 +346,7 @@ export default function Nosotros() {
           </div>
         </section>
 
-        {/* VALORES / POR QUÉ ELEGIRNOS */}
+        {/* VALORES */}
         <section
           id="valores"
           className="

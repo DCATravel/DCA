@@ -10,6 +10,7 @@ type ItineraryType = typeof itineraries[0];
 
 const DownloadModal = ({ itinerary, onClose }: { itinerary: ItineraryType, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
+  
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -160,15 +161,13 @@ export default function ItineraryDetail() {
             </div>
           </div>
           
-          {/* BOTÓN DE DESCARGA DESHABILITADO TEMPORALMENTE */}
+          {/* BOTÓN REACTIVADO */}
           <button 
-            disabled
-            // onClick={() => setShowDownloadModal(true)} // <-- Deshabilitado
-            className="inline-flex items-center gap-2 bg-primary-foreground/20 text-primary-foreground/60 font-semibold rounded-xl px-5 py-3 transition-colors shrink-0 cursor-not-allowed"
-            title="Descarga inactiva temporalmente"
+            onClick={() => setShowDownloadModal(true)}
+            className="inline-flex items-center gap-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold rounded-xl px-5 py-3 transition-colors shrink-0 cursor-pointer"
           >
-            <Download className="w-5 h-5 opacity-70" />
-            <span>Descarga inactiva</span>
+            <Download className="w-5 h-5" />
+            <span>Descargar PDF</span>
           </button>
         </div>
       </section>
@@ -347,7 +346,6 @@ export default function ItineraryDetail() {
         </div>
       </section>
 
-      {/* Renderizado condicional del modal aislado */}
       {showDownloadModal && (
         <DownloadModal 
           itinerary={itinerary} 

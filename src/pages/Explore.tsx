@@ -134,10 +134,10 @@ export default function Explore() {
             <Link
               key={dest.id}
               to={`/destinos/${dest.id}`}
-              className="group block"
+              className="group flex flex-col h-full" 
             >
-              <div className="rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
-                <div className="overflow-hidden">
+              <div className="flex flex-col h-full w-full rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
+                <div className="overflow-hidden shrink-0">
                   <img
                     src={dest.image}
                     alt={dest.name}

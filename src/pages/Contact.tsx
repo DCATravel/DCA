@@ -12,7 +12,7 @@ export default function Contact() {
         
         <div className="max-w-5xl w-full mx-auto">
           
-          {/* Encabezado */}
+          {/* Header */}
           <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Estamos aquí para <span className="text-primary italic">ayudarte</span>
@@ -22,7 +22,7 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* Grid de Contacto */}
+          {/* Contact Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* WhatsApp */}
@@ -42,7 +42,7 @@ export default function Contact() {
               </p>
             </a>
 
-            {/* Teléfono */}
+            {/* Phone */}
             <a 
               href="tel:+525513925779" 
               className="group bg-card border border-border rounded-2xl p-8 flex flex-col items-center text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
@@ -57,7 +57,7 @@ export default function Contact() {
               </p>
             </a>
 
-            {/* Correo */}
+            {/* Mail */}
             <a 
               href="mailto:ventas@dcatravel.com" 
               className="group bg-card border border-border rounded-2xl p-8 flex flex-col items-center text-center hover:border-secondary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
@@ -72,7 +72,7 @@ export default function Contact() {
               </p>
             </a>
 
-            {/* Ubicación */}
+            {/* Ubi */}
             <div className="group bg-card border border-border rounded-2xl p-8 flex flex-col items-center text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <MapPin className="w-7 h-7" />
