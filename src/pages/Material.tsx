@@ -53,8 +53,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "3 Joyas de Colombia",
     types: ["flyer", "post"],
     destination_name: "Colombia - Bogotá, Medellín y Cartagena",
-    file_url: "/assets/material/Colombia.png",
-    thumbnail_url: "/assets/material/Colombia.png",
+    file_url: "/assets/material/Colombia.jpg",
+    thumbnail_url: "/assets/material/Colombia.jpg",
     dimensions: "2540x3308",
   },
   {
