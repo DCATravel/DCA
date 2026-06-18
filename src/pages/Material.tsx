@@ -53,8 +53,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "Guatemala Cultura, Folklore y Aventura",
     types: ["flyer"],
     destination_name: "Guatemala",
-    file_url: "/assets/material/Guatemala.jpg",
-    thumbnail_url: "/assets/material/Guatemala.jpg",
+    file_url: "/assets/material/Guatemala1.jpg",
+    thumbnail_url: "/assets/material/Guatemala1.jpg",
     dimensions: "3024x5000",
   },
   {
