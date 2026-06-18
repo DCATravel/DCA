@@ -116,7 +116,7 @@ export default function DestinationItineraries() {
   const navigate = useNavigate();
   
   const destination = destinations.find((d) => d.id === id);
-  const destinationItineraries = itineraries.filter((it) => it.id.startsWith(id || ""));
+  const destinationItineraries = itineraries.filter((it) => it.destinationIds.includes(id || ""));
 
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryType | null>(null);
 
