@@ -30,7 +30,6 @@ interface Material {
 }
 
 const MOCK_MATERIALS: Material[] = [
-  [
   {
     id: 1,
     title: "Brasil - Río de Janeiro Ciudad Maravillosa",
