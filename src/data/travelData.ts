@@ -11,6 +11,7 @@ export interface Destination {
 
 export interface Itinerary {
   id: string;
+  destinationIds: string[];
   title: string;
   destination: string;
   dates: string;
@@ -49,7 +50,7 @@ export interface Itinerary {
 
 export const destinations: Destination[] = [
   {
-    id: "brazil",
+    id: "brasil",
     name: "Brasil",
     location: "Río de Janeiro, São Paulo y Salvador",
     image:
@@ -138,6 +139,7 @@ export const itineraries: Itinerary[] = [
 {
   id: "barrancas-del-cobre",
   title: "Barrancas del Cobre",
+  destinationIds: ["mexico"],
   destination: "El Fuerte, Creel, Barrancas del Cobre y Chihuahua, México",
   dates: "13 al 17 de enero 2027",
   duration: "5 Días",
@@ -204,6 +206,7 @@ export const itineraries: Itinerary[] = [
 {
   id: "rio-ciudad-maravillosa",
   title: "Río: Ciudad Maravillosa",
+  destinationIds: ["brasil"],
   destination: "Río de Janeiro, Angra dos Reis y Petrópolis, Brasil",
   dates: "Salidas diarias del 01 de enero al 30 de noviembre 2026",
   duration: "8 Días",
@@ -273,6 +276,7 @@ export const itineraries: Itinerary[] = [
   id: "rio-e-iguazu",
   title: "Río e Iguazú",
   destination: "Río de Janeiro e Iguazú, Brasil",
+  destinationIds: ["brasil"],
   dates: "Salidas diarias del 01 de enero al 30 de noviembre 2026",
   duration: "8 Días",
   days: 8,
@@ -341,6 +345,7 @@ export const itineraries: Itinerary[] = [
 {
 id: "colombia-3-joyas",
 title: "Las Tres Joyas de Colombia",
+destinationIds: ["colombia"],
 destination: "Bogotá, Cartagena y Medellín",
 dates: "Tarifas 2026",
 duration: "8 Días",
@@ -402,6 +407,7 @@ pdfUrl: "/assets/pdfs/Colombia-3Joyas.pdf",
 {
 id: "caribe-colombiano",
 title: "Caribe Colombiano",
+destinationIds: ["colombia"],
 destination: "Cartagena e Isla del Caribe",
 dates: "Tarifas 2026",
 duration: "6 Días",
@@ -464,6 +470,7 @@ pdfUrl: "/assets/pdfs/Colombia-Cartagena.pdf",
 {
 id: "costa-rica-linda",
 title: "Linda Costa Rica",
+destinationIds: ["costa-rica"],
 destination: "San José, Volcán Irazú, Cartago y Valle de Orosí",
 dates: "Viaja del 01 de enero al 31 de diciembre 2026",
 duration: "5 Días",
@@ -525,6 +532,7 @@ pdfUrl: "/assets/pdfs/CostaRica-Linda.pdf",
 {
 id: "costa-rica-para-todos",
 title: "Costa Rica Para Todos",
+destinationIds: ["costa-rica"],
 destination:
 "San José, Volcán Irazú, Valle de Orosí, Manuel Antonio y Bosque Nuboso",
 dates: "Viaja del 01 de enero al 31 de diciembre 2026",
@@ -592,6 +600,7 @@ pdfUrl: "/assets/pdfs/CostaRica-ParaTodos.pdf",
 {
 id: "guatemala-aventura-cultura",
 title: "Guatemala - Aventura y Cultura",
+destinationIds: ["guatemala"],
 destination:
 "Antigua, Acatenango, Chichicastenango, Lago Atitlán y Ciudad de Guatemala",
 dates: "Inicia en domingo del 01 de enero al 31 de diciembre 2026",
@@ -661,6 +670,7 @@ pdfUrl: "/assets/pdfs/Guatemala-Aventura-Cultura.pdf",
 {
 id: "guatemala-descubriendo",
 title: "Descubriendo Guatemala",
+destinationIds: ["guatemala"],
 destination: "Antigua, Chichicastenango, Lago Atitlán y Ciudad de Guatemala",
 dates: "Inicio de viaje todos los martes y viernes del 2026",
 duration: "5 Días",
@@ -727,6 +737,7 @@ pdfUrl: "/assets/pdfs/Guatemala-Descubriendo.pdf",
 {
 id: "guatemala-magica",
 title: "Guatemala Mágica",
+destinationIds: ["guatemala"],
 destination: "Antigua, Chichicastenango, Lago Atitlán, Tikal y Ciudad de Guatemala",
 dates: "Inicia martes y viernes del 2026",
 duration: "6 Días",
@@ -797,6 +808,7 @@ pdfUrl: "/assets/pdfs/Guatemala-Magica.pdf",
 {
 id: "puerto-rico-isla-del-encanto",
 title: "Puerto Rico: La Isla del Encanto",
+destinationIds: ["puerto-rico"],
 destination: "San Juan, Puerto Rico",
 dates: "Inicio de viaje todos los jueves del 2026",
 duration: "5 Días",
@@ -859,6 +871,7 @@ pdfUrl: "/assets/pdfs/PuertoRico-Isla.pdf",
 {
   id: "republica-dominicana-esencia-dominicana",
   title: "Esencia Dominicana",
+  destinationIds: ["republica-dominicana"],
   destination: "Punta Cana y Santo Domingo, República Dominicana",
   dates: "Salidas diarias 2026",
   duration: "6 Días",
