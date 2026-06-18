@@ -33,7 +33,7 @@ export default defineConfig(({ command }) => {
         hostname: process.env.VITE_SITE_URL ?? 'https://dcatravel.com',
         lastmod: getSitemapLastmod(),
         readable: true,
-        generateRobotsTxt: true,
+        generateRobotsTxt: false,
       }),
       ...(blogPrerenderRoutes.length > 0
         ? vitePrerenderPlugin({
