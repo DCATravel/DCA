@@ -44,8 +44,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "Colombia Dorada",
     types: ["flyer", "banner"],
     destination_name: "Colombia",
-    file_url: "/assets/material/Colombia.jpg",
-    thumbnail_url: "/assets/material/Colombia.jpg",
+    file_url: "/assets/material/Colombia2.jpeg",
+    thumbnail_url: "/assets/material/Colombia2.jpeg",
     dimensions: "3024x5000",
   },
   {
@@ -71,8 +71,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "Cuba - Varadero, Cayo Santa María y La Habana",
     types: ["flyer", "post"],
     destination_name: "Cuba",
-    file_url: "/assets/material/Cuba2.jpg",
-    thumbnail_url: "/assets/material/Cuba2.jpg",
+    file_url: "/assets/material/Cuba2.jpeg",
+    thumbnail_url: "/assets/material/Cuba2.jpeg",
     dimensions: "2540x3308",
   },
   {
