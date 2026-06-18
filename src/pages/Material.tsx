@@ -30,14 +30,15 @@ interface Material {
 }
 
 const MOCK_MATERIALS: Material[] = [
+  [
   {
     id: 1,
-    title: "Barrancas del Cobre",
+    title: "Brasil - Río de Janeiro Ciudad Maravillosa",
     types: ["flyer", "post"],
-    destination_name: "México - Chihuahua",
-    file_url: "/assets/material/Barrancas.png",
-    thumbnail_url: "/assets/material/Barrancas.png",
-    dimensions: "1228x1600",
+    destination_name: "Brasil - Río de Janeiro",
+    file_url: "/assets/material/Brasil.png",
+    thumbnail_url: "/assets/material/Brasil.png",
+    dimensions: "2540x3308",
   },
   {
     id: 2,
@@ -50,24 +51,15 @@ const MOCK_MATERIALS: Material[] = [
   },
   {
     id: 3,
-    title: "Guatemala Cultura, Folklore y Aventura",
-    types: ["flyer"],
-    destination_name: "Guatemala",
-    file_url: "/assets/material/Guatemala1.jpg",
-    thumbnail_url: "/assets/material/Guatemala1.jpg",
-    dimensions: "3024x5000",
+    title: "3 Joyas de Colombia",
+    types: ["flyer", "post"],
+    destination_name: "Colombia - Bogotá, Medellín y Cartagena",
+    file_url: "/assets/material/Colombia.png",
+    thumbnail_url: "/assets/material/Colombia.png",
+    dimensions: "2540x3308",
   },
   {
     id: 4,
-    title: "Cuba Paradisiaca",
-    types: ["flyer"],
-    destination_name: "Cuba",
-    file_url: "/assets/material/Cuba.jpg",
-    thumbnail_url: "/assets/material/Cuba.jpg",
-    dimensions: "3024x5000",
-  },
-  {
-    id: 5,
     title: "Costa Rica y Brasil",
     types: ["flyer", "banner"],
     destination_name: "Costa Rica y Brasil",
@@ -76,10 +68,91 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "3024x5000",
   },
   {
+    id: 5,
+    title: "Cuba - Varadero, Cayo Santa María y La Habana",
+    types: ["flyer", "post"],
+    destination_name: "Cuba",
+    file_url: "/assets/material/Cuba2.png",
+    thumbnail_url: "/assets/material/Cuba2.png",
+    dimensions: "2540x3308",
+  },
+  {
     id: 6,
+    title: "Cuba Paradisiaca",
+    types: ["flyer"],
+    destination_name: "Cuba",
+    file_url: "/assets/material/Cuba.jpg",
+    thumbnail_url: "/assets/material/Cuba.jpg",
+    dimensions: "3024x5000",
+  },
+  {
+    id: 7,
+    title: "Cuba Clásica",
+    types: ["flyer", "post"],
+    destination_name: "Cuba - La Habana y Varadero",
+    file_url: "/assets/material/Cuba-Clasica.png",
+    thumbnail_url: "/assets/material/Cuba-Clasica.png",
+    dimensions: "2540x3308",
+  },
+  {
+    id: 8,
+    title: "Las Joyas de Cuba",
+    types: ["flyer", "post"],
+    destination_name: "Cuba - La Habana, Cienfuegos, Trinidad, Santa Clara y Varadero",
+    file_url: "/assets/material/Cuba-Joyas.png",
+    thumbnail_url: "/assets/material/Cuba-Joyas.png",
+    dimensions: "2540x3308",
+  },
+  {
+    id: 9,
+    title: "Cuba Varadero",
+    types: ["flyer"],
+    destination_name: "Cuba - Varadero",
+    file_url: "/assets/material/Cuba-Varadero.png",
+    thumbnail_url: "/assets/material/Cuba-Varadero.png",
+    dimensions: "2540x3308",
+  },
+  {
+    id: 10,
+    title: "Guatemala Cultura, Folklore y Aventura",
+    types: ["flyer"],
+    destination_name: "Guatemala",
+    file_url: "/assets/material/Guatemala1.jpg",
+    thumbnail_url: "/assets/material/Guatemala1.jpg",
+    dimensions: "3024x5000",
+  },
+  {
+    id: 11,
+    title: "Guatemala Aventura y Cultura",
+    types: ["flyer"],
+    destination_name: "Guatemala - Acatenango",
+    file_url: "/assets/material/Guatemala.png",
+    thumbnail_url: "/assets/material/Guatemala.png",
+    dimensions: "2540x3308",
+  },
+  {
+    id: 12,
+    title: "Guatemala Arqueología e Historia",
+    types: ["flyer"],
+    destination_name: "Guatemala - Tikal y cultura ancestral",
+    file_url: "/assets/material/Guatemala-Historia.png",
+    thumbnail_url: "/assets/material/Guatemala-Historia.png",
+    dimensions: "2540x3308",
+  },
+  {
+    id: 13,
+    title: "Barrancas del Cobre",
+    types: ["flyer", "post"],
+    destination_name: "México - Chihuahua",
+    file_url: "/assets/material/Barrancas.png",
+    thumbnail_url: "/assets/material/Barrancas.png",
+    dimensions: "1228x1600",
+  },
+  {
+    id: 14,
     title: "Caribe",
     types: ["flyer"],
-    destination_name: "Perú",
+    destination_name: "Puerto Rico - República Dominicana",
     file_url: "/assets/material/Caribe.jpg",
     thumbnail_url: "/assets/material/Caribe.jpg",
     dimensions: "3024x5000",
@@ -350,7 +423,7 @@ export default function MaterialsPage() {
     });
   }, [materials, filterType, deferredSearchQuery]);
 
-  const types = ["all", "banner", "post", "flyer", "cover", "turitour"];
+  const types = ["all", "banner", "post", "flyer", "turitour"];
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
