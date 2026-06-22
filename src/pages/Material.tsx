@@ -13,6 +13,7 @@ import {
   Heart,
   Map,
   ZoomIn,
+  PlayCircle,
 } from "lucide-react";
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import Navbar from "@/components/Navbar";
@@ -155,6 +156,15 @@ const MOCK_MATERIALS: Material[] = [
     file_url: "/assets/material/Caribe.jpg",
     thumbnail_url: "/assets/material/Caribe.jpg",
     dimensions: "3024x5000",
+  },
+  {
+    id: 15,
+    title: "La Magia de Barrancas del Cobre en Invierno",
+    types: ["video", "post"],
+    destination_name: "México - Chihuahua",
+    file_url: "/assets/material/Barrancas-Invierno.mp4",
+    thumbnail_url: "/assets/material/Barrancas-Invierno-thumb.jpg",
+    dimensions: "1080x1920",
   }
 ];
 
@@ -164,6 +174,7 @@ const typeIcons: Record<string, LucideIcon> = {
   flyer: FileText,
   cover: Layout,
   turitour: Map,
+  video: PlayCircle,
 };
 
 const typeColors: Record<string, string> = {
@@ -171,6 +182,7 @@ const typeColors: Record<string, string> = {
   post: "bg-[#ed6a20] text-white border-transparent",
   flyer: "bg-slate-900 text-white border-transparent",
   turitour: "bg-emerald-600 text-white border-transparent",
+  video: "bg-red-600 text-white border-transparent",
 };
 
 const typeLabels: Record<string, string> = {
@@ -179,6 +191,7 @@ const typeLabels: Record<string, string> = {
   post: "Post",
   flyer: "Flyer",
   turitour: "Turitour",
+  video: "Video",
 };
 
 const getCleanFileName = (title: string, fileUrl: string) => {
@@ -213,6 +226,8 @@ const ImagePreviewModal = ({
     };
   }, []);
 
+  const isVideo = material.types.includes("video") || material.file_url.endsWith(".mp4");
+
   return (
     <div
       onClick={onClose}
@@ -230,11 +245,20 @@ const ImagePreviewModal = ({
           <X className="w-6 h-6" />
         </button>
 
-        <img
-          src={material.thumbnail_url}
-          alt={material.title}
-          className="max-w-[95vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
-        />
+        {isVideo ? (
+          <video
+            src={material.file_url}
+            controls
+            autoPlay
+            className="max-w-[95vw] max-h-[85vh] rounded-lg shadow-2xl outline-none"
+          />
+        ) : (
+          <img
+            src={material.thumbnail_url}
+            alt={material.title}
+            className="max-w-[95vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
+          />
+        )}
       </div>
     </div>
   );
@@ -422,7 +446,7 @@ export default function MaterialsPage() {
     });
   }, [materials, filterType, deferredSearchQuery]);
 
-  const types = ["all", "banner", "post", "flyer", "turitour"];
+  const types = ["all", "banner", "post", "flyer", "turitour", "video"];
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -436,7 +460,7 @@ export default function MaterialsPage() {
             </h1>
 
             <p className="text-muted-foreground text-lg max-w-xl">
-              Descarga banners, posts y flyers listos para impulsar las ventas
+              Descarga banners, posts, flyers y videos listos para impulsar las ventas
               en tu agencia.
             </p>
           </div>
@@ -500,6 +524,7 @@ export default function MaterialsPage() {
             {filtered.map((material) => {
               const mainType = getMainType(material);
               const Icon = typeIcons[mainType] || Image;
+              const isVideo = material.types.includes("video");
 
               return (
                 <div key={material.id} className="relative group">
@@ -517,7 +542,11 @@ export default function MaterialsPage() {
                       />
 
                       <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-all duration-300 flex items-center justify-center z-10">
-                        <ZoomIn className="text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 w-10 h-10 drop-shadow-lg" />
+                        {isVideo ? (
+                          <PlayCircle className="text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 w-12 h-12 drop-shadow-lg" />
+                        ) : (
+                          <ZoomIn className="text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 w-10 h-10 drop-shadow-lg" />
+                        )}
                       </div>
 
                       <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-2">
