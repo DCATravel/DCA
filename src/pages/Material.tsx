@@ -160,10 +160,10 @@ const MOCK_MATERIALS: Material[] = [
   {
     id: 15,
     title: "La Magia de Barrancas del Cobre en Invierno",
-    types: ["video", "post"],
+    types: ["video"],
     destination_name: "México - Chihuahua",
     file_url: "/assets/material/Barrancas-Invierno.mp4",
-    thumbnail_url: "/assets/material/Barrancas-Invierno-thumb.jpg",
+    thumbnail_url: "/assets/material/Barrancas.jpg",
     dimensions: "1080x1920",
   }
 ];
