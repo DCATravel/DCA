@@ -365,6 +365,67 @@ export const itineraries: Itinerary[] = [
   pdfUrl: "/assets/pdfs/Brasil-Maravillas.pdf",
 },
 {
+  id: "carnaval-rio-2027",
+  destinationIds: ["brasil"],
+  title: "Carnaval – Río 2027",
+  destination: "Río de Janeiro, Brasil",
+  dates: "05-11 de Febrero, 2027",
+  duration: "7 Días",
+  days: 7,
+  cities: 1,
+  hotelNights: 6,
+  image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80",
+  description: "Este itinerario te invita a vivir la esencia de Río de Janeiro durante una de las épocas más vibrantes del año: el Carnaval. A lo largo de la estancia, descubrirás los principales íconos de la ciudad y vivirás la experiencia única del Desfile de Carnaval en el Sambódromo.",
+  category: "Latinoamérica",
+  season: ["Todas"],
+  pricePerPerson: 3020,
+  flights: {
+    outbound: {
+      from: "A consultar",
+      departure: "A coordinar",
+      to: "RÍO DE JANEIRO",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+    return: {
+      from: "RÍO DE JANEIRO",
+      departure: "A coordinar",
+      to: "A consultar",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+  },
+  activities: [
+    "Llegada al Aeropuerto Internacional, recepción y traslado al hotel en servicio privado.",
+    "Tour de medio día al Corcovado y Cristo Redentor con ascenso en el Tren del Corcovado.",
+    "Tour de medio día al Pan de Azúcar con ascenso en teleférico y vista panorámica de 360°.",
+    "Días libres para disfrutar de las playas, barrios emblemáticos y los tradicionales blocos de rua.",
+    "Asistencia al espectacular Desfile de Carnaval en el Sambódromo (Sector 9) con traslados incluidos.",
+    "Traslado al Aeropuerto Internacional para tomar el vuelo de regreso a casa."
+  ],
+  included: [
+    "Traslado Aeropuerto - Hotel - Aeropuerto en servicio privado.",
+    "6 noches de alojamiento en categoría hotelera de su elección.",
+    "Todos los desayunos.",
+    "Tour medio día Corcovado con subida de tren y entradas.",
+    "Tour medio día Pan de Azúcar con entradas.",
+    "Entradas al carnaval - Sector 9 con traslados ida y vuelta.",
+    "Seguro de viajero Assist Card.",
+    "Transportación terrestre en el circuito con guías en español.",
+    "Impuestos de hospedaje."
+  ],
+  notIncluded: [
+    "Vuelos internacionales.",
+    "Alimentaciones y gastos personales no mencionados.",
+    "Actividades extras y opcionales.",
+    "Propinas.",
+    "Nada no mencionado en el apartado 'INCLUIDO'."
+  ],
+  pdfUrl: "/assets/pdfs/Carnaval-Rio-2027.pdf"
+},
+{
 id: "colombia-3-joyas",
 title: "Las Tres Joyas de Colombia",
 destinationIds: ["colombia"],
