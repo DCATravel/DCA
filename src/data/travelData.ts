@@ -374,7 +374,7 @@ export const itineraries: Itinerary[] = [
   days: 7,
   cities: 1,
   hotelNights: 6,
-  image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80",
+  image: "https://images.unsplash.com/photo-1639002549231-a895a33c4888?auto=format&fit=crop&w=800&q=80",
   description: "Este itinerario te invita a vivir la esencia de Río de Janeiro durante una de las épocas más vibrantes del año: el Carnaval. A lo largo de la estancia, descubrirás los principales íconos de la ciudad y vivirás la experiencia única del Desfile de Carnaval en el Sambódromo.",
   category: "Latinoamérica",
   season: ["Todas"],
@@ -423,7 +423,7 @@ export const itineraries: Itinerary[] = [
     "Propinas.",
     "Nada no mencionado en el apartado 'INCLUIDO'."
   ],
-  pdfUrl: "/assets/pdfs/Carnaval-Rio-2027.pdf"
+  pdfUrl: "/assets/pdfs/Rio-Carnaval.pdf"
 },
 {
 id: "colombia-3-joyas",
