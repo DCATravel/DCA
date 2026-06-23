@@ -42,6 +42,15 @@ const MOCK_MATERIALS: Material[] = [
   },
   {
     id: 2,
+    title: "Brasil - Carnaval",
+    types: ["post"],
+    destination_name: "Brasil - Río de Janeiro",
+    file_url: "/assets/material/Carnaval.jpg",
+    thumbnail_url: "/assets/material/Carnaval.jpg",
+    dimensions: "1228x1600",
+  },
+  {
+    id: 3,
     title: "Colombia Dorada",
     types: ["flyer", "banner"],
     destination_name: "Colombia",
@@ -50,7 +59,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "3024x5000",
   },
   {
-    id: 3,
+    id: 4,
     title: "3 Joyas de Colombia",
     types: ["flyer", "post"],
     destination_name: "Colombia - Bogotá, Medellín y Cartagena",
@@ -59,7 +68,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "2540x3308",
   },
   {
-    id: 4,
+    id: 5,
     title: "Costa Rica y Brasil",
     types: ["flyer", "banner"],
     destination_name: "Costa Rica y Brasil",
@@ -68,7 +77,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "3024x5000",
   },
   {
-    id: 5,
+    id: 6,
     title: "Cuba - Varadero, Cayo Santa María y La Habana",
     types: ["flyer", "post"],
     destination_name: "Cuba",
@@ -77,7 +86,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "2540x3308",
   },
   {
-    id: 6,
+    id: 7,
     title: "Cuba Paradisiaca",
     types: ["flyer"],
     destination_name: "Cuba",
@@ -86,7 +95,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "3024x5000",
   },
   {
-    id: 7,
+    id: 8,
     title: "Cuba Clásica",
     types: ["flyer", "post"],
     destination_name: "Cuba - La Habana y Varadero",
@@ -95,7 +104,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "2540x3308",
   },
   {
-    id: 8,
+    id: 9,
     title: "Las Joyas de Cuba",
     types: ["flyer", "post"],
     destination_name: "Cuba - La Habana, Cienfuegos, Trinidad, Santa Clara y Varadero",
@@ -104,7 +113,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "2540x3308",
   },
   {
-    id: 9,
+    id: 10,
     title: "Cuba Varadero",
     types: ["flyer"],
     destination_name: "Cuba - Varadero",
@@ -113,7 +122,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "2540x3308",
   },
   {
-    id: 10,
+    id: 11,
     title: "Guatemala Cultura, Folklore y Aventura",
     types: ["flyer"],
     destination_name: "Guatemala",
@@ -122,7 +131,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "3024x5000",
   },
   {
-    id: 11,
+    id: 12,
     title: "Guatemala Aventura y Cultura",
     types: ["flyer"],
     destination_name: "Guatemala - Acatenango",
@@ -131,7 +140,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "2540x3308",
   },
   {
-    id: 12,
+    id: 13,
     title: "Guatemala Arqueología e Historia",
     types: ["flyer"],
     destination_name: "Guatemala - Tikal y cultura ancestral",
@@ -140,7 +149,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "2540x3308",
   },
   {
-    id: 13,
+    id: 14,
     title: "Barrancas del Cobre",
     types: ["flyer", "post"],
     destination_name: "México - Chihuahua",
@@ -149,7 +158,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "1228x1600",
   },
   {
-    id: 14,
+    id: 15,
     title: "Caribe",
     types: ["flyer"],
     destination_name: "Puerto Rico - República Dominicana",
@@ -158,7 +167,7 @@ const MOCK_MATERIALS: Material[] = [
     dimensions: "3024x5000",
   },
   {
-    id: 15,
+    id: 16,
     title: "La Magia de Barrancas del Cobre en Invierno",
     types: ["video"],
     destination_name: "México - Chihuahua",
