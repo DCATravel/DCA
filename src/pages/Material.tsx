@@ -174,7 +174,16 @@ const MOCK_MATERIALS: Material[] = [
     file_url: "/assets/material/Barrancas-Invierno.mp4",
     thumbnail_url: "/assets/material/Barrancas.jpg",
     dimensions: "1080x1920",
-  }
+  },
+  {
+    id: 16,
+    title: "Carnaval en Río",
+    types: ["video"],
+    destination_name: "Brasil - Río",
+    file_url: "/assets/material/Carnaval-Rio.mp4",
+    thumbnail_url: "/assets/material/Carnaval.jpg",
+    dimensions: "720x1280",
+  } 
 ];
 
 const typeIcons: Record<string, LucideIcon> = {
