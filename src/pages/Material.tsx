@@ -192,7 +192,16 @@ const MOCK_MATERIALS: Material[] = [
     file_url: "/assets/material/Santiago-Chile.mp4",
     thumbnail_url: "/assets/material/Santiago-Chile.jpg",
     dimensions: "720x1280",
-  } 
+  },
+  {
+    id: 19,
+    title: "Latam",
+    types: ["video"],
+    destination_name: "Latam",
+    file_url: "/assets/material/Latam.mp4",
+    thumbnail_url: "/assets/material/latam.jpg",
+    dimensions: "720x1280",
+  }
 ];
 
 const typeIcons: Record<string, LucideIcon> = {
