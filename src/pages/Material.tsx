@@ -153,8 +153,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "Barrancas del Cobre",
     types: ["flyer", "post"],
     destination_name: "México - Chihuahua",
-    file_url: "/assets/material/Barrancas.png",
-    thumbnail_url: "/assets/material/Barrancas.png",
+    file_url: "/assets/material/Barrancas.jpg",
+    thumbnail_url: "/assets/material/Barrancas.jpg",
     dimensions: "1228x1600",
   },
   {
@@ -182,6 +182,15 @@ const MOCK_MATERIALS: Material[] = [
     destination_name: "Brasil - Río",
     file_url: "/assets/material/Carnaval-Rio.mp4",
     thumbnail_url: "/assets/material/Carnaval.jpg",
+    dimensions: "720x1280",
+  },
+  {
+    id: 18,
+    title: "Santiago de Chile",
+    types: ["video"],
+    destination_name: "Chile - Santiago",
+    file_url: "/assets/material/Santiago-Chile.mp4",
+    thumbnail_url: "/assets/material/Santiago-Chile.jpg",
     dimensions: "720x1280",
   } 
 ];
