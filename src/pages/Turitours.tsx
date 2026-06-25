@@ -28,7 +28,7 @@ const TURITOURS_LIST: Tour[] = [
     id: "acapulco-baja", 
     title: "Turitour Acapulco Temporada Baja", 
     file_url: "/assets/turitours/Acapulco.pdf",
-    image: "/assets/turitours/AcapulcoBaja.jpg" 
+    image: "/assets/turitours/Acapulco.jpg" 
   }
 ];
 
