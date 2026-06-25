@@ -13,28 +13,29 @@ type Tour = {
 
 const TURITOURS_LIST: Tour[] = [
   { 
-    id: "rafting", 
-    title: "Turitour Rafting", 
-    file_url: "/assets/pdfs/TuritourRafting.pdf",
-    image: "/assets/turitours/Rafting.jpg"
-  },
-  { 
-    id: "acapulco", 
-    title: "Turitour Acapulco", 
-    file_url: "/assets/pdfs/Turitour-Acapulco.pdf",
-    image: "/assets/turitours/Acapulco.jpg" 
+    id: "mexico-verde", 
+    title: "Turitour México Verde", 
+    file_url: "/assets/turitours/Itinerario_Turitour_Mexico_Verde.pdf",
+    image: "/assets/turitours/MexicoVerde.jpg" 
   },
   { 
     id: "sierra-cafe", 
-    title: "Turitour Sierra de Café", 
-    file_url: "/assets/pdfs/Turitour-Sierra-Cafe.pdf",
-    image: "/assets/turitours/Cafe.jpg" 
+    title: "Turitour Sierra del Café", 
+    file_url: "/assets/turitours/Itinerario_Turitour_Sierra_del_Cafe.pdf",
+    image: "/assets/turitours/SierraCafe.jpg" 
+  },
+  { 
+    id: "acapulco-baja", 
+    title: "Turitour Acapulco Temporada Baja", 
+    file_url: "/assets/turitours/Itinerario_Turitour_Acapulco.pdf",
+    image: "/assets/turitours/AcapulcoBaja.jpg" 
   }
 ];
 
 // COMPONENTE AISLADO: Modal de Descarga
 const DownloadModal = ({ tour, onClose }: { tour: Tour, onClose: () => void }) => {
   const [countdown, setCountdown] = useState(5);
+  
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -177,14 +178,13 @@ export default function Turitours() {
                   </h3>
                 </div>
                 
-                {/* BOTÓN DE DESCARGA */}
+                {/* BOTÓN DE DESCARGA ACTIVADO */}
                 <button
-                  disabled
-                  // onClick={() => setSelectedTour(tour)} // <-- Deshabilitado
-                  className="relative z-10 w-full bg-black/40 text-white/50 backdrop-blur-md border border-white/10 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-not-allowed shadow-lg"
+                  onClick={() => setSelectedTour(tour)}
+                  className="relative z-10 w-full bg-white/20 hover:bg-white/30 text-white backdrop-blur-md border border-white/20 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
-                  <Download className="w-5 h-5 opacity-50" /> 
-                  Descarga inactiva
+                  <Download className="w-5 h-5" /> 
+                  Descargar Itinerario
                 </button>
               </div>
             </div>

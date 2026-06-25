@@ -557,7 +557,7 @@ export const itineraries: Itinerary[] = [
     "Propinas.",
     "Nada no mencionado en el apartado 'INCLUIDO'."
   ],
-  pdfUrl: "/assets/pdfs/Santiago-Rapa.pdf"
+  pdfUrl: "/assets/pdfs/Chile-Rapa.pdf"
 },
 {
   id: "chile-santiago",
