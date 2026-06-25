@@ -62,6 +62,18 @@ export const destinations: Destination[] = [
     category: "Latinoamérica",
   },
   {
+    id: "chile",
+    name: "Chile",
+    location: "Santiago, Valparaíso, Viña del Mar y Rapa Nui",
+    image:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
+    rating: 4.8,
+    price: 1279,
+    description:
+      "Experiencias por Chile que combinan historia, cultura, gastronomía, vinos, paisajes naturales y la esencia de Santiago, Valparaíso y Viña del Mar.",
+    category: "Latinoamérica",
+  },
+  {
     id: "colombia",
     name: "Colombia",
     location: "Bogotá, Cartagena, Medellín e Islas del Caribe",
@@ -367,7 +379,7 @@ export const itineraries: Itinerary[] = [
 {
   id: "carnaval-rio-2027",
   destinationIds: ["brasil"],
-  title: "Carnaval – Río 2027",
+  title: "Carnaval Río",
   destination: "Río de Janeiro, Brasil",
   dates: "05-11 de Febrero, 2027",
   duration: "7 Días",
@@ -424,6 +436,128 @@ export const itineraries: Itinerary[] = [
     "Nada no mencionado en el apartado 'INCLUIDO'."
   ],
   pdfUrl: "/assets/pdfs/Rio-Carnaval.pdf"
+},
+{
+  id: "chile-paisajes",
+  title: "Paisajes Chilenos",
+  destinationIds: ["chile"],
+  destination: "Santiago, Atacama y Puerto Natales, Chile",
+  dates: "Salidas diarias hasta el 31 de diciembre 2026",
+  duration: "11 Días",
+  days: 11,
+  cities: 3,
+  hotelNights: 10,
+  image: "https://images.unsplash.com/photo-1717674933777-dbf39a9c04af?auto=format&fit=crop&w=800&q=80",
+  description: "Un itinerario de 11 días que reúne los destinos más espectaculares de Chile. Explora la riqueza histórica y los viñedos de Santiago, maravíllate con los paisajes únicos del Desierto de Atacama (Valle de la Luna, Géysers del Tatio) y culmina tu aventura en la Patagonia chilena visitando el majestuoso Parque Nacional Torres del Paine.",
+  category: "Latinoamérica",
+  season: ["Todas"],
+  pricePerPerson: 2418,
+  flights: {
+    outbound: {
+      from: "A consultar",
+      departure: "A coordinar",
+      to: "SANTIAGO (SCL)",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+    return: {
+      from: "PUERTO NATALES (PNT)",
+      departure: "A coordinar",
+      to: "A consultar",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+  },
+  activities: [
+    "Llegada al Aeropuerto Internacional de Santiago, recepción y traslado privado al hotel.",
+    "City tour por Santiago y visita al Valle del Maipo con recorrido histórico y degustación de vinos premium en Viña Santa Rita.",
+    "Excursión a la costa para visitar Valparaíso (Cerros Alegre y Concepción) y Viña del Mar (Reloj de Flores, Quinta Vergara).",
+    "Traslado privado al aeropuerto de Santiago para tomar vuelo (no incluido) hacia Calama. Llegada y traslado a San Pedro de Atacama.",
+    "Tarde de excursión al Valle de la Luna y Mirador de Licarantay para disfrutar del atardecer en la Cordillera de la Sal.",
+    "Día completo de excursión en altura visitando Piedras Rojas, Lagunas Altiplánicas (Miscanti y Miñiques) y la Reserva de Flamencos en Laguna Chaxa.",
+    "Excursión al amanecer a los Geysers del Tatio y poblado de Machuca. Por la tarde, vuelo (no incluido) de regreso a Santiago.",
+    "Traslado al aeropuerto de Santiago para tomar vuelo (no incluido) hacia Puerto Natales. Llegada y tarde libre.",
+    "Excursión de día completo al Parque Nacional Torres del Paine, visitando la Cueva del Milodón, Salto Grande y Lago Grey (comida incluida).",
+    "Día libre en Puerto Natales para actividades opcionales como navegación a glaciares o pingüineras.",
+    "Traslado privado al aeropuerto de Puerto Natales para tomar el vuelo de regreso a casa."
+  ],
+  included: [
+    "Traslado Aeropuerto - Hotel - Aeropuerto en servicio privado.",
+    "10 noches de alojamiento en categoría hotelera de su elección.",
+    "Todos los desayunos y comida incluida en excursión a Torres del Paine.",
+    "Excursiones mencionadas según itinerario en servicio semi-privado.",
+    "Seguro de viajero Assist Card.",
+    "Impuestos de hospedaje."
+  ],
+  notIncluded: [
+    "Vuelos internacionales y/o nacionales (Vuelos internos: Santiago-Calama, Calama-Santiago, Santiago-Puerto Natales).",
+    "Alimentaciones y gastos personales no mencionados.",
+    "Actividades extras y opcionales.",
+    "Propinas.",
+    "Nada no mencionado en el apartado 'INCLUIDO'."
+  ],
+  pdfUrl: "/assets/pdfs/Chile-Paisajes.pdf"
+},
+{
+  id: "chile-santiago",
+  title: "Chile - Santiago y Puerto Varas",
+  destinationIds: ["chile"],
+  destination: "Santiago, Valparaíso, Viña del Mar y Puerto Varas",
+  dates: "Salidas diarias hasta el 30 de octubre 2026",
+  duration: "7 Días",
+  days: 7,
+  cities: 4,
+  hotelNights: 6,
+  image: "https://images.unsplash.com/photo-1583343863760-be6b06032bd8?auto=format&fit=crop&w=800&q=80",
+  description: "Este itinerario de 7 días combina la energía urbana de Santiago con los impresionantes paisajes del sur de Chile. Comienza explorando la capital chilena y la costa de Valparaíso y Viña del Mar, para luego trasladarte a la región de Los Lagos, donde descubrirás el majestuoso Volcán Osorno, el Lago Llanquihue y las herencias alemanas de Frutillar.",
+  category: "Latinoamérica",
+  season: ["Todas"],
+  pricePerPerson: 1279,
+  flights: {
+    outbound: {
+      from: "A consultar",
+      departure: "A coordinar",
+      to: "SANTIAGO (SCL)",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+    return: {
+      from: "PUERTO MONTT (PMC)",
+      departure: "A coordinar",
+      to: "A consultar",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+  },
+  activities: [
+    "Llegada al Aeropuerto Internacional de Santiago, recepción y traslado privado al hotel.",
+    "City tour panorámico por Santiago observando el Palacio de la Moneda, Plaza de Armas, Cerro Santa Lucía, Barrio Bellavista y el sector moderno de Providencia y Las Condes.",
+    "Excursión a la costa para visitar Valparaíso con sus pintorescos cerros y ascensores, y Viña del Mar recorriendo el Reloj de Flores y la Quinta Vergara.",
+    "Traslado privado al aeropuerto de Santiago para tomar vuelo (no incluido) hacia Puerto Montt. Llegada y traslado a Puerto Varas.",
+    "Travesía bordeando el Lago Llanquihue con ascenso hasta el Centro de Ski y Montaña del Volcán Osorno a 1.240 metros de altitud.",
+    "Recorrido por Llanquihue y Frutillar, apreciando la influencia alemana, la arquitectura bávara y el icónico Teatro del Lago.",
+    "Traslado desde el hotel hacia el Aeropuerto de Puerto Montt para tomar el vuelo de regreso."
+  ],
+  included: [
+    "Traslado Aeropuerto - Hotel - Aeropuerto en servicio privado.",
+    "6 noches de alojamiento en categoría hotelera de su elección.",
+    "Todos los desayunos.",
+    "Excursiones mencionadas según itinerario en servicio semi-privado.",
+    "Seguro de viajero Assist Card.",
+    "Impuestos de hospedaje."
+  ],
+  notIncluded: [
+    "Vuelos internacionales y/o nacionales (Vuelo interno Santiago - Puerto Montt).",
+    "Alimentaciones y gastos personales no mencionados.",
+    "Actividades extras y opcionales.",
+    "Propinas.",
+    "Nada no mencionado en el apartado 'INCLUIDO'."
+  ],
+  pdfUrl: "/assets/pdfs/Chile-Santiago.pdf"
 },
 {
 id: "colombia-3-joyas",
