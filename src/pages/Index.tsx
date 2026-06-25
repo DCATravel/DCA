@@ -120,7 +120,7 @@ export default function Index() {
       >
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1616305102996-77f098e1f42b?auto=format&fit=crop&w=1920&q=85"
+            src="https://images.unsplash.com/photo-1602088113235-229c19758e9f?auto=format&fit=crop&w=1920&q=85"
             alt="Experiencias de viaje DCA Travel"
             loading="eager"
             fetchPriority="high"

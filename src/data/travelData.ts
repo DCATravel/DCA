@@ -501,6 +501,65 @@ export const itineraries: Itinerary[] = [
   pdfUrl: "/assets/pdfs/Chile-Paisajes.pdf"
 },
 {
+  id: "chile-rapa-nui",
+  title: "Santiago - Rapa Nui",
+  destinationIds: ["chile"],
+  destination: "Santiago, Valparaíso, Viña del Mar y Rapa Nui (Isla de Pascua)",
+  dates: "Salidas diarias del 01 de marzo 2026 al 31 de marzo 2027",
+  duration: "7 Días",
+  days: 7,
+  cities: 4,
+  hotelNights: 6,
+  image: "https://images.unsplash.com/photo-1579665063783-77579f0a38a3?auto=format&fit=crop&w=800&q=80",
+  description: "Sumérgete en la energía vibrante de la capital chilena y descubre la mística Isla de Pascua. Este viaje de 7 días te lleva desde los contrastes de Santiago y las coloridas costas de Valparaíso, hasta la ancestral cultura de Rapa Nui, explorando el Volcán Rano Kau, el Centro Ceremonial Orongo y la icónica Cantera de los Moais.",
+  category: "Latinoamérica",
+  season: ["Todas"],
+  pricePerPerson: 1428,
+  flights: {
+    outbound: {
+      from: "A consultar",
+      departure: "A coordinar",
+      to: "SANTIAGO (SCL)",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+    return: {
+      from: "ISLA DE PASCUA (IPC)",
+      departure: "A coordinar",
+      to: "A consultar",
+      arrival: "A coordinar",
+      stops: "Vuelos internacionales/nacionales no incluidos",
+      estimatedPrice: "A consultar",
+    },
+  },
+  activities: [
+    "Llegada al Aeropuerto Internacional de Santiago, recepción y traslado privado al hotel.",
+    "City tour panorámico por Santiago visitando el Palacio de la Moneda, Plaza de Armas, Cerro Santa Lucía, Barrio Bellavista y el sector moderno de Las Condes.",
+    "Excursión hacia la costa central descubriendo Valparaíso, el Paseo Yugoslavo, y Viña del Mar con su Reloj de Flores y la Quinta Vergara.",
+    "Traslado privado al aeropuerto de Santiago para tomar vuelo (no incluido) hacia el Aeropuerto Internacional Mataveri en Isla de Pascua. Recepción y traslado al hotel.",
+    "Excursión al majestuoso Volcán Rano Kau y visita guiada por el Centro Ceremonial Orongo, cuna del festival Tapati Rapa Nui.",
+    "Exploración de la Cantera de los Moais en Rano Raraku, picnic al aire libre y visita a la mítica playa de arena blanca de Anakena.",
+    "Traslado desde el hotel hacia el Aeropuerto Internacional Mataveri para tomar el vuelo de regreso."
+  ],
+  included: [
+    "Traslado Aeropuerto - Hotel - Aeropuerto en servicio privado.",
+    "6 noches de alojamiento en categoría hotelera de su elección.",
+    "Todos los desayunos.",
+    "Excursiones mencionadas según itinerario en servicio semi-privado.",
+    "Seguro de viajero Assist Card.",
+    "Impuestos de hospedaje."
+  ],
+  notIncluded: [
+    "Vuelos internacionales y/o nacionales (Vuelo interno Santiago - Isla de Pascua no incluido).",
+    "Alimentaciones y gastos personales no mencionados.",
+    "Actividades extras y opcionales.",
+    "Propinas.",
+    "Nada no mencionado en el apartado 'INCLUIDO'."
+  ],
+  pdfUrl: "/assets/pdfs/Santiago-Rapa.pdf"
+},
+{
   id: "chile-santiago",
   title: "Chile - Santiago y Puerto Varas",
   destinationIds: ["chile"],
