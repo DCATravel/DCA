@@ -207,8 +207,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "Turitour México Verde",
     types: ["turitour"],
     destination_name: "México - Rafting",
-    file_url: "/assets/turitours/Turi-Rafting.jpg",
-    thumbnail_url: "/assets/turitours/Turi-Rafting.jpg",
+    file_url: "/assets/material/Turi-Rafting.jpg",
+    thumbnail_url: "/assets/material/Turi-Rafting.jpg",
     dimensions: "1236x1600",
   },
   {
@@ -216,8 +216,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "Turitour Sierra del Café",
     types: ["turitour"],
     destination_name: "México - Sierra del Café",
-    file_url: "/assets/turitours/Turi-Cafe.jpg",
-    thumbnail_url: "/assets/turitours/Turi-Cafe.jpg",
+    file_url: "/assets/material/Turi-Cafe.jpg",
+    thumbnail_url: "/assets/material/Turi-Cafe.jpg",
     dimensions: "1236x1600",
   },
   {
@@ -225,8 +225,8 @@ const MOCK_MATERIALS: Material[] = [
     title: "Turitour Acapulco Temporada Baja",
     types: ["turitour"],
     destination_name: "México - Acapulco",
-    file_url: "/assets/turitours/Turi-Acapulco.jpg",
-    thumbnail_url: "/assets/turitours/Turi-Acapulco.jpg",
+    file_url: "/assets/material/Turi-Acapulco.jpg",
+    thumbnail_url: "/assets/material/Turi-Acapulco.jpg",
     dimensions: "1236x1600",
   }
 ];
