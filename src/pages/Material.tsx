@@ -201,6 +201,33 @@ const MOCK_MATERIALS: Material[] = [
     file_url: "/assets/material/Latam.mp4",
     thumbnail_url: "/assets/material/latam.jpg",
     dimensions: "720x1280",
+  },
+  {
+    id: 20,
+    title: "Turitour México Verde",
+    types: ["turitour"],
+    destination_name: "México - Rafting",
+    file_url: "/assets/turitours/Turi-Rafting.jpg",
+    thumbnail_url: "/assets/turitours/Turi-Rafting.jpg",
+    dimensions: "1236x1600",
+  },
+  {
+    id: 21,
+    title: "Turitour Sierra del Café",
+    types: ["turitour"],
+    destination_name: "México - Sierra del Café",
+    file_url: "/assets/turitours/Turi-Cafe.jpg",
+    thumbnail_url: "/assets/turitours/Turi-Cafe.jpg",
+    dimensions: "1236x1600",
+  },
+  {
+    id: 22,
+    title: "Turitour Acapulco Temporada Baja",
+    types: ["turitour"],
+    destination_name: "México - Acapulco",
+    file_url: "/assets/turitours/Turi-Acapulco.jpg",
+    thumbnail_url: "/assets/turitours/Turi-Acapulco.jpg",
+    dimensions: "1236x1600",
   }
 ];
 
