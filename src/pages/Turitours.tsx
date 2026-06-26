@@ -15,19 +15,19 @@ const TURITOURS_LIST: Tour[] = [
   { 
     id: "mexico-verde", 
     title: "Turitour México Verde", 
-    file_url: "/assets/turitours/Itinerario_Turitour_Mexico_Verde.pdf",
+    file_url: "/assets/turitours/Turi-Rafting.pdf",
     image: "/assets/turitours/Rafting.jpg" 
   },
   { 
     id: "sierra-cafe", 
     title: "Turitour Sierra del Café", 
-    file_url: "/assets/turitours/Itinerario_Turitour_Sierra_del_Cafe.pdf",
+    file_url: "/assets/turitours/Turi-Cafe.pdf",
     image: "/assets/turitours/Cafe.jpg" 
   },
   { 
     id: "acapulco-baja", 
     title: "Turitour Acapulco Temporada Baja", 
-    file_url: "/assets/turitours/Itinerario_Turitour_Acapulco.pdf",
+    file_url: "/assets/turitours/Turi-Acapulco.pdf",
     image: "/assets/turitours/Acapulco.jpg" 
   }
 ];
