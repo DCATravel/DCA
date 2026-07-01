@@ -14,16 +14,15 @@ export default function ExchangeRateModal({ buttonClassName }: ExchangeRateModal
 
   // Valores de la agencia DCA
   const agencyRates = {
-    buy: 17.50,
-    sell: 18.50,
+    Precio: 17.95,
     lastUpdate: 'Hoy, 09:00 AM',
   };
 
   const handleConvert = () => {
     const numAmount = parseFloat(amount) || 0;
     return isUsdToMxn 
-      ? (numAmount * agencyRates.sell).toFixed(2) 
-      : (numAmount / agencyRates.buy).toFixed(2);
+      ? (numAmount * agencyRates.Precio).toFixed(2) 
+      : (numAmount / agencyRates.Precio).toFixed(2);
   };
 
   return (
@@ -43,7 +42,7 @@ export default function ExchangeRateModal({ buttonClassName }: ExchangeRateModal
         <TrendingUp className="w-4 h-4 text-primary" />
         <span className="hidden sm:inline">
           <span className="text-muted-foreground mr-1">USD</span>
-          ${agencyRates.sell.toFixed(2)}
+          ${agencyRates.Precio.toFixed(2)}
         </span>
       </button>
 
@@ -76,14 +75,9 @@ export default function ExchangeRateModal({ buttonClassName }: ExchangeRateModal
             <div className="p-6 space-y-6">
               
               {/* Tasas de Compra/Venta */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-muted/30 p-4 rounded-xl border border-border/50 text-center">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block mb-1">Compra</span>
-                  <span className="text-2xl font-bold text-foreground">${agencyRates.buy.toFixed(2)}</span>
-                </div>
                 <div className="bg-primary/5 p-4 rounded-xl border border-primary/20 text-center">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-primary block mb-1">Venta</span>
-                  <span className="text-2xl font-bold text-foreground">${agencyRates.sell.toFixed(2)}</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary block mb-1">Precio</span>
+                  <span className="text-2xl font-bold text-foreground">${agencyRates.Precio.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -160,7 +154,6 @@ export default function ExchangeRateModal({ buttonClassName }: ExchangeRateModal
               </div>
 
             </div>
-          </div>
         </div>,
         document.body
       )}
