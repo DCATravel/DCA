@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import LoginButton from "./LoginButton";
+import ExchangeRateModal from "./ExchangeRateModal";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
@@ -91,7 +91,7 @@ export default function Navbar() {
           <ThemeToggle />
 
           <div className="hidden sm:block">
-            <LoginButton />
+            <ExchangeRateModal />
           </div>
 
           {/* Mobile menu button */}
@@ -149,8 +149,8 @@ export default function Navbar() {
             );
           })}
 
-          <div className="pt-3 sm:hidden">
-            <LoginButton />
+          <div className="pt-3 pb-2 sm:hidden flex justify-center">
+            <ExchangeRateModal buttonClassName="w-full justify-center py-3" />
           </div>
         </div>
       )}
