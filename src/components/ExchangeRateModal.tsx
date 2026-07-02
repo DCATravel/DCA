@@ -14,8 +14,8 @@ export default function ExchangeRateModal({ buttonClassName }: ExchangeRateModal
 
   // Valores de la agencia DCA
   const agencyRates = {
-    Precio: 17.95,
-    lastUpdate: 'Hoy, 09:00 AM',
+    Precio: 17.90,
+    lastUpdate: 'Hoy, 10:46 AM',
   };
 
   const handleConvert = () => {
